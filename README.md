@@ -1,6 +1,6 @@
 ## Projeto Site 9Tec - NineTec
 <center>
-<img src="img/img1">
+<img src="img/img1.png">
 <img src="banner2.jpg" width="800px"/>
 </center>
 <hr/>
