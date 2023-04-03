@@ -1,11 +1,13 @@
 ## Projeto Site 9Tec - NineTec
+
 <center>
-<h3>Logo</h3>
+<h3 style="text-align:center">Logo</h3>
 <img src="img/img1.png">
 
 <h3>Banner</h3>
 <img src="banner2.jpg" width="800px"/>
 </center>
+
 <hr/>
 
 ## Versões do Projeto Site 9Tec - Ninetec
