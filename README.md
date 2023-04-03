@@ -42,6 +42,6 @@
 <a href="https://jquery.com/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKICs179exfPrYfYKZEDzZvd6Q03pj-MCn5e1X_WOEb3qjCygIrMtvCclYQMhQBeGGWWk&usqp=CAU" width="60px">&nbsp;jQuery</a>
 
 ## Referências
-<a href="https://www.namecheap.com/"><img src="https://cwstatic.nyc3.digitaloceanspaces.com/2317/namecheap-rektangul%C3%A4r-1.png?v=1611220073" width="230px"></a> - Site que foi utilizado para gera a logo
+<a href="https://www.namecheap.com/"><img src="https://cwstatic.nyc3.digitaloceanspaces.com/2317/namecheap-rektangul%C3%A4r-1.png?v=1611220073" width="200px"></a> - Site que foi utilizado para gera a logo
 
 @2023
