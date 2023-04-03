@@ -1,6 +1,9 @@
 ## Projeto Site 9Tec - NineTec
 <center>
+<h5>Logo</h5>
 <img src="img/img1.png">
+
+<h5>Banner</h5>
 <img src="banner2.jpg" width="800px"/>
 </center>
 <hr/>
