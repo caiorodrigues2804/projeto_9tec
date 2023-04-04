@@ -21,7 +21,7 @@
 - Não disponível
 
 ## Endereço URL ou Link do site
-- <h4><a href="9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
+- <h4><a href="https://9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
 
 ## Programas e frameworks utilizados no desenvolvimento do site
 
