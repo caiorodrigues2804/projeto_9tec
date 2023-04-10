@@ -17,12 +17,12 @@
 
 <h3> Endereço URL ou Link do site </h3>
 
-<h2> Link 01 </h2>
+<h3> Link 01 </h3>
 <h4><a href="https://9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
 
 ou
 
-<h2>Link 02 </h2>
+<h3>Link 02 </h3>
 <h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
 
  
