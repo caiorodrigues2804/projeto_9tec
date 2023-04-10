@@ -1,0 +1,182 @@
+clientes_recovery.php ---> Cole dentro do arquivo
+
+<?php 
+
+// objeto do template smarty
+$smarty = new Template();
+
+
+$connect = new Conexao();
+ 
+
+// verifico se existe um post do email
+if(isset($_POST['cli_email'])):
+
+	// classe de clientes
+	$cliente = new Clientes();
+
+	// metodo que valida o email
+	$cliente->setCli_email($_POST['cli_email']);
+
+	// verifico se existe o email
+	if($cliente->GetClienteEmail($cliente->getCli_email()) > 0):
+	// o email foi encontrado
+
+	$email_validador = $_POST['cli_email'];
+	
+
+    $servername = "us-imm-web652.main-hosting.eu";
+    $database = "u308103531_adegaunibeer";
+    $username = "u308103531_rootadega";
+    $password = "Nvidia280401vai@";
+ 
+    $con = mysqli_connect($servername, $username, $password, $database);
+ 
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+   ;
+    
+
+     $ds = mysqli_query($con,"SELECT `dados_extras` FROM `as_clientes` WHERE `cli_email` = '$email_validador'");
+     $novasenha = mysqli_fetch_assoc($ds)["dados_extras"];
+    //  print $novasenha;
+
+		
+	// Enviar o email para o cliente
+	$email = new EnviarEmail();
+
+	$destinatarios = array($cliente->getCli_email(), Config::SITE_EMAIL_ADM);
+	$assunto = 'Nova senha' . Config::SITE_NOME;
+	$msg = 'Olá cliente, foi solicitada a sua senha para acessar o Site ' . Config::SITE_NOME;
+	$msg .= "<br/> Sua senha é  ( " . $novasenha . " ) <br/>";
+	$msg .= "Recomendamos que faça a alteração da sua senha através do site na opção 'Senha' quando estiver logado";
+
+	$email->Enviar($assunto,$msg,$destinatarios);
+
+	// mostra mensagem na tela que foi enviada a senha
+    echo "<div class='alert alert-success'><h4>Olá cliente, enviamos a sua senha que já está vinculada ao seu e-mail, verifica no seu e-mail que foi cadastrado no site <h4></div>";
+	Rotas::Redirecionar(5,Rotas::pag_ClienteLogin());
+	else:
+	// email não foi encontrado
+		echo '<h3>Email não foi encontrado no sistema</h3>';
+		Rotas::Redirecionar(3,Rotas::pag_ClienteLogin());
+	endif;
+
+// caso não exista o post mostro o template
+else:
+
+	// chamo o template
+	$smarty->display('clientes_recovery.tpl');
+
+endif;
+
+
+
+
+// ------------------------------------------------------------------------------- //
+
+
+
+
+buscador_resultados.php ---> Cole dentro do arquivo
+
+
+<?php 
+
+$smarty = new Template();
+$conexoes = new Conexao();
+
+$smarty->display('buscador_resultados.tpl');
+
+
+	// print_r($_POST);
+	$var_busc = $_POST["campos"];
+
+
+    $servername = "us-imm-web652.main-hosting.eu";
+    $database = "u308103531_adegaunibeer_a";
+    $username = "u308103531_root_adega_use";
+    $password = "Nvidia280401vai28@";
+ 
+    $con = mysqli_connect($servername, $username, $password, $database);
+ 
+    if (!$con) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+
+    
+    
+	$dados = mysqli_query($con,"SELECT * FROM `as_produtos`");
+	$results = mysqli_fetch_assoc($dados);
+ 
+    $dados_s = mysqli_query($con,"SELECT COUNT(*) FROM `as_produtos` WHERE `pro_nome` LIKE '$var_busc%'");
+    $results_s = mysqli_fetch_assoc($dados_s);
+    $results_s = intval($results_s["COUNT(*)"]);
+// 	print $results_s;
+	
+	print (($results_s == 0) ? '<h4>Nenhum produto foi encontrado</h4>' : '<h4>A quantidades de produtos retornados foi ' . $results_s . '</h4>');
+	for($i = 0;$i <= $results_s;$i++){
+
+	 if($dados = mysqli_query($con,"SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '$var_busc%'")){
+	 	while($results_s = mysqli_fetch_assoc($dados)){	 	
+	 		$ids = $results_s['pro_id'];
+	 		
+	 		// print '<pre>';print_r($results);print '</pre>';
+?>
+		
+	<div id="ds_s">
+		<br/>
+		<img style="display: inline;width: 130px;border: 0.5px solid #000;margin: 10px;border-radius: 10%" src="media/imagens/<?php print $results_s['pro_img'];?>"/>
+		<h4 style="display: inline;"><!--- (<?php// print $results['pro_id'] ?>) --->
+		<b>Nome:</b> <?php print $results_s['pro_nome'] ?> 
+		| <b>REF:</b> <?php print $results_s['pro_ref'] ?>
+		| <b>Valor do produto:</b> R$ <?php print str_replace('.',',',$results_s['pro_valor']) ?></h4>
+		<center>
+		  <button style="display: block;" id="botao" class="btn btn-cssc"><a href="
+
+	 	javascript: location.href = 'produtos_info/' + '<?php print $results_s['pro_id']?>/' + '<?php print $results_s['pro_slug']?>';
+
+		  	">Visualizar produto</a></button><br/>
+		  </center>
+		<hr/>
+	</div>
+ <?php } } } ?>
+ </div>
+
+// ------------------------------------------------------------------------------- //
+
+clientes_senha.php  ---> Cole dentro do arquivo
+
+// gravo a nova senha no banco de dados
+
+
+    $servername = "us-imm-web652.main-hosting.eu";
+    $database = "u308103531_adegaunibeer";
+    $username = "u308103531_rootadega";
+    $password = "Nvidia280401vai@";
+ 
+
+	 $con = mysqli_connect($servername,$username,$password,$database);
+
+	 if($con == mysqli_connect_error()){print 'Aconteceu um erro';}
+
+
+	 mysqli_query($con,"UPDATE `as_clientes` SET `dados_extras` = '$senha_nova' WHERE `cli_email` = '$email'");
+
+
+
+	 $clientes = new Clientes();
+	 $clientes->setCli_senha($senha_nova);
+	 
+	 $clientes->setCli_email($email);
+
+	 $clientes->SenhaUpdate($clientes->getCli_senha(), $clientes->getCli_email());
+
+	 echo '<div class="alert alert-success">A senha foi trocada com sucesso!! Já pode fazer login com sua nova senha</div>';
+
+
+
+
+
+

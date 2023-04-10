@@ -1,0 +1,133 @@
+/* CLASSES NOVAS CRIADAS PARA O PROJETO */
+ 
+#topo{
+
+min-height: 100px;
+background-color: #000;
+color: #fff;
+    
+}
+
+#divs_dd{
+    margin-left: -6px;
+}
+
+#rodape{
+     
+min-height: 150px;
+background-color: #be7200;  
+color: #0000; 
+    
+}
+
+#conteudo{
+    
+   min-height: 450px; 
+}
+
+#lateral{
+    
+   border-right: 1px solid #000;
+   height: 100%;
+  }
+
+  .transparente{
+   opacity: 0.9;   
+      
+  }
+
+.thumbnail{
+    border-radius: 15px;
+    box-shadow: 5px 6px 6px #adadad;
+}
+
+/* CLASSES OVERRIDE DO BOOTSTRAP para personalização*/
+
+.pagination>li>a{
+    background-color: #b36b00;
+    color: #fff;
+}
+
+
+.btn-cssc{
+    color: #fff;
+    background-color: #e98c00;
+}
+
+.btn-cssc:hover{
+    color: #fff;
+    background-color: #b36b00;
+
+} .btn-css:visited{
+    color: #fff;
+    background-color: #b36b00;
+}
+
+ 
+/* navbar e menu navbar */
+.navbar-inverse{
+    border-radius: 0;
+    
+    
+}
+ 
+#banner{
+    border: 2px solid #000;
+    box-shadow: 2px 2px 12px black;
+}
+
+.navbar-inverse .navbar-nav > li > a{
+    
+  color: #fff;
+  font-size: 16px;  
+    
+}
+ #ds_ss{ 
+    border-radius: 5px;
+    background-color: #fff;
+    border: 2px solid #e98c00;
+/*    width: 300px; */
+ }
+
+
+.navbar-inverse .navbar-nav > li > a:hover{
+    
+ background-color: #e98c00;
+ border-radius: 10px;
+ color: #fff;
+    
+}
+
+/* menu lateral com list group*/
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover{
+    
+   background-color:#e98c00; 
+    
+}
+
+a.list-group-item:hover{
+    
+    background-color: #e98c00;
+     color: #FFF;
+     
+    
+}
+
+a.list-group-item{
+  
+    border: 0;
+    font-size: 16px;    
+    
+}  
+#caioba {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 50px;
+    padding: 25px;
+    background-color: #f5f5f5;
+    border-radius: 1%;
+} #caioba_2 {
+    color: #fff;
+}
