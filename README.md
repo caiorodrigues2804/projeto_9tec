@@ -3,10 +3,10 @@
 <center>
 <div align="center">
 <h3>Logo</h3>
-<img src="img/img1.png">
+<img src="img1.png">
 
 <h3>Banner</h3>
-<img src="banner2.jpg" width="800px"/>
+<img src="banner.jpg" width="800px"/>
 </div>
 </center>
 
