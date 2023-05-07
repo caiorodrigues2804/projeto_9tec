@@ -20,7 +20,7 @@
 ### Penúltima versão 
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Versão 2</a></h4>
 
-## Última versão
+### Última versão
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Versão 2</a></h4>
 
 ## Endereço URL ou Link do site
