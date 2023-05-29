@@ -58,6 +58,6 @@ ou
 <a href="https://sourceforge.net/projects/brmodelo/"><img src="https://www.zigg.com.br/media/cache/ef/ba/efba2a1a0f4cd6e1718fa284f2da661c.jpg" width="60px">&nbsp;Brmodelo</a>
 
 ## Referências
-<a href="https://www.namecheap.com/"><img src="https://cwstatic.nyc3.digitaloceanspaces.com/2317/namecheap-rektangul%C3%A4r-1.png?v=1611220073" width="200px"></a> - Site que foi utilizado para gera a logo
+<a href="https://www.namecheap.com/"><img src="https://cwstatic.nyc3.digitaloceanspaces.com/2317/namecheap-rektangul%C3%A4r-1.png?v=1611220073" width="200px"></a> - Site que foi utilizado para gera a logo do site
 
 @2023
