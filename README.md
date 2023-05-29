@@ -1,12 +1,12 @@
 <div align="center">
-<h2>Projeto Site 9Tec Informática</h2>
+<h1>Projeto Site 9Tec Informática</h1>
 <h3>Logo</h3>
 <img src="img/img1.png">
+<h3>Página principal do projeto</h3>
 
 <h3>Banner</h3>
 <img src="img/banner.jpg" width="800px"/>
 </div>
-</center>
 
 <hr/>
 
