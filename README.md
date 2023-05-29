@@ -12,7 +12,7 @@
 
 <hr/>
 
-## Projeto 9Tec Informática Ltda - Página principal do projeto
+## Projeto 9Tec Informática - Página principal do projeto
 
 
 <h3> Endereço URL ou Link do site </h3>
@@ -26,7 +26,7 @@ ou
 <h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
 
 
-## Versões do site 9Tec informática
+## Versões do Site Projeto 9Tec informática 
 
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_01">Primeira versão </a></h4>
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Penúltima versão </a></h4>
