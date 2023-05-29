@@ -1,7 +1,7 @@
 ## Projeto Site 9Tec - NineTec
 
 <center>
-<div align="img/center">
+<div align="center">
 <h3>Logo</h3>
 <img src="img/img1.png">
 
@@ -28,9 +28,9 @@ ou
 
 ## Versões do site 9Tec informática
 
-<a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_01"><h4>Primeira versão </h4></a>
-<a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02"><h4>Penúltima versão </h4></a>
-<a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02"><h4>Última versão</h4></a>
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_01">Primeira versão </a></h4>
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Penúltima versão </a></h4>
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Última versão</a></h4>
 
  
 
