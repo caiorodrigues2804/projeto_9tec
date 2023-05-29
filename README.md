@@ -10,12 +10,12 @@
 <img src="img/banner.jpg" width="800px"/>
 </div>
 
-<h5 align="center">Todas as imagens que foram utilizadas no projeto estão na pasta "img"</h5>
+<h4 align="center">Todas as imagens que foram utilizadas no projeto estão na pasta "img"</h4>
 <br/>
 <div style="margin-bottom: 30px;"></div>
 <hr/>
 
-## Endereço URL ou Link do site
+## Endereços URL do Projeto Site 9Tec Informática
 
 <h3> Link 01 </h3>
 <h4><a href="https://projeto9tec.caiorodriguesportfolios.com.br/">Clique aqui para acessar</a></h4>
