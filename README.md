@@ -25,8 +25,6 @@ ou
 <h3>Endereço alternativo do site </h3>
 <h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
 
-## Visualizar arquivos Word, Pdfs, Excel, etc.. do projeto
-<h4><a>Clique aqui para visualizar</a></h4>
 
 ## Versões do Site 9Tec informática
 
@@ -58,6 +56,8 @@ ou
 <a href="https://jquery.com/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKICs179exfPrYfYKZEDzZvd6Q03pj-MCn5e1X_WOEb3qjCygIrMtvCclYQMhQBeGGWWk&usqp=CAU" width="60px">&nbsp;jQuery</a>
 <br/><br/>
 <a href="https://sourceforge.net/projects/brmodelo/"><img src="https://www.zigg.com.br/media/cache/ef/ba/efba2a1a0f4cd6e1718fa284f2da661c.jpg" width="60px">&nbsp;Brmodelo</a>
+<br/><br/>
+<a href="https://store-images.s-microsoft.com/image/apps.1409.13851527096222888.2b60149a-04a5-4578-a6b2-d7b7377332d5.c22d8e97-4d44-4304-9bd2-55f9d29c0f82" width="60px">&nbsp;Draw io</a>
 
 ## Referências
 <a href="https://www.namecheap.com/"><img src="https://cwstatic.nyc3.digitaloceanspaces.com/2317/namecheap-rektangul%C3%A4r-1.png?v=1611220073" width="200px"></a> - Site que foi utilizado para gera a logo do site
