@@ -41,8 +41,6 @@ ou
 <br/><br/>
 <a href="https://www.apachefriends.org/pt_br/index.html"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/7/78/XAMPP_logo.svg/1200px-XAMPP_logo.svg.png" width="60px">&nbsp; XAMPP,Apache, MySQL</a>
 <br/><br/>
-<a href="https://notepad-plus-plus.org/downloads/"><img src="https://img.utdstc.com/icon/f89/6ae/f896aebe4551c1998fc00e2818180432803a952a418e30f2b21b647fde3cf836:200" width="60px">&nbsp;Notepad++</a>
-<br/><br/>
 <a href="https://www.adobe.com/br/products/photoshop.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSdt6J8Ct_fGtRJLWFiRRwJ6b7JghBNjbV5BQ&usqp=CAU" width="60px">&nbsp;Photoshop</a>
 <br/><br/>
 <a href="https://getcomposer.org"><img src="http://magenteiro.com/blog/wp-content/uploads/2017/07/Logo-composer-transparent.png" width="60px">&nbsp;Composer</a>
@@ -57,7 +55,7 @@ ou
 <br/><br/>
 <a href="https://sourceforge.net/projects/brmodelo/"><img src="https://www.zigg.com.br/media/cache/ef/ba/efba2a1a0f4cd6e1718fa284f2da661c.jpg" width="60px">&nbsp;Brmodelo</a>
 <br/><br/>
-<a href="https://app.diagrams.net/"><img href="img/logo_draw.png" width="60px">&nbsp;Draw io</img></a>
+<a href="https://app.diagrams.net/"><img src="img/logo_draw.png" width="60px">&nbsp;Draw io</img></a>
 
 ## Referências
 <a href="https://www.namecheap.com/"><img src="https://cwstatic.nyc3.digitaloceanspaces.com/2317/namecheap-rektangul%C3%A4r-1.png?v=1611220073" width="200px"></a> - Site que foi utilizado para gera a logo do site
