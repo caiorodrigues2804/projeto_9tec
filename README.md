@@ -19,20 +19,6 @@ ou
 ## Página principal do projeto
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec">Clique aqui para acessar</a></h4> 
 
-## Versão 1 do Projeto Site 9Tec - Ninetec
-
-
-<h3> Endereço URL ou Link do site </h3>
-
-<h3> Link 01 </h3>
-<h4><a href="https://9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
-
-ou
-
-<h3>Link 02 </h3>
-<h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
-
- 
 
 ## Programas e frameworks utilizados no desenvolvimento do site
 
