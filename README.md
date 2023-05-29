@@ -1,27 +1,22 @@
-## Projeto Site 9Tec - NineTec
-
-<center>
 <div align="center">
-<h3>Logo</h3>
-<img src="img/img1.png">
-
-<h3>Banner</h3>
-<img src="banner2.jpg" width="800px"/>
+<h1>Projeto Site 9Tec Informática</h1>
+<img src="banner.jpg" width="800px"/>
+<h3>1 versão do Projeto Site 9Tec</h3>
 </div>
-</center>
+<br/>
 
-<hr/>
+## Endereço URL ou Link do site 
 
-## Versões do Projeto Site 9Tec - Ninetec
+<h3> Link 01 </h3>
+<h4><a href="https://9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
 
-### Primeira versão
-- Não disponível
+ou
 
-### Penúltima versão 
-- Não disponível
+<h3>Link 02 </h3>
+<h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
 
-## Endereço URL ou Link do site
-- <h4><a href="https://9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
+## Página principal do projeto
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec">Clique aqui para acessar</a></h4> 
 
 ## Programas e frameworks utilizados no desenvolvimento do site
 
