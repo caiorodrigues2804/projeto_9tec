@@ -1,14 +1,11 @@
 <div align="center">
- <h2>Projeto Site 9Tec Informática</h2>
-
+<h2>Projeto Site 9Tec Informática</h2>
 <img src="banner.jpg" width="800px"/>
+<h3>2 versão do Projeto Site 9Tec</h3>
 </div>
 
 
-## 2 versão do Projeto Site 9Tec
-
-
-<h3> Endereço URL ou Link do site </h3>
+## Endereço URL ou Link do site 
 
 <h3> Link 01 </h3>
 <h4><a href="https://9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
