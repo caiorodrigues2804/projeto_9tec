@@ -1,7 +1,7 @@
 <div align="center">
-<h2>Projeto Site 9Tec Informática</h2>
+<h1>Projeto Site 9Tec Informática</h1>
 <img src="banner.jpg" width="800px"/>
-<h3>2 versão do Projeto Site 9Tec</h3>
+<h2>2 versão do Projeto Site 9Tec</h2>
 </div>
 
 
@@ -18,7 +18,7 @@ ou
 ## Página principal do projeto
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec">Clique aqui para acessar</a></h4> 
 
-### Programas e frameworks utilizados no desenvolvimento do site
+## Programas e frameworks utilizados no desenvolvimento do site
 
 <a href="https://www.sublimetext.com/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8c6pwZVhVIQAGSQuFEfTd9z_02njDpEKvDXwuTNrQ67tHVPXgAXmZOtsiicNljuML4kM&usqp=CAU" style="display:inline"  width="60px">&nbsp; Sublime Text</a>
 <br/><br/>
