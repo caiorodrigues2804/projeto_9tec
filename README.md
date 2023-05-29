@@ -25,6 +25,8 @@ ou
 <h3>Endereço alternativo do site </h3>
 <h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
 
+## Visualizar arquivos Word, Pdfs, Excel, etc.. do projeto
+<h4><a>Clique aqui para visualizar</a></h4>
 
 ## Versões do Site 9Tec informática
 
