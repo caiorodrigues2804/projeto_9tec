@@ -7,7 +7,7 @@
  * 
  * @author Caio Rodrigues
  * */
- error_reporting(0);
+ // error_reporting(0);
 
 
 class Config {
@@ -15,13 +15,13 @@ class Config {
 	/**
 	 *  INFORMAÇÕES DE BANCO DE DADOS ====================
 	 * */
-	const BD_HOST = "us-imm-web539.main-hosting.eu";
-	const BD_USER = "u308103531_9tec_root"; 
-	const BD_SENHA = "Nvidia280401vai28@2";
-	const BD_BANCO = "u308103531_9tec_info";
+	const BD_HOST = "localhost";
+	const BD_USER = "root"; 
+	const BD_SENHA = "";
+	const BD_BANCO = "miniloja2017";
 	const BD_PREFIX = "as_";
 	const BD_LIMITE_POR_PAG = 9;
-
+	// caiobauser2804@24C
 
 
 	/**

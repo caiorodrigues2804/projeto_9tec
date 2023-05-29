@@ -68,7 +68,7 @@ class Pedidos extends Conexao{
 	 * @param string $freteTipo 
 	 * */
 
-	function PedidoGravar($cliente,$cod,$ref,$freteValor=null,$freteTipo=null){
+	function PedidoGravar($cliente,$cod,$ref,$freteValor=null,$freteTipo){
  
 
 	$params = array(
@@ -91,6 +91,8 @@ class Pedidos extends Conexao{
 	$valores_ = $_SESSION['VALOR_M'];
  	
     $query = "INSERT INTO `{$this->prefix}pedidos` (`ped_data`, `ped_hora`, `ped_cliente`, `ped_cod`,`ped_ref`,`ped_pag_status`,`ped_frete_valor`,`ped_frete_tipo`,`ped_valor_item`) VALUES ('$datas', '$horas', '$clientes', '$cods','$refs','NAO','$frete_valors','$frete_tipo','$valores_')";
+ 
+
 
 	 // grava o pedido
 	$this->ExecuteSQL($query,$params);
@@ -126,9 +128,12 @@ class Pedidos extends Conexao{
 			':cod' => $codpedido
 		);
 
-
+	$valores;
 	$produtos = $params[':produto'];
-	$valores = $_SESSION['VALOR_M'];		
+	if (isset($_GET["preco"])) 
+	{
+	$valores = addslashes($_GET['preco']);	
+	}	
 	$qtd = $params[':qtd'];
 	$cods = $params[':cod'];
 

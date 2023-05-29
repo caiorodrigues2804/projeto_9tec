@@ -82,7 +82,7 @@ $(document).ready(function(){
 		<tr>
 			<td> <img src="{$P.pro_img}" width="100px" height="100px" alt="{$P.pro_nome}"> </td>
 			<td>{$P.pro_nome}</td>
-			<td>{$P.pro_valor}</td>	
+			<td id="d_s">{$P.pro_valor}</td>	
 			<td>{$P.pro_qtd}</td>	
 			<td>{$P.pro_subTotal}</td>			
 			<td>
@@ -185,4 +185,9 @@ $(document).ready(function(){
     document.querySelector('#limpar_dados').addEventListener('click',() => {
       document.querySelector("#cep_frete").value = '';
     })
+  
+
+
 	 </script>
+
+	  

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-04-06 15:24:24
+/* Smarty version 3.1.46, created on 2023-05-01 20:06:40
   from 'C:\xampp\htdocs\9tec\view\clientes_itens.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_642f0e580a45e3_83461958',
+  'unifunc' => 'content_645046004b7909_77685482',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '7d168b319864ac8716d2016f2e22d3616249de44' => 
     array (
       0 => 'C:\\xampp\\htdocs\\9tec\\view\\clientes_itens.tpl',
-      1 => 1669601039,
+      1 => 1682982398,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_642f0e580a45e3_83461958 (Smarty_Internal_Template $_smarty_tpl) {
+function content_645046004b7909_77685482 (Smarty_Internal_Template $_smarty_tpl) {
 ?><h4 class="text-center">Dados do pedido</h4>
 
 <!----- Informações sobre o pedido ---->
@@ -89,13 +89,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 				<table class="table table-bordered" style="width: 80%;">
 					<tr>
 						
-						<td class="text-danger"><b>Frete:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_frete_valor'];?>
+						<td id="frete_d" class="text-danger"><b>Frete:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_frete_valor'];?>
+ </td>
+<!-- $ITENS.1.ped_frete_valor+$TOTAL -->
+						<td id="total_produto" class="text-danger"><b>Total:</b> <?php echo $_smarty_tpl->tpl_vars['TOTAL']->value;?>
 </td>
 
-						<td class="text-danger"><b>Total:</b> <?php echo $_smarty_tpl->tpl_vars['TOTAL']->value;?>
-</td>
-
-						<td class="text-danger"><b>Final:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_frete_valor']+$_smarty_tpl->tpl_vars['TOTAL']->value;?>
+						<td id="valor_final" class="text-danger"><b>Final:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_frete_valor']+$_smarty_tpl->tpl_vars['TOTAL']->value;?>
 </td>	
 
 
@@ -103,5 +103,70 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 				</table>
 			</center>
 
-		</section><?php }
+		</section>
+
+		<?php echo '<script'; ?>
+>
+
+		function decimalParaReal(numero) {
+		  let formatoReal = new Intl.NumberFormat('pt-BR', {
+		    style: 'currency',
+		    currency: 'BRL',
+		    minimumFractionDigits: 2
+		  });
+		  return formatoReal.format(numero);
+		}
+
+
+		let valor_v,total_v,frete_v;
+
+		// -------------------- VALOR FINAL ------------------------------ //
+		valor_v = document.querySelector("#valor_final").innerHTML;
+
+		// DEPURAÇÃO
+		// console.log(frete_v);
+
+		valor_v = valor_v.replace(/['Final:<b>/']/gi,'');
+		valor_v = parseFloat(valor_v);
+
+		// DEPURAÇÃO
+		// console.log(frete_v);
+
+		document.querySelector("#valor_final").innerHTML = '<b>Valor final:</b> '+ (decimalParaReal(valor_v))
+	 	// -------------------------------------------------------------- //
+
+	 	// -------------------- TOTAL  ------------------------------ //
+		total_v = document.querySelector("#total_produto").innerHTML;
+
+		// DEPURAÇÃO
+		// console.log(frete_v);
+
+		total_v = total_v.replace(/['Total:<b>/']/gi,'');
+		total_v = parseFloat(total_v);
+
+		// DEPURAÇÃO
+		// console.log(frete_v);
+
+		document.querySelector("#total_produto").innerHTML = '<b>Total:</b> '+ (decimalParaReal(total_v))
+	 	// -------------------------------------------------------------- //
+
+	 	// -------------------- FRETE  ------------------------------ //
+		frete_v = document.querySelector("#frete_d").innerHTML;
+
+		// DEPURAÇÃO
+		// console.log(frete_v);
+
+		frete_v = frete_v.replace(/['Frete:<b>/']/gi,'');
+		frete_v = parseFloat(frete_v);
+
+		// DEPURAÇÃO
+		// console.log(frete_v);
+
+		document.querySelector("#frete_d").innerHTML = '<b>Frete:</b> '+ (decimalParaReal(frete_v))
+	 	// -------------------------------------------------------------- //
+		 
+		 
+
+		<?php echo '</script'; ?>
+><?php }
 }

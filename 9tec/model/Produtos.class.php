@@ -97,6 +97,7 @@ class Produtos extends Conexao{
          'pro_comprimento' => $lista['pro_comprimento'] ,  
          'pro_img_atual'     => $lista['pro_img'] ,  
          'pro_img'     => $lista['pro_img'] ,  
+         'pro_frete_gratis'     => $lista['pro_frete_free'] ,  
          'pro_slug' => $lista['pro_slug'],
          'pro_ref' => $lista['pro_ref'],
          'pro_descricao_extra' => $lista['pro_descricao_extra'],

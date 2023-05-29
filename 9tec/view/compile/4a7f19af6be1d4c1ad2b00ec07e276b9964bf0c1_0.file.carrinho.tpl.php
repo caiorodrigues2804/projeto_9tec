@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-04-09 15:01:47
+/* Smarty version 3.1.46, created on 2023-05-01 21:19:26
   from 'C:\xampp\htdocs\9tec\view\carrinho.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_6432fd8b0069f8_57914142',
+  'unifunc' => 'content_6450570e04fda0_27040767',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4a7f19af6be1d4c1ad2b00ec07e276b9964bf0c1' => 
     array (
       0 => 'C:\\xampp\\htdocs\\9tec\\view\\carrinho.tpl',
-      1 => 1669477835,
+      1 => 1682986765,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6432fd8b0069f8_57914142 (Smarty_Internal_Template $_smarty_tpl) {
+function content_6450570e04fda0_27040767 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
 >
 
@@ -116,7 +116,7 @@ $_smarty_tpl->tpl_vars['P']->do_else = false;
 "> </td>
 			<td><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_nome'];?>
 </td>
-			<td><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_valor'];?>
+			<td id="d_s"><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_valor'];?>
 </td>	
 			<td><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_qtd'];?>
 </td>	
@@ -232,6 +232,11 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
     document.querySelector('#limpar_dados').addEventListener('click',() => {
       document.querySelector("#cep_frete").value = '';
     })
+  
+
+
 	 <?php echo '</script'; ?>
-><?php }
+>
+
+	  <?php }
 }
