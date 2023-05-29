@@ -1,7 +1,7 @@
 <div align="center">
  <h2>Projeto Site 9Tec Informática</h2>
 
-<img src="img1.png" width="800px"/>
+<img src="banner.png" width="800px"/>
 </div>
 
 <hr/>
