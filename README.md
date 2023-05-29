@@ -6,7 +6,7 @@
 
 <hr/>
 
-## Versão 2 do Projeto Site 9Tec - Ninetec
+## Versão 2 do Projeto Site 9Tec
 
 
 <h3> Endereço URL ou Link do site </h3>
