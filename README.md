@@ -10,6 +10,7 @@
 <img src="img/banner.jpg" width="800px"/>
 </div>
 
+<br/>
 <hr/>
 
 ## Endereço URL ou Link do site
