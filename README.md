@@ -17,6 +17,6 @@ ou
 <h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
 
 ## Página principal do projeto
-<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec">Clique aqui para acessar</a></h4> 
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec">Clique aqui para voltar para página principal do projeto</a></h4> 
 
 @2023
