@@ -11,10 +11,7 @@
 
 <hr/>
 
-## Projeto 9Tec Informática Ltda - Página principal do projeto
-
-
-<h3> Endereço URL ou Link do site </h3>
+## Endereço URL ou Link do site
 
 <h3> Link 01 </h3>
 <h4><a href="https://9tec.caiorodriguesportfolios02.com.br">Clique aqui para acessar</a></h4>
@@ -31,7 +28,6 @@ ou
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Penúltima versão </a></h4>
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Última versão</a></h4>
 
- 
 
 ## Programas e frameworks utilizados no desenvolvimento do site
 
