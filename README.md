@@ -4,7 +4,6 @@
 <img src="banner.jpg" width="800px"/>
 </div>
 
-<hr/>
 
 ## Versão 2 do Projeto Site 9Tec
 
