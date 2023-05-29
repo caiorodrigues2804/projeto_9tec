@@ -1,5 +1,5 @@
 <center>
-## Projeto Site 9Tec 
+Projeto Site 9Tec Informática
 
 <img src="banner.jpg" width="800px"/>
 </center>
