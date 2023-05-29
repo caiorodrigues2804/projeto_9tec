@@ -10,6 +10,7 @@
 <img src="img/banner.jpg" width="800px"/>
 </div>
 
+<h5>Todas as imagens que foram utilizadas estão na pasta img</h5>
 <br/>
 <div style="margin-bottom: 30px;"></div>
 <hr/>
