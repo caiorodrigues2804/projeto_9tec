@@ -3,16 +3,16 @@
 <center>
 <div align="center">
 <h3>Logo</h3>
-<img src="img1.png">
+<img src="img/img1.png">
 
 <h3>Banner</h3>
-<img src="banner.jpg" width="800px"/>
+<img src="img/banner.jpg" width="800px"/>
 </div>
 </center>
 
 <hr/>
 
-## 9Tec Informática Ltda. -> Página principal do projeto
+## Projeto 9Tec Informática Ltda - Página principal do projeto
 
 
 <h3> Endereço URL ou Link do site </h3>
@@ -24,6 +24,13 @@ ou
 
 <h3>Link 02 </h3>
 <h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
+
+
+## Versões do site 9Tec informática
+
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_01">Primeira versão </a></h4>
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Penúltima versão </a></h4>
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02">Última versão</a></h4>
 
  
 
