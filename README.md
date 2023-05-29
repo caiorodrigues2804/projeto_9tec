@@ -1,18 +1,18 @@
 ## Projeto Site 9Tec - NineTec
 
 <center>
-<div align="center">
+<div align="img/center">
 <h3>Logo</h3>
-<img src="img1.png">
+<img src="img/img1.png">
 
 <h3>Banner</h3>
-<img src="banner.jpg" width="800px"/>
+<img src="img/banner.jpg" width="800px"/>
 </div>
 </center>
 
 <hr/>
 
-## 9Tec Informática Ltda. -> Página principal do projeto
+## Projeto 9Tec Informática Ltda - Página principal do projeto
 
 
 <h3> Endereço URL ou Link do site </h3>
@@ -24,6 +24,13 @@ ou
 
 <h3>Link 02 </h3>
 <h4><a href="http://projeto9tecinformatica.epizy.com/">Clique aqui para acessar</a></h4>
+
+
+## Versões do site 9Tec informática
+
+<a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_01"><h4>Primeira versão </h4></a>
+<a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02"><h4>Penúltima versão </h4></a>
+<a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_02"><h4>Última versão</h4></a>
 
  
 
