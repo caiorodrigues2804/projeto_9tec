@@ -1,6 +1,6 @@
+<center>
 ## Projeto Site 9Tec 
 
-<center>
 <img src="banner.jpg" width="800px"/>
 </center>
 
