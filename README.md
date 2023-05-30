@@ -1,5 +1,5 @@
 <div align="center">
-<h1>Projeto Site 9Tec Informática</h1>
+<h1>Projeto 9Tec Informática</h1>
 <img src="img/banner.jpg" width="800px"/>
 <h3>Versão 3 do Projeto Site 9Tec</h3>
 </div>
