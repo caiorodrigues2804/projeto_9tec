@@ -5,16 +5,18 @@
 
             if (!isset($_GET["id_pedido"])) 
             {
-                // header("Location: pedidos_dos_clientes.php");
+                header("Location: pedidos_dos_clientes.php");
             } else if(empty($_GET["id_pedido"]))
             {
-               // header("Location: pedidos_dos_clientes.php");
+               header("Location: pedidos_dos_clientes.php");
             }    if (!isset($_GET["cli_id"])) 
             {
-                // header("Location: pedidos_dos_clientes.php");
+                header("Location: pedidos_dos_clientes.php");
             } else if(empty($_GET["cli_id"]))
             {
-               // header("Location: pedidos_dos_clientes.php");
+               header("Location: pedidos_dos_clientes.php");
+            } if (!isset($_GET["ref_produto"]) || empty($_GET["ref_produto"])) {
+               header("Location: pedidos_dos_clientes.php");
             }
 
 
@@ -172,16 +174,21 @@
                     foreach(mysqli_query($con,"SELECT * FROM `as_pedidos` WHERE `ped_id` = '$id_d';")->fetch_assoc() as $key => $value):
                     if($key <> 'ped_valor_item' && $key <> 'ped_frete_valor' && $key):  
                 ?>
-                      <li class="list-group-item"> <?= ucfirst(str_replace("ped_", "", $key)); ?>: <?= $value ?> </li>   
+                      <li class="list-group-item"> <?= ucfirst(str_replace('_',' ',str_replace("ped_", "", $key))); ?>: <?= str_replace('-','/',$value); ?> </li>   
                 <?php else: ?>
-                      <li class="list-group-item"> <?= ucfirst(str_replace("ped_", "", $key)); ?>:  
+                      <li class="list-group-item"> <?= ucfirst(str_replace('-','/',str_replace('_',' ',str_replace("ped_", "", $key)))); ?>:   
                         R$ <?= number_format($value,2,",","."); ?> </li>   
                 <?php endif; ?>
                 <?php endforeach; ?>
-                    </ul>
+                    </ul>                   
                 </div>
-              </center>
+                  <hr>
+                <h6>Informações do produto</h6>
+                 <div>
+                     <h6>Verifique na sua caixa de e-mail para obter produto(s) que foi solicitado pelo cliente</h6>
+                 </div>
 
+                </center>
             </div>            
         </div>
 <?php for($x = 0;$x < 1;$x++){?><br><?php }  ?>

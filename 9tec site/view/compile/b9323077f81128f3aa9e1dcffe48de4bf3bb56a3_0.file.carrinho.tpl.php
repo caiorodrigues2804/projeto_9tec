@@ -1,4 +1,28 @@
-<script>
+<?php
+/* Smarty version 3.1.46, created on 2023-06-01 15:30:47
+  from 'C:\xampp\htdocs\9tec site\view\carrinho.tpl' */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.46',
+  'unifunc' => 'content_6478e3d791ece0_36652780',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'b9323077f81128f3aa9e1dcffe48de4bf3bb56a3' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\9tec site\\view\\carrinho.tpl',
+      1 => 1685644246,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+  ),
+),false)) {
+function content_6478e3d791ece0_36652780 (Smarty_Internal_Template $_smarty_tpl) {
+echo '<script'; ?>
+>
 
 let ds = 0; 
 console.log(ds)
@@ -39,7 +63,8 @@ $(document).ready(function(){
  
 
 
-</script>
+<?php echo '</script'; ?>
+>
 <h3>Meu Carrinho</h3>
 <hr/>
 <style type="text/css">
@@ -53,7 +78,8 @@ $(document).ready(function(){
 <section class="row">
 
 	<div class="col-md-4" style="margin-left:10px;">
-		<a href="{$PAG_PRODUTOS}" class="btn btn-cssc" title="">Comprar Mais</a>	
+		<a href="<?php echo $_smarty_tpl->tpl_vars['PAG_PRODUTOS']->value;?>
+" class="btn btn-cssc" title="">Comprar Mais</a>	
 	</div>
 
 	<div class="col-md-4 text-right"></div>
@@ -77,17 +103,30 @@ $(document).ready(function(){
 			<td></td>
 		</tr>
 
-		{foreach from=$PRO item=P}
+		<?php
+$_from = $_smarty_tpl->smarty->ext->_foreach->init($_smarty_tpl, $_smarty_tpl->tpl_vars['PRO']->value, 'P');
+$_smarty_tpl->tpl_vars['P']->do_else = true;
+if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['P']->value) {
+$_smarty_tpl->tpl_vars['P']->do_else = false;
+?>
 
 		<tr>
-			<td> <img src="{$P.pro_img}" width="100px" height="100px" alt="{$P.pro_nome}"> </td>
-			<td>{$P.pro_nome}</td>
-			<td id="d_s">{$P.pro_valor}</td>	
-			<td>{$P.pro_qtd}</td>	
-			<td>{$P.pro_subTotal}</td>			
+			<td> <img src="<?php echo $_smarty_tpl->tpl_vars['P']->value['pro_img'];?>
+" width="100px" height="100px" alt="<?php echo $_smarty_tpl->tpl_vars['P']->value['pro_nome'];?>
+"> </td>
+			<td><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_nome'];?>
+</td>
+			<td id="d_s"><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_valor'];?>
+</td>	
+			<td><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_qtd'];?>
+</td>	
+			<td><?php echo $_smarty_tpl->tpl_vars['P']->value['pro_subTotal'];?>
+</td>			
 			<td>
-	<form name="carrinho_dell" method="post" action="{$PAG_CARRINHO_ALTERAR}">
-		<input type="hidden" name="pro_id" value="{$P.pro_id}">
+	<form name="carrinho_dell" method="post" action="<?php echo $_smarty_tpl->tpl_vars['PAG_CARRINHO_ALTERAR']->value;?>
+">
+		<input type="hidden" name="pro_id" value="<?php echo $_smarty_tpl->tpl_vars['P']->value['pro_id'];?>
+">
 		<input type="hidden" name="acao" value="del">
 		
 		<button class="btn btn-danger btn-sm"><i class="glyphicon glyphicon-trash"></i></button>
@@ -95,7 +134,9 @@ $(document).ready(function(){
 			</td>
 		</tr>
 
-		{/foreach}
+		<?php
+}
+$_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 
 	</table>
 	</center>
@@ -109,13 +150,15 @@ $(document).ready(function(){
 		</div>
 		<div class="col-md-0 text-right text-danger">
 		<h4 id="valores">
-			<b>Valor total:</b> <c id="c_s">R$ {$TOTAL}</c>
+			<b>Valor total:</b> <c id="c_s">R$ <?php echo $_smarty_tpl->tpl_vars['TOTAL']->value;?>
+</c>
 		</h4>
 		</div>
 		<br/>
 	<!-------- Botão de limpar ----------->
 		<div class="col-md-15 text-right">
-	 			<form name="limpar" method="post" action="{$PAG_CARRINHO_ALTERAR}">
+	 			<form name="limpar" method="post" action="<?php echo $_smarty_tpl->tpl_vars['PAG_CARRINHO_ALTERAR']->value;?>
+">
 	 			<input type="hidden" name="acao" value="limpar">
 	 			<input type="hidden" name="pro_id" value="1">
 
@@ -135,9 +178,11 @@ $(document).ready(function(){
 		<!-- Campos para tratar do frete -->
 		<div class="col-md-3">
 			<input type="text" name="cep_frete" class="form-control" id="cep_frete" value="" placeholder="Digite seu CEP">
-			<input type="hidden" name="peso_frete" id="peso_frete" value="{$PESO}">
+			<input type="hidden" name="peso_frete" id="peso_frete" value="<?php echo $_smarty_tpl->tpl_vars['PESO']->value;?>
+">
 
-			<input type="hidden" name="produtos_valores" class="form-control" id="produtos_valores" value="{$TOTAL}">
+			<input type="hidden" name="produtos_valores" class="form-control" id="produtos_valores" value="<?php echo $_smarty_tpl->tpl_vars['TOTAL']->value;?>
+">
 
 			<input type="hidden" name="frete_valor" id="frete_valor" value="0">
 
@@ -162,7 +207,8 @@ $(document).ready(function(){
 
 	 <div class="col-md-4">
 		
-		<form name="pedido_finalizar" id="pedido_finalizar" method="post" action="{$PAG_CONFIRMAR}">
+		<form name="pedido_finalizar" id="pedido_finalizar" method="post" action="<?php echo $_smarty_tpl->tpl_vars['PAG_CONFIRMAR']->value;?>
+">
 				
 				<!-------- Mostrar retorno do frete ------>
 				<span id="frete"></span>
@@ -180,7 +226,8 @@ $(document).ready(function(){
 		<div class="col-md-4"></div>
 	</section>
 	<br/>	
-	 <script>
+	 <?php echo '<script'; ?>
+>
 	 	
     document.querySelector('#limpar_dados').addEventListener('click',() => {
       document.querySelector("#cep_frete").value = '';
@@ -188,6 +235,8 @@ $(document).ready(function(){
   
 
 
-	 </script>
+	 <?php echo '</script'; ?>
+>
 
-	  
+	  <?php }
+}

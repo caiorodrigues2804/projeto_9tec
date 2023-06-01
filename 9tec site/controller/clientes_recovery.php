@@ -45,11 +45,11 @@ if(isset($_POST['cli_email'])):
 	$email = new EnviarEmail();
 
 	$destinatarios = array($cliente->getCli_email(), Config::SITE_EMAIL_ADM);
-	$assunto = '(Sua senha) ' . Config::SITE_NOME;
+	$assunto = '(Sua senha) 9Tec informática';
 	$msg = '<h4 style="font-family: arial;">Olá cliente, foi solicitada a sua senha para acessar o Site ' . Config::SITE_NOME . '<br/>';
 	$msg .= "<br/> Sua senha para acessar o login é  <b style='font-size: 18px;'>( " . $novasenha . " )</b><br/>";
-	$msg .= 'Recomendamos que faça a alteração da sua senha através do site na opção "Alterar Senha" quando estiver logado';
-	$msg .= '<hr/><center><img src="https://scontent.fcgh22-1.fna.fbcdn.net/v/t39.30808-6/337659705_1577860109368424_2192567867889571563_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=LUGpe1DIso8AX_hbU8d&_nc_ht=scontent.fcgh22-1.fna&oh=00_AfA3OM7A3wJljQBa-Qj21G69-pTBOVF1RgCD7FgxHFbXng&oe=645400ED" width="400px"><br/><a href="' . Config::SITE_URL . '">' . Config::SITE_URL . '</a></h4></center>';
+	$msg .= 'Recomendamos que faça a alteração da sua senha através do site na opção "Alterar Senha" quando estiver logado'; 
+	$msg .= '<hr/><center><img src="https://github.com/caiorodrigues2804/projeto_9tec/raw/main/img/img1.png" width="400px"><br/><a href="' . Config::SITE_URL . '">' . Config::SITE_URL . '</a></h4></center>';
 	$email->Enviar($assunto,$msg,$destinatarios);
 
 	// mostra mensagem na tela que foi enviada a senha

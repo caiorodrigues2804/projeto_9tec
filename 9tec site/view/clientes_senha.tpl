@@ -1,4 +1,5 @@
-<h3 class="text-center">Alteração de senha de acesso</h3>
+<h4 class="text-center">Alteração de senha de acesso</h4>
+<br/>
 
 <form name="alterarsenha" method="post" action="">	
 

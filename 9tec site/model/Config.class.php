@@ -29,7 +29,7 @@ class Config {
 	 * */
 
 	/*** URL do site */
-	const SITE_URL = "https://projeto9tec.caiorodriguesportfolios.com.br";
+	const SITE_URL = "http://localhost/9tec%20site";
 
 	/*** Pasta padrão do site */
 	const SITE_PASTA = "";

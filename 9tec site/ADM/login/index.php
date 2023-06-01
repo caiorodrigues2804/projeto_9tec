@@ -339,6 +339,11 @@ input[type=text]:placeholder,input[type=password]:placeholder {
       <div class="mb-4"></div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
     <!-- Login Form -->
     <form action="index.php?login=1" method="post">
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="nome de usuario ou email" required>
@@ -368,7 +373,37 @@ if(!isset($_GET["acesso"])){
 
   </div>
 </div>
+  <script>
+    if (!localStorage.getItem('VISITADO'))
+     {
 
+    ConfirmDialog('Para acessar esta página é recomendamos ter resolução 1366 x 768 ou superior');
+
+
+    function ConfirmDialog(message) {
+      $('<div></div>').appendTo('body')
+        .html('<div><h6>' + message + '</h6></div>')
+        .dialog({
+          modal: true,
+          title: 'AVISO',
+          zIndex: 10000,
+          autoOpen: true,
+          width: 'auto',
+          resizable: false,
+          buttons: {
+            Entendido: function() {
+
+              localStorage.setItem('VISITADO','SIM');
+              $(this).dialog("close");
+            },
+          },
+          close: function(event, ui) {
+            $(this).remove();
+          }
+        });
+    };
+     };
+  </script>
 
 </body>
 </html>

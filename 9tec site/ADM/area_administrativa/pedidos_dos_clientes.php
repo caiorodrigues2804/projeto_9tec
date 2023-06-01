@@ -379,7 +379,7 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                     <a href="visualizacao_pedidos.php?id_pedido=<?= $x["ped_id"]; ?>&cli_id=<?= $x["ped_cliente"]; ?>">                                        
+                                     <a href="visualizacao_pedidos.php?id_pedido=<?= $x["ped_id"]; ?>&cli_id=<?= $x["ped_cliente"]; ?>&ref_produto=<?= $x["ped_ref"]; ?>">                                        
                                         <button class="btn btn-secondary">Visualizar 👁</button>
                                     </a>
                                 </td>

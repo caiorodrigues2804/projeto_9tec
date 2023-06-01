@@ -7,7 +7,7 @@ $smarty = new Template();
 
 // passo variáveis para o template
 $smarty->assign('BANNER',Rotas::ImageLink('banner.jpg'));
-$smarty->assign('PC_GAMER',Rotas::ImageLink('banner_pc2.jpg'));
+$smarty->assign('PC_GAMER',Rotas::ImageLink('banner_alt.jpg'));
 
 // chamo o template
 $smarty->display('home.tpl');

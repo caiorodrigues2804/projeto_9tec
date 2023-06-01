@@ -22,9 +22,7 @@
  		<hr/>		
 		<div class="col-md-6">
 		<h3 class="text-center text-danger"><b>R$ {$P.pro_valor} </b></h3>		
-		<hr>
-		<h4 id="frete">Frete grátis: {$P.pro_frete_gratis}</h4> 
-		</div>
+     	</div>
 		
 		<div class="col-md-6">
 			<form name="carrinho" method="post" action="{$PAG_COMPRAR}">	

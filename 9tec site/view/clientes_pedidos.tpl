@@ -1,9 +1,8 @@
-<h2>Meus Pedidos</h2>
-
 
 <section class="row" id="pedido">
 	<h4 class="text-center">Meus Pedidos</h4>
-
+	<br/>
+<div style="overflow-y: auto;height: 500px;">
 	<center>	
 	<table class="table table-bordered" style="width:90%;">
 
@@ -39,10 +38,10 @@
 		</tr>
 	{/foreach}
 
-	</table>			
-	</center>
+	</table>	
 
+	</center>
+	</div>
 </section>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
-<br/><br/><br/><br/>
+<br/><br/> 
+ 

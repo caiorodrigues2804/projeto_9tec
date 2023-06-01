@@ -20,7 +20,7 @@
 		<div class="col-md-4"></div>		
 	</section>
 
-
 </form>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
  

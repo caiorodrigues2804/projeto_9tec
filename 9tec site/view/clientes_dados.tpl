@@ -1,4 +1,4 @@
-<h3>Meus Dados</h3>
+<h4 align="center">Meus Dados</h4>
 
 <hr/>
 

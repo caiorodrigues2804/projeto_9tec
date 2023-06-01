@@ -34,6 +34,15 @@ if (isset($_SESSION['PRO'])):
       $smarty->assign('PAG_CARRINHO',Rotas::pag_Carrinho());
       $smarty->assign('tema',Rotas::Get_SiteTema());
       $smarty->assign('NOME_CLIENTE',$_SESSION['CLI']['cli_nome']);
+      $smarty->assign('SOBRENOME_CLIENTE',$_SESSION['CLI']['cli_sobrenome']);
+      $smarty->assign('ENDERECO_CLIENTE',$_SESSION['CLI']['cli_endereco']);
+      $smarty->assign('BAIRRO_CLIENTE',$_SESSION['CLI']['cli_bairro']);
+      $smarty->assign('NUMERO_CLIENTE',$_SESSION['CLI']['cli_numero']);
+      $smarty->assign('UF_CLIENTE',$_SESSION['CLI']['cli_uf']);
+      $smarty->assign('TELEFONE_CLIENTE',$_SESSION['CLI']['cli_fone']);
+      $smarty->assign('CELULAR_CLIENTE',$_SESSION['CLI']['cli_celular']);
+      $smarty->assign('DDD_CLIENTE',$_SESSION['CLI']['cli_ddd']);
+      $smarty->assign('ID_CLIENTE',$_SESSION['CLI']['cli_id']);
       $smarty->assign('PAG_MINHA_CONTA', Rotas::pag_ClientePedidos());
       $smarty->assign('SITE_NOME', Config::SITE_NOME);
       $smarty->assign('SITE_HOME', Rotas::get_SiteHOME());
@@ -64,13 +73,44 @@ if (isset($_SESSION['PRO'])):
       
       // envio de email --------------------------------------
       $email = new EnviarEmail();
-    //   print 'Email: ' . $_SESSION['CLI']['cli_email'];
+      //   print 'Email: ' . $_SESSION['CLI']['cli_email'];
       $destinatarios = array('',$_SESSION['CLI']['cli_email']);
-      $assunto       = 'Pedido loja teste 2022 - ' . Sistema::DataAtualBR();      
+      $assunto       = '9Tec informática (Pedido) - ' . Sistema::DataAtualBR();      
       $msg           = $smarty->fetch('email_compra.tpl');
 
 
       $email->Enviar($assunto,$msg,$destinatarios,$freteValor);
+
+      
+      $servername = 'localhost';
+      $user = 'root';
+      $pass = '';
+      $dbname = 'miniloja2017';
+
+      $conn = mysqli_connect($servername,$user,$pass,$dbname);
+
+      if(mysqli_query($conn,"SELECT COUNT(*) FROM `administracao`;")->fetch_assoc()["COUNT(*)"] >= 1):
+
+           $email = new EnviarEmail();      
+
+
+           $destinatarios = array();
+
+           foreach(mysqli_query($conn,"SELECT * FROM `administracao`;")->fetch_assoc() as $key => $value):
+                  if ($key == 'adm_email') {
+                        $destinatarios[] = $value;
+                  }
+           endforeach;
+           
+
+           $assunto       = 'Pedido confirmado - 9Tec informática ' . Sistema::DataAtualBR() . ' - ID user: ' . $cliente;      
+           $msg           = $smarty->fetch('email_adm.tpl');
+
+
+           $email->Enviar($assunto,$msg,$destinatarios,$freteValor);
+
+      endif;
+
 
 
       // gravo o pedido no banco  ----------------------------
