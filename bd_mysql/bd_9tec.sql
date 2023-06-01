@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Tempo de geração: 29-Maio-2023 às 03:11
+-- Tempo de geração: 01-Jun-2023 às 22:40
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -54,7 +54,7 @@ CREATE TABLE `administracao` (
 --
 
 INSERT INTO `administracao` (`adm_id`, `adm_nome`, `adm_endereco`, `adm_numero`, `adm_bairro`, `adm_cidade`, `adm_uf`, `adm_cep`, `adm_cpf`, `adm_rg`, `adm_ddd`, `adm_fone`, `adm_celular`, `adm_email`, `adm_pass`, `adm_data_nasc`, `adm_data_cad`, `adm_hora_cad`, `usuario_adm`) VALUES
-(0, 'ADM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'adm@9tec.com.br', 'f900e7b99c4a9c1a97f0396d4d34c374574d2945437ca1f30c3ad28dcefb55679e90312b6d801798888d2fa3cb03e769b21ab0982109074ce812cd2c349676f9', NULL, NULL, NULL, '');
+(0, 'ADM', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'kulmehorku@gufum.com', 'f900e7b99c4a9c1a97f0396d4d34c374574d2945437ca1f30c3ad28dcefb55679e90312b6d801798888d2fa3cb03e769b21ab0982109074ce812cd2c349676f9', NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -102,16 +102,19 @@ CREATE TABLE `as_clientes` (
   `cli_data_nasc` date DEFAULT NULL,
   `cli_data_cad` date DEFAULT NULL,
   `cli_hora_cad` time DEFAULT NULL,
-  `dados_extras` varchar(40) NOT NULL
+  `dados_extras` varchar(40) NOT NULL,
+  `status_clientes` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB AVG_ROW_LENGTH=5461 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `as_clientes`
 --
 
-INSERT INTO `as_clientes` (`cli_id`, `cli_nome`, `cli_sobrenome`, `cli_endereco`, `cli_numero`, `cli_bairro`, `cli_cidade`, `cli_uf`, `cli_cep`, `cli_cpf`, `cli_rg`, `cli_ddd`, `cli_fone`, `cli_celular`, `cli_email`, `cli_pass`, `cli_data_nasc`, `cli_data_cad`, `cli_hora_cad`, `dados_extras`) VALUES
-(1, 'Edson Carlos', 'Eduardo Samuel Nogueira', 'Rua Projetada 302', '425', 'Belo Jardim II', 'Rio Branco', 'AC', '69908050', '94749304220', '187070933', 11, '6838682924', '6898122168', 'jopsusorku@gufum.com', '0b3f6adf9802d5a5d694f48415508e20656faac00fdd161f107e81f11ac0173c7398807c023e161535bc68ef2748d63615004b8bf1d41eb4ccb4e3eec58e6bae', '1995-05-01', '2023-04-30', '23:04:39', 'w9bu35tp'),
-(2, 'Emily Regina ', 'Sebastiana Martins', 'Rua Manuel Ulisses Teixeira', '389', 'Massaranduba', 'Arapiraca', 'AL', '57309762', '13309031101', '378363852', 82, '37153592', '988459340', 'nurkimalta@gufum.com', 'b35742fde2353dbd43de49a40c4bbd40ed350ae98456db9e26e697e742d216f07ba49280b56125b864fdeb0649a6d3496b967a9966f5362260c02106b3851029', '1978-02-21', '2023-05-16', '13:24:55', 'r93x87uq');
+INSERT INTO `as_clientes` (`cli_id`, `cli_nome`, `cli_sobrenome`, `cli_endereco`, `cli_numero`, `cli_bairro`, `cli_cidade`, `cli_uf`, `cli_cep`, `cli_cpf`, `cli_rg`, `cli_ddd`, `cli_fone`, `cli_celular`, `cli_email`, `cli_pass`, `cli_data_nasc`, `cli_data_cad`, `cli_hora_cad`, `dados_extras`, `status_clientes`) VALUES
+(1, 'Edson Carlos', 'Eduardo Samuel Nogueira', 'Rua Projetada 302', '425', 'Belo Jardim II', 'Rio Branco', 'AC', '69908050', '94749304220', '187070933', 11, '6838682924', '6898122168', 'd940f2808d@fireboxmail.lol', '550e1bafe077ff0b0b67f4e32f29d751', '1995-05-01', '2023-04-30', '23:04:39', 'w9bu35tp', 0),
+(2, 'Emily Regina ', 'Sebastiana Martins', 'Rua Manuel Ulisses Teixeira', '389', 'Massaranduba', 'Arapiraca', 'AL', '57309762', '13309031101', '378363852', 82, '37153592', '988459340', 'aidi8688@uorak.com', '550e1bafe077ff0b0b67f4e32f29d751', '1978-02-21', '2023-05-16', '13:24:55', 'r93x87uq', 0),
+(3, 'Fulano', 'SIlva', 'Rua Manoel Henrique dos Santos', '11', 'Aeroporto', 'Aracaju', 'SE', '49037356', '02327317649', '343451864', 11, '7999480440', '7938929457', 'nouha4521@uorak.com', '12345678', '2000-04-28', '2023-06-01', '16:54:20', 's89p73qn', 0),
+(4, 'Ciclano', 'Silva', 'Travessa Santa Luzia', '860', 'Cantinho do Céu', 'Serra', 'ES', '29162644', '95156194168', '250214301', 55, '2739713272', '2799529284', 'spartak8747@uorak.com', 'fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe', '2000-02-28', '2023-06-01', '17:15:10', '12345678', 0);
 
 -- --------------------------------------------------------
 
@@ -217,7 +220,7 @@ INSERT INTO `as_pedidos` (`ped_id`, `ped_data`, `ped_hora`, `ped_cliente`, `ped_
 (10, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
 (13, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
 (14, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
-(15, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
+(15, '2023-05-01', '21:30:06', 2, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
 (16, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
 (17, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
 (18, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
@@ -391,7 +394,19 @@ INSERT INTO `as_pedidos` (`ped_id`, `ped_data`, `ped_hora`, `ped_cliente`, `ped_
 (186, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
 (187, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
 (188, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
-(189, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0);
+(189, '2023-05-01', '21:30:06', 1, '2305012130021', '2305012130021', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '21159.98', 0),
+(194, '2023-06-01', '15:32:15', 1, '2306011530551', '2306011530551', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '4499.99', 0),
+(195, '2023-06-01', '15:41:44', 1, '2306011541061', '2306011541061', 'NAO', NULL, NULL, NULL, 0.00, 'pac', '15999.99', 0),
+(196, '2023-06-01', '16:02:29', 1, '2306011602111', '2306011602111', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '6139.99', 0),
+(197, '2023-06-01', '16:11:15', 1, '2306011611081', '2306011611081', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '3280', 0),
+(198, '2023-06-01', '16:12:14', 1, '2306011612071', '2306011612071', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '4499.99', 0),
+(199, '2023-06-01', '16:14:16', 1, '2306011614091', '2306011614091', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '1640', 0),
+(200, '2023-06-01', '16:15:48', 1, '2306011615411', '2306011615411', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '1640', 0),
+(201, '2023-06-01', '16:25:26', 1, '2306011625191', '2306011625191', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '1640', 0),
+(202, '2023-06-01', '16:31:04', 1, '2306011630571', '2306011630571', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '20499.98', 0),
+(203, '2023-06-01', '17:22:11', 4, '2306011722054', '2306011722054', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '1640', 0),
+(204, '2023-06-01', '17:29:53', 4, '2306011729464', '2306011729464', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '15999.99', 0),
+(205, '2023-06-01', '17:31:09', 4, '2306011731024', '2306011731024', 'NAO', NULL, NULL, NULL, 0.00, 'sedex', '1640', 0);
 
 -- --------------------------------------------------------
 
@@ -434,7 +449,21 @@ INSERT INTO `as_pedidos_itens` (`item_id`, `item_produto`, `item_valor`, `item_q
 (24, 4, 3.00, 4, '2305012124451'),
 (25, 4, 21159.98, 2, '2305012130021'),
 (26, 1, 21159.98, 1, '2305012130021'),
-(27, 3, 21159.98, 1, '2305012130021');
+(27, 3, 21159.98, 1, '2305012130021'),
+(28, 3, 4499.99, 1, '2306011530551'),
+(29, 1, 15999.99, 1, '2306011541061'),
+(30, 3, 6139.99, 1, '2306011602111'),
+(31, 5, 6139.99, 1, '2306011602111'),
+(32, 5, 3280.00, 2, '2306011611081'),
+(33, 3, 4499.99, 1, '2306011612071'),
+(34, 5, 1640.00, 1, '2306011614091'),
+(35, 5, 1640.00, 1, '2306011615411'),
+(36, 5, 1640.00, 1, '2306011625191'),
+(37, 1, 20499.98, 1, '2306011630571'),
+(38, 3, 20499.98, 1, '2306011630571'),
+(39, 5, 1640.00, 1, '2306011722054'),
+(40, 1, 15999.99, 1, '2306011729464'),
+(41, 5, 1640.00, 1, '2306011731024');
 
 -- --------------------------------------------------------
 
@@ -552,7 +581,7 @@ ALTER TABLE `as_categorias`
 -- AUTO_INCREMENT de tabela `as_clientes`
 --
 ALTER TABLE `as_clientes`
-  MODIFY `cli_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `cli_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `as_estados`
@@ -570,13 +599,13 @@ ALTER TABLE `as_imagens`
 -- AUTO_INCREMENT de tabela `as_pedidos`
 --
 ALTER TABLE `as_pedidos`
-  MODIFY `ped_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=194;
+  MODIFY `ped_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
 -- AUTO_INCREMENT de tabela `as_pedidos_itens`
 --
 ALTER TABLE `as_pedidos_itens`
-  MODIFY `item_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `item_id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT de tabela `as_produtos`
