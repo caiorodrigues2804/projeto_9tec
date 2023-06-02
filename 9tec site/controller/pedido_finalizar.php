@@ -42,6 +42,7 @@ if (isset($_SESSION['PRO'])):
       $smarty->assign('TELEFONE_CLIENTE',$_SESSION['CLI']['cli_fone']);
       $smarty->assign('CELULAR_CLIENTE',$_SESSION['CLI']['cli_celular']);
       $smarty->assign('DDD_CLIENTE',$_SESSION['CLI']['cli_ddd']);
+      $smarty->assign('CEP_CLIENTE',$_SESSION['CLI']['cli_cep']);
       $smarty->assign('ID_CLIENTE',$_SESSION['CLI']['cli_id']);
       $smarty->assign('PAG_MINHA_CONTA', Rotas::pag_ClientePedidos());
       $smarty->assign('SITE_NOME', Config::SITE_NOME);

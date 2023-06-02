@@ -48,7 +48,8 @@ if(isset($_POST['cli_email'])):
 	$assunto = '(Sua senha) 9Tec informática';
 	$msg = '<h4 style="font-family: arial;">Olá cliente, foi solicitada a sua senha para acessar o Site ' . Config::SITE_NOME . '<br/>';
 	$msg .= "<br/> Sua senha para acessar o login é  <b style='font-size: 18px;'>( " . $novasenha . " )</b><br/>";
-	$msg .= 'Recomendamos que faça a alteração da sua senha através do site na opção "Alterar Senha" quando estiver logado'; 
+	$msg .= 'Recomendamos que faça a alteração da sua senha através do site na opção "Alterar Senha" quando estiver logado<br/>'; 
+	$msg .= 'Jamais compartilhe sua senha para ninguém';
 	$msg .= '<hr/><center><img src="https://github.com/caiorodrigues2804/projeto_9tec/raw/main/img/img1.png" width="400px"><br/><a href="' . Config::SITE_URL . '">' . Config::SITE_URL . '</a></h4></center>';
 	$email->Enviar($assunto,$msg,$destinatarios);
 

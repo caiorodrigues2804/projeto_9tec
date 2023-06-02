@@ -124,13 +124,21 @@
             }
         }
 
+
+        $cmd_s = $pdo->prepare("SELECT COUNT(*) qtd_pedidos_feitos FROM `as_pedidos`;");
+        $resultado_x = $cmd_s->execute();
+ 
+
             $cmd = $pdo->prepare("SELECT * FROM `administracao` WHERE `adm_id` = '$_SESSION[id]';");
             $cmd->execute(); 
             $resultado = $cmd->fetch(PDO::FETCH_ASSOC); 
 
+
             $stmt = $pdo->prepare("SELECT COUNT(*) count FROM `as_pedidos`;");
             $stmt->execute();
             $qtd_pedidos = ($stmt->fetch(PDO::FETCH_OBJ)->count);
+
+        if($cmd_s->fetch(PDO::FETCH_ASSOC)["qtd_pedidos_feitos"] >= 1):
 
             $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
 
@@ -165,7 +173,7 @@
 
             // DEPURAÇÃO
             // print '<pre>';print_r($result1);print '</pre>';
-
+        endif;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -241,7 +249,7 @@
                     <div class="mt-4"></div>
                     <h4>Pedidos dos clientes</h4>
                     <h5>Pedidos realizados: <?= $qtd_pedidos ?></h5>
-                    
+                    <?php if($qtd_pedidos >= 1): ?>
                       <a class="btn btn-secondary mt-2" href="
                                     javascript:
                                            ConfirmDialog('Você tem certeza que deseja excluir todos os pedidos registrados? Esta ação não poderá ser desfeita.');
@@ -273,7 +281,7 @@
                     Marcar todos os pedidos como não concluído          
                     </button>   
                     </a>                 
-
+                    <?php endif; ?>
                     <hr>
 <?php if($qtd_pedidos >= 1): ?>
                     <div class="col-md-12">
@@ -403,7 +411,9 @@
         </div>
     </div>
 <?php endif; ?>
+<?php if($qtd_pedidos >= 1): ?>
 <?php include("paginacao_php.php") ?>
+<?php endif; ?>
               </center>
             </div>            
         </div>
@@ -431,7 +441,14 @@ function ConfirmDialog(message) {
                 <?php if(!isset($_GET["pagina"])){ ?>
                 location.href = 'pedidos_dos_clientes.php?drop=1&id=' + valor_x;
                 <?php } else if(isset($_GET["pagina"])) { ?>
-                location.href = 'pedidos_dos_clientes.php?drop=1&id=' + valor_x + '&pagina=' + <?= $_GET["pagina"] ?>;
+                location.href = 'pedidos_dos_clientes.php?drop=1&id=' + valor_x + '&pagina=' + <?php 
+                  if ($_GET["pagina"] == 0) 
+                {
+                 print $_GET["pagina"] + 1;
+                } else 
+                {
+                 print $_GET["pagina"];
+                } ?>;
                 <?php } ?>
             <?php elseif (isset($_GET["pesquisado"])): ?>
                 <?php if(!isset($_GET["pagina"])){ ?>
@@ -439,7 +456,14 @@ function ConfirmDialog(message) {
                  location.href = 'pedidos_dos_clientes.php?drop=1&id=' + valor_x + '&pesquisado=' + caioba;
                 <?php } else if(isset($_GET["pagina"])) { ?>
                 let caioba = '<?php print $_GET["pesquisado"]; ?>';
-                location.href = 'pedidos_dos_clientes.php?drop=1&id=' + valor_x + '&pagina=' + <?= $_GET["pagina"] ?> + caioba;
+                location.href = 'pedidos_dos_clientes.php?drop=1&id=' + valor_x + '&pagina=' + <?php 
+                  if ($_GET["pagina"] == 0) 
+                {
+                 print $_GET["pagina"] + 1;
+                } else 
+                {
+                 print $_GET["pagina"];
+                } ?> + '&pesquisado=' + caioba;
                 <?php } ?>
             <?php endif; ?>
               $(this).dialog("close");        

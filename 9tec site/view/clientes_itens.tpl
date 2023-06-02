@@ -25,7 +25,7 @@
 
 	<table class="table table-bordered" style="width: 80%;">
 
-		<tr class="bg-success">
+		<tr align="center" class="bg-success">
 			<td>Item</td>
 			<td>Valor Uni</td>
 			<td>X</td>

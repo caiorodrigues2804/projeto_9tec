@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-06-01 17:20:45
+/* Smarty version 3.1.46, created on 2023-06-01 19:23:41
   from 'C:\xampp\htdocs\9tec site\view\login.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_6478fd9d71f182_47968042',
+  'unifunc' => 'content_64791a6db66423_37225442',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '31aa130bb155576d8fd8dc00ab6584c5caf91a53' => 
     array (
       0 => 'C:\\xampp\\htdocs\\9tec site\\view\\login.tpl',
-      1 => 1685650844,
+      1 => 1685651034,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6478fd9d71f182_47968042 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64791a6db66423_37225442 (Smarty_Internal_Template $_smarty_tpl) {
 ?> 
 <?php if ($_smarty_tpl->tpl_vars['LOGADO']->value == true) {?>
  <br/><br/> <br/><br/>

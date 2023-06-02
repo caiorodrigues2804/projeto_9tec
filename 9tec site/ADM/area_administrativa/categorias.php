@@ -20,9 +20,13 @@
         {        
             $cmd = $pdo->prepare("SELECT * FROM `as_categorias`;");
         } else 
-        {
+        {  
+
+
             $pesquisa = addslashes($_GET["pesquisado"]);
             $cmd = $pdo->prepare("SELECT * FROM `as_categorias` WHERE `cate_nome` LIKE '%$pesquisa%';");
+
+         
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -74,7 +78,7 @@
                             header("Location: categorias.php?pagina=" . $_GET["pagina"]);
                         } else if(isset($_GET["pesquisado"]))
                         {
-                            header("Location: categorias.php?pagina=" . $_GET["pagina"] . "&pesquisado=" . $_GET["pesquisado"]);
+                           header("Location: categorias.php?pagina=" . $_GET["pagina"]);
                         }
                     }
                 }
@@ -303,7 +307,16 @@ function ConfirmDialog(message) {
                 <?php if(!isset($_GET["pagina"])){ ?>
                 location.href = 'categorias.php?drop=1&id=' + valor_x;
                 <?php } else if(isset($_GET["pagina"])) { ?>
-                location.href = 'categorias.php?drop=1&id=' + valor_x + '&pagina=' + <?= $_GET["pagina"] ?>;
+                location.href = 'categorias.php?drop=1&id=' + valor_x + '&pagina=' + <?php
+                if ($_GET["pagina"] == 0) 
+                {
+                 print $_GET["pagina"] + 1;
+                } else 
+                {
+                 print $_GET["pagina"];
+                }
+
+                  ?>;
                 <?php } ?>
             <?php elseif (isset($_GET["pesquisado"])): ?>
                 <?php if(!isset($_GET["pagina"])){ ?>
@@ -311,7 +324,15 @@ function ConfirmDialog(message) {
                  location.href = 'categorias.php?drop=1&id=' + valor_x + '&pesquisado=' + caioba;
                 <?php } else if(isset($_GET["pagina"])) { ?>
                 let caioba = '<?php print $_GET["pesquisado"]; ?>';
-                location.href = 'categorias.php?drop=1&id=' + valor_x + '&pagina=' + <?= $_GET["pagina"] ?> + caioba;
+                location.href = 'categorias.php?drop=1&id=' + valor_x + '&pagina=' + <?php 
+                if ($_GET["pagina"] == 0) 
+                {
+                 print $_GET["pagina"] + 1;
+                } else 
+                {
+                 print $_GET["pagina"];
+                }
+                  ?> + '&pesquisado=' + caioba;
                 <?php } ?>
             <?php endif; ?>
               $(this).dialog("close");        

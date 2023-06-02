@@ -71,8 +71,9 @@
 
 
               <center>
-                    <div class="mt-4"></div>
-                    <h4>Olá <?php print_r($resultado["adm_nome"]); ?>, seja bem vindo! <br/> O que deseja fazer agora?</h4>
+                    <div class="mt-5"></div>
+                    <h4>Olá <?php print_r($resultado["adm_nome"]); ?>, seja bem vindo! </h4>
+                    <h5> O que deseja fazer agora?</h5>
               </center>
 
 

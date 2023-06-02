@@ -3,8 +3,16 @@
             require "../conexao_2.php";
             require "validador_de_acessos.php";
  
+          // QTD_CLIENTES
+          $cmd_x = $pdo->prepare("SELECT COUNT(*) qtd_clientes_p FROM `as_clientes`;");
+          $cmd_x->execute();
 
-      
+          $valor_r = mysqli_query($con,"SELECT COUNT(*) qtd_clientes_p_s FROM `as_clientes`;")->fetch_assoc();
+          $d_x = ($valor_r["qtd_clientes_p_s"]);
+
+          // DEPURAÇÃO
+          // print($d_x);
+
             // DEPURAÇÃO
             // print '<pre>';print_r($result1);print '</pre>';
           function encurtador_textos($texto,$qtd_texto)
@@ -21,7 +29,8 @@
             $stmt = $pdo->prepare("SELECT COUNT(*) count FROM `as_clientes`;");
             $stmt->execute();
             $qtd_pedidos = ($stmt->fetch(PDO::FETCH_OBJ)->count);
-
+        if($cmd_x->fetch(PDO::FETCH_ASSOC)["qtd_clientes_p"] >= 1):
+          
             $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
 
             $cmd;$pesquisa;
@@ -56,6 +65,39 @@
             // DEPURAÇÃO
             // print '<pre>';print_r($result1);print '</pre>';
          
+            endif;
+
+
+             if (isset($_GET["drop"])) 
+            {
+                if (!empty($_GET["drop"]))
+                 {
+
+                    $id_categs = addslashes($_GET["id"]);
+                    $cmd = $pdo->prepare("DELETE FROM `as_clientes` WHERE `cli_id` = :id_c;");
+                    $cmd->bindValue(":id_c",$id_categs);
+                    $cmd->execute();                              
+
+                    if (!isset($_GET["pagina"])) 
+                    {                     
+                       if (!isset($_GET["pesquisado"])) 
+                        {                        
+                        header("Location: gerenciamento_clientes.php");
+                        } else if(isset($_GET["pesquisado"]))
+                        {
+                        header("Location: gerenciamento_clientes.php?pesquisado=" . $_GET["pesquisado"]);
+                        }
+                    } else if (isset($_GET["pagina"])) {
+                        if(!isset($_GET["pesquisado"]))
+                        {                            
+                            header("Location: gerenciamento_clientes.php?pagina=" . $_GET["pagina"]);
+                        } else if(isset($_GET["pesquisado"]))
+                        {
+                           header("Location: gerenciamento_clientes.php?pagina=" . $_GET["pagina"]);
+                        }
+                    }
+                }
+            }
 
 ?>
 <!DOCTYPE html>
@@ -66,10 +108,17 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>ADM</title>
+        <script>let valor_y,valor_x</script>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+         <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -121,11 +170,16 @@
               <center>
                     <div class="mt-4"></div>
                     <h4>Gerenciamento de clientes</h4>
+                    <?php if($d_x == 0): ?>
+                        <hr>
+                        <div class="alert alert-danger"><h5>Nenhum cliente foi encontrado!</h5></div>
+                    <?php exit();
+                     endif; ?>
                     <!-- PESQUISA -->
                     <div class="col-lg-6 mt-4">                        
                         <div class="input-group">
                            
-                            <input type="text" id="campo_pesquisado" class="form-control" placeholder="Digite o nome do produto para pesquisar" value="<?php 
+                            <input type="text" id="campo_pesquisado" class="form-control" placeholder="Digite apenas o nome do cliente para pesquisar" value="<?php 
                             if(isset($_GET["pesquisado"])):
                                 echo $_GET["pesquisado"]; 
                             endif;
@@ -143,7 +197,25 @@
 
                         </div>
                     </div>
-                    <hr>                    
+                    <hr>           
+                       <?php
+                        if (isset($_GET["pesquisado"]) && !empty($_GET["pesquisado"]))
+                    {                    
+                          $query = "SELECT * FROM `as_clientes` WHERE `cli_nome` LIKE '%$_GET[pesquisado]%';";
+                          $x_s = $pdo->prepare($query);
+                          $x_s->execute();
+                          $resultado = $x_s->fetch(PDO::FETCH_ASSOC);
+                          if($resultado == ''):?>
+                            <div class="alert alert-danger m-4">
+                                    <h5>Não tem nenhum cliente com esse nome</h5>
+                            </div>
+                            <?php exit();
+                          endif;
+
+                         
+                    }    
+
+                        ?>  
                 <table  class="table"> 
                     <thead>
                      <tr align="center">
@@ -161,9 +233,10 @@
                     </thead>
                     <tbody>
                     <?php 
-                    if (!isset($_GET["pesquisado"]) && !empty($_GET["pesquisado"]))
+                    if (isset($_GET["pesquisado"]) && !empty($_GET["pesquisado"]))
                     {                    
                           $query = "SELECT * FROM `as_clientes` WHERE `cli_nome` LIKE '%$_GET[pesquisado]%';";
+
                     }             
                     else 
                     {                        
@@ -175,7 +248,11 @@
                     // print $query;
 
                          if($resultado = mysqli_query($con,$query)){
-                            while($w = $resultado->fetch_assoc()){  ?>
+                            while($w = $resultado->fetch_assoc()){ 
+
+                                
+
+                             ?>
                       <tr align="center"> 
                             <td><?php print $w["cli_id"]; ?></td>     
                             <td><?php 
@@ -218,13 +295,25 @@
                                 ?>
                             </td>
                             <td>
-                                <button class="btn btn-secondary">✏️</button>
+                                <a href="editar_cliente.php?id_cliente=<?= $w["cli_id"]; ?>"><button class="btn btn-secondary">
+                                ✏️
+                                </button></a>
                             </td>
                             <td>
-                                <button class="btn btn-danger">X</button>
+                                <a href="
+                                    javascript:
+                                    valor_y=0;valor_x='<?php print $w["cli_id"]; ?>';
+                                    ConfirmDialog('Você tem certeza de que deseja excluir este cliente?');
+                                ">                                    
+                                <button class="btn btn-danger">
+                                X
+                                </button>
+                                </a>
                             </td>
                             <td>
+                                <a href="mais_detalhes_do_cliente.php?id_cliente=<?php print $w["cli_id"];?>">
                                 <button class="btn btn-secondary">Exibir</button>
+                                </a>
                             </td>
                       </tr>
                       <?php   }
@@ -237,11 +326,106 @@
 
                     </tbody>
                 </table>
-            <?php include("paginacao_php.php") ?>
+
+            <?php
+
+            if ($d_x >= 1):
+            
+             include("paginacao_php.php");
+         endif;
+            
+            ?>
               </center>
             </div>
         </div>
 
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+<script>
+// ConfirmDialog('Tem certeza que quer excluir essa categoria de produtos');
+
+function ConfirmDialog(message) {
+  $('<div></div>').appendTo('body')
+    .html('<div><h6>' + message + '</h6></div>')
+    .dialog({
+      modal: true,
+      title: 'Excluir cliente',
+      zIndex: 10000,
+      autoOpen: true,
+      width: 'auto',
+      resizable: false,
+      buttons: {
+        Sim: function() {
+          // $(obj).removeAttr('onclick');                                
+          // $(obj).parents('.Parent').remove();
+            if(valor_y == 0)
+            {
+            <?php if(!isset($_GET["pesquisado"])): ?>
+                <?php if(!isset($_GET["pagina"])){ ?>
+                location.href = 'gerenciamento_clientes.php?drop=1&id=' + valor_x;
+                <?php } else if(isset($_GET["pagina"])) { ?>
+                location.href = 'gerenciamento_clientes.php?drop=1&id=' + valor_x + '&pagina=' + <?php  
+                if ($_GET["pagina"] == 0) 
+                {
+                 print $_GET["pagina"] + 1;
+                } else 
+                {
+                 print $_GET["pagina"];
+                }
+                 ?>;
+
+                <?php } ?>
+            <?php elseif (isset($_GET["pesquisado"])): ?>
+                <?php if(!isset($_GET["pagina"])){ ?>
+                 let caioba = '<?php print $_GET["pesquisado"]; ?>';
+                 location.href = 'gerenciamento_clientes.php?drop=1&id=' + valor_x + '&pesquisado=' + caioba;
+                <?php } else if(isset($_GET["pagina"])) { ?>
+                let caioba = '<?php print $_GET["pesquisado"]; ?>';
+                location.href = 'gerenciamento_clientes.php?drop=1&id=' + valor_x + '&pagina=' + <?php 
+                  if ($_GET["pagina"] == 0) 
+                {
+                 print $_GET["pagina"] + 1;
+                } else 
+                {
+                 print $_GET["pagina"];
+                } ?> + '&pesquisado=' + caioba;
+                <?php } ?>
+            <?php endif; ?>
+              $(this).dialog("close");        
+            } else if(valor_y >= 1)
+            {
+              location.href = 'gerenciamento_clientes.php?exclusao=1';
+              $(this).dialog("close"); 
+            }
+
+        },
+        Nao: function() {
+ 
+
+          $(this).dialog("close");
+        }
+      },
+      close: function(event, ui) {
+        $(this).remove();
+      }
+    });
+};
+
+// let bolota = 0;
+// for (var i = 0;i <= document.querySelectorAll("#valor_indice").length; i++) 
+// {
+//     bolota+=1;
+//     document.querySelectorAll("#valor_indice")[i].innerText = bolota;
+// }
+// console.log(screen.width)
+if (screen.width < 1280) {
+        document.querySelectorAll("#imagem_produtos")[0].style.display = 'none';
+        document.querySelectorAll("#imagem_produtos")[1].style.display = 'none';
+}
+</script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
