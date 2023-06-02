@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-06-01 16:04:30
+/* Smarty version 3.1.46, created on 2023-06-01 19:25:48
   from 'C:\xampp\htdocs\9tec site\view\clientes_itens.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_6478ebbe75c784_50014910',
+  'unifunc' => 'content_64791aecbd5ab5_10215298',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0973cc93191ed8f281e656f60e73b5dada951078' => 
     array (
       0 => 'C:\\xampp\\htdocs\\9tec site\\view\\clientes_itens.tpl',
-      1 => 1685323693,
+      1 => 1685658347,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6478ebbe75c784_50014910 (Smarty_Internal_Template $_smarty_tpl) {
+function content_64791aecbd5ab5_10215298 (Smarty_Internal_Template $_smarty_tpl) {
 ?><h4 class="text-center">Dados do pedido</h4>
 
 <!----- Informações sobre o pedido ---->
@@ -52,7 +52,7 @@ function content_6478ebbe75c784_50014910 (Smarty_Internal_Template $_smarty_tpl)
 
 	<table class="table table-bordered" style="width: 80%;">
 
-		<tr class="bg-success">
+		<tr align="center" class="bg-success">
 			<td>Item</td>
 			<td>Valor Uni</td>
 			<td>X</td>

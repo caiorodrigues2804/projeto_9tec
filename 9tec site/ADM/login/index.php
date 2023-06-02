@@ -367,7 +367,10 @@ if(!isset($_GET["acesso"])){
 
     <!-- Remind Passowrd -->
     <div id="formFooter"> 
-      <a class="underlineHover" href="#">Esqueceu a senha?</a> <br/>
+      <a class="underlineHover" href="
+      javascript:
+      alert('Entre em contato com o e-mail do suporte');
+      ">Problemas de autenticação?</a> <br/>
       <a class="underlineHover" href="../../index.php">Voltar</a>
     </div>
 

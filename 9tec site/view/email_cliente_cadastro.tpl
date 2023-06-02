@@ -19,6 +19,6 @@
 
 <hr/>
 
-<img src="https://scontent.fcgh22-1.fna.fbcdn.net/v/t39.30808-6/337659705_1577860109368424_2192567867889571563_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=LUGpe1DIso8AX_hbU8d&_nc_ht=scontent.fcgh22-1.fna&oh=00_AfA3OM7A3wJljQBa-Qj21G69-pTBOVF1RgCD7FgxHFbXng&oe=645400ED" width="500px">
+<img src="https://github.com/caiorodrigues2804/projeto_9tec/blob/main/img/img1.png?raw=true" width="300px">
 
 </center>

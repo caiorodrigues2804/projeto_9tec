@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-06-01 17:31:05
+/* Smarty version 3.1.46, created on 2023-06-02 13:01:00
   from 'C:\xampp\htdocs\9tec site\view\email_adm.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_64790009e88813_12640913',
+  'unifunc' => 'content_647a123cabee59_05738028',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '84ca38f6cb25c4ad874d8ff8ccb9448d75b8c8cd' => 
     array (
       0 => 'C:\\xampp\\htdocs\\9tec site\\view\\email_adm.tpl',
-      1 => 1685651439,
+      1 => 1685721590,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64790009e88813_12640913 (Smarty_Internal_Template $_smarty_tpl) {
+function content_647a123cabee59_05738028 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 	* {
 	font-family: arial;
@@ -32,14 +32,20 @@ function content_64790009e88813_12640913 (Smarty_Internal_Template $_smarty_tpl)
 <h5>Nome: <?php echo $_smarty_tpl->tpl_vars['NOME_CLIENTE']->value;?>
  <?php echo $_smarty_tpl->tpl_vars['SOBRENOME_CLIENTE']->value;?>
 </h5>
+<br/>
+<h4>Endereço de entrega</h4>
 <h5>Endereço: <?php echo $_smarty_tpl->tpl_vars['ENDERECO_CLIENTE']->value;?>
 </h5>
 <h5>Bairro: <?php echo $_smarty_tpl->tpl_vars['BAIRRO_CLIENTE']->value;?>
 </h5>
 <h5>UF: <?php echo $_smarty_tpl->tpl_vars['UF_CLIENTE']->value;?>
 </h5>
+<h5>CEP: <?php echo $_smarty_tpl->tpl_vars['CEP_CLIENTE']->value;?>
+</h5>
 <h5>Numero: <?php echo $_smarty_tpl->tpl_vars['NUMERO_CLIENTE']->value;?>
 </h5>
+<br/>
+<h4>Telefone e Celular</h4>
 <h5>DDD: <?php echo $_smarty_tpl->tpl_vars['DDD_CLIENTE']->value;?>
  </h5>
 <h5>Telefone: <?php echo $_smarty_tpl->tpl_vars['TELEFONE_CLIENTE']->value;?>
@@ -105,11 +111,12 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 			<h4><b>Frete:</b> R$ <?php echo $_smarty_tpl->tpl_vars['VALOR_FRETE']->value;?>
 </h4>
 			<h4><b>Tipo de frete:</b> <?php  print strtoupper($_SESSION['TIPO_FRETE']); ?> </h4>
-
+			<br><br>
 			<div class="col-md-8">	
-				<center>
+			<center>
 	 		<h5>Para obter mais informações sobre este pedido, acesse o lista de pedidos dos clientes na área administrativo do site</h5>
-	 			</center>
+	 		<h5>Sempre importante manter esse e-mail salvo e arquivado em local seguro</h5>
+	 		</center>
 	 		</div>
 
 		</div>	 

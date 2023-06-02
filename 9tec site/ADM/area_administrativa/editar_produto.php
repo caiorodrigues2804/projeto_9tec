@@ -127,7 +127,6 @@
                                         $_POST["ref_do_produto"],
                                         $_POST["fabricante_do_produto"],
                                         $_POST["pro_ativo"],
-                                        $_POST["frete_gratis"],
                                         $_POST["subtitulo_produto"]
                                     ];
 
@@ -140,7 +139,7 @@
                                     $query = "UPDATE `as_produtos` SET ";
                                     $x = -1;
                                     foreach($valor as $key => $value):
-                                        if($key <> 'pro_id'):
+                                        if($key <> 'pro_id' && $key <> 'pro_frete_free'):
                                             $x += 1;
                                             $query .= "`". $key . "` = '" . $arr[$x] . "',";
                                         endif;
@@ -148,9 +147,16 @@
                                     $query .= "00";
                                     $query = str_replace(",00","",$query);
                                     $query .= " WHERE `pro_id` = $id";
+
+                                    // DEPURAÇÃO
+                                    // print $query;
+                                    
                                     $cmd_d_02 = $pdo->prepare($query);
                                     $cmd_d_02->execute();
                                     
+                                    // DEPURAÇÃO
+                                    // exit();
+
                                     $url =  '<meta http-equiv="refresh" content="0; url=editar_produto.php?edit_sucesso=1&id=' . $id . '">';
                                     echo $url;
 
@@ -468,15 +474,15 @@
 
                     <br>
                     <!-- FRETE GRÁTIS -->
-                    <h5>Frete grátis?</h5>
+                   <!--  <h5>Frete grátis?</h5>
                        <div class="col-lg-2">
                         <select id="fretes_gratis" name="frete_gratis" class="form-control" required>
                             <option value="Sim">Sim</option>
                             <option value="Não">Não</option>
                         </select>    
-                        </div>
+                        </div> -->
                     <!-- / FRETE GRÁTIS  -->
-                    <br>
+                    <!-- <br> -->
                     <button type="submit" name="alteracao_produtos" class="btn btn-success">Aplica alteração</button>
                     <br><br>
                       </form>

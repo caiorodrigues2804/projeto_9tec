@@ -6,10 +6,15 @@
 <h4>Informações do cliente que solicitou pedido</h4>
 <h5>Identificador (ID): {$ID_CLIENTE}</h5>
 <h5>Nome: {$NOME_CLIENTE} {$SOBRENOME_CLIENTE}</h5>
+<br/>
+<h4>Endereço de entrega</h4>
 <h5>Endereço: {$ENDERECO_CLIENTE}</h5>
 <h5>Bairro: {$BAIRRO_CLIENTE}</h5>
 <h5>UF: {$UF_CLIENTE}</h5>
+<h5>CEP: {$CEP_CLIENTE}</h5>
 <h5>Numero: {$NUMERO_CLIENTE}</h5>
+<br/>
+<h4>Telefone e Celular</h4>
 <h5>DDD: {$DDD_CLIENTE} </h5>
 <h5>Telefone: {$TELEFONE_CLIENTE}</h5>
 <h5>Celular: {$CELULAR_CLIENTE}</h5>
@@ -60,7 +65,7 @@
 			<div class="col-md-8">	
 			<center>
 	 		<h5>Para obter mais informações sobre este pedido, acesse o lista de pedidos dos clientes na área administrativo do site</h5>
-	 		<h5>Sempre importante manter esse e-mail salvo e arquivado</h5>
+	 		<h5>Sempre importante manter esse e-mail salvo e arquivado em local seguro</h5>
 	 		</center>
 	 		</div>
 

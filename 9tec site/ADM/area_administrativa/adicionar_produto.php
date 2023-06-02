@@ -111,8 +111,7 @@
                                         $_POST["modelo_do_produto"],
                                         $_POST["ref_do_produto"],
                                         $_POST["fabricante_do_produto"],
-                                        $_POST["pro_ativo"],
-                                        $_POST["frete_gratis"],
+                                        $_POST["pro_ativo"],                                        
                                         $_POST["subtitulo_produto"]
                                     ];
 
@@ -123,7 +122,7 @@
                                     $valor = $cmd->fetch(PDO::FETCH_ASSOC);
                                     $query = "INSERT INTO `as_produtos` (";
                                     foreach($valor as $key => $value):
-                                        if($key <> 'pro_id'):
+                                        if($key <> 'pro_id' && $key <> 'pro_frete_free'):
                                         $query .= "`". $key . "`,";
                                         endif;
                                     endforeach;
@@ -438,15 +437,15 @@ if (isset($_GET["add_sucesso"]))
                     </div>
                     <!-- /SUBTÍTULO -->
 
-                    <br>
+                    <!-- <br> -->
                     <!-- FRETE GRÁTIS -->
-                    <h5>Frete grátis?</h5>
+                    <!--    <h5>Frete grátis?</h5>
                        <div class="col-lg-2">
                         <select name="frete_gratis" class="form-control" required>
                             <option value="Sim">Sim</option>
                             <option value="Não">Não</option>
                         </select>    
-                        </div>
+                        </div> -->
                     <!-- / FRETE GRÁTIS  -->
                     <br>
                     <button type="submit" name="adicionar_produtos_s" class="btn btn-success">Adicionar produto</button>

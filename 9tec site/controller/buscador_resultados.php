@@ -45,7 +45,7 @@ $smarty->display('buscador_resultados.tpl');
 		
 	<div id="ds_s">
 		<br/>
-		<img style="display: inline;width: 130px;border: 0.5px solid #000;margin: 10px;border-radius: 10%" src="media/imagens/<?php print $results_s['pro_img'];?>"/>
+		<img style="display: inline;width: 130px;border: 0.5px solid #000;margin: 10px;border-radius: 10%" src="<?php print $results_s['pro_img'];?>"/>
 		<h4 style="display: inline;"><!--- (<?php// print $results['pro_id'] ?>) --->
 		<b>Nome:</b> <?php print $results_s['pro_nome'] ?> 
 		| <b>REF:</b> <?php print $results_s['pro_ref'] ?>

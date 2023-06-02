@@ -9,6 +9,8 @@
             $cmd->execute(); 
             $resultado = $cmd->fetch(PDO::FETCH_ASSOC); 
 
+            print_r($resultado);
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -73,10 +75,14 @@
               <center>
                     <div class="mt-4"></div>
                     <h4>Gerenciamento de administradores</h4>
+                    
+                    <button class="btn btn-success">Adicionar um novo administrador</button>
+                    <hr>
+
+ 
               </center>
-
-
             </div>
+
             
         </div>
         <!-- Bootstrap core JS-->
