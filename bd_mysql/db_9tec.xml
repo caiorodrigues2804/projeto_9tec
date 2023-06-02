@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.0
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1:3306
+- Tempo de geração: 02-Jun-2023 às 18:53
+- Versão do servidor: 10.4.24-MariaDB
+- versão do PHP: 8.1.6
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="miniloja2017" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="administracao">
+                CREATE TABLE `administracao` (
+                  `adm_id` int(10) unsigned NOT NULL,
+                  `adm_nome` varchar(80) DEFAULT NULL,
+                  `adm_endereco` varchar(100) DEFAULT NULL,
+                  `adm_numero` varchar(20) DEFAULT NULL,
+                  `adm_bairro` varchar(80) DEFAULT NULL,
+                  `adm_cidade` varchar(150) DEFAULT NULL,
+                  `adm_uf` varchar(2) DEFAULT NULL,
+                  `adm_cep` varchar(10) DEFAULT NULL,
+                  `adm_cpf` varchar(12) DEFAULT NULL,
+                  `adm_rg` varchar(20) DEFAULT NULL,
+                  `adm_ddd` int(2) DEFAULT NULL,
+                  `adm_fone` varchar(10) DEFAULT NULL,
+                  `adm_celular` varchar(10) DEFAULT NULL,
+                  `adm_email` varchar(60) DEFAULT NULL,
+                  `adm_pass` varchar(128) DEFAULT NULL,
+                  `adm_data_nasc` date DEFAULT NULL,
+                  `adm_data_cad` date DEFAULT NULL,
+                  `adm_hora_cad` time DEFAULT NULL,
+                  `usuario_adm` varchar(40) NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="as_categorias">
+                CREATE TABLE `as_categorias` (
+                  `cate_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `cate_nome` varchar(80) DEFAULT NULL,
+                  `cate_slug` varchar(80) DEFAULT NULL,
+                  PRIMARY KEY (`cate_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
+            </pma:table>
+            <pma:table name="as_clientes">
+                CREATE TABLE `as_clientes` (
+                  `cli_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                  `cli_nome` varchar(80) DEFAULT NULL,
+                  `cli_sobrenome` varchar(80) DEFAULT NULL,
+                  `cli_endereco` varchar(100) DEFAULT NULL,
+                  `cli_numero` varchar(20) DEFAULT NULL,
+                  `cli_bairro` varchar(80) DEFAULT NULL,
+                  `cli_cidade` varchar(150) DEFAULT NULL,
+                  `cli_uf` varchar(2) DEFAULT NULL,
+                  `cli_cep` varchar(10) DEFAULT NULL,
+                  `cli_cpf` varchar(12) DEFAULT NULL,
+                  `cli_rg` varchar(20) DEFAULT NULL,
+                  `cli_ddd` int(2) DEFAULT NULL,
+                  `cli_fone` varchar(10) DEFAULT NULL,
+                  `cli_celular` varchar(10) DEFAULT NULL,
+                  `cli_email` varchar(60) DEFAULT NULL,
+                  `cli_pass` varchar(128) DEFAULT NULL,
+                  `cli_data_nasc` date DEFAULT NULL,
+                  `cli_data_cad` date DEFAULT NULL,
+                  `cli_hora_cad` time DEFAULT NULL,
+                  `dados_extras` varchar(40) NOT NULL,
+                  `status_clientes` int(11) NOT NULL DEFAULT 0,
+                  PRIMARY KEY (`cli_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
+            </pma:table>
+            <pma:table name="as_estados">
+                CREATE TABLE `as_estados` (
+                  `estado_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                  `estado_sigla` char(2) DEFAULT NULL,
+                  `estado_nome` varchar(50) DEFAULT NULL,
+                  PRIMARY KEY (`estado_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=606;
+            </pma:table>
+            <pma:table name="as_imagens">
+                CREATE TABLE `as_imagens` (
+                  `img_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `img_nome` varchar(60) DEFAULT NULL,
+                  `img_pro_id` int(11) DEFAULT NULL,
+                  `img_pasta` varchar(34) DEFAULT NULL,
+                  PRIMARY KEY (`img_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=3321323 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=8192;
+            </pma:table>
+            <pma:table name="as_pedidos">
+                CREATE TABLE `as_pedidos` (
+                  `ped_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `ped_data` date DEFAULT NULL,
+                  `ped_hora` time DEFAULT NULL,
+                  `ped_cliente` int(11) DEFAULT NULL,
+                  `ped_cod` varchar(100) DEFAULT NULL,
+                  `ped_ref` varchar(40) DEFAULT NULL,
+                  `ped_pag_status` varchar(20) DEFAULT &#039;NAO&#039;,
+                  `ped_pag_forma` varchar(20) DEFAULT NULL,
+                  `ped_pag_tipo` varchar(20) DEFAULT NULL,
+                  `ped_pag_codigo` varchar(220) DEFAULT NULL,
+                  `ped_frete_valor` double(9,2) DEFAULT NULL,
+                  `ped_frete_tipo` varchar(20) DEFAULT NULL,
+                  `ped_valor_item` varchar(100) NOT NULL,
+                  `concluido` tinyint(4) NOT NULL DEFAULT 0,
+                  PRIMARY KEY (`ped_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=16384;
+            </pma:table>
+            <pma:table name="as_pedidos_itens">
+                CREATE TABLE `as_pedidos_itens` (
+                  `item_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+                  `item_produto` int(11) DEFAULT NULL,
+                  `item_valor` double(9,2) DEFAULT NULL,
+                  `item_qtd` int(6) DEFAULT NULL,
+                  `item_ped_cod` varchar(50) DEFAULT NULL,
+                  PRIMARY KEY (`item_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=1092;
+            </pma:table>
+            <pma:table name="as_produtos">
+                CREATE TABLE `as_produtos` (
+                  `pro_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `pro_categoria` int(11) DEFAULT NULL,
+                  `pro_nome` varchar(100) DEFAULT NULL,
+                  `pro_desc` text DEFAULT NULL,
+                  `pro_peso` double(4,2) DEFAULT 0.00,
+                  `pro_valor` double(15,2) DEFAULT 0.00,
+                  `pro_altura` int(5) DEFAULT 0,
+                  `pro_largura` int(5) DEFAULT 0,
+                  `pro_comprimento` int(5) DEFAULT 0,
+                  `pro_img` varchar(1000) DEFAULT NULL,
+                  `pro_slug` varchar(100) DEFAULT NULL,
+                  `pro_estoque` int(9) DEFAULT 0,
+                  `pro_modelo` varchar(40) DEFAULT NULL,
+                  `pro_ref` varchar(20) DEFAULT NULL,
+                  `pro_fabricante` varchar(255) DEFAULT NULL,
+                  `pro_ativo` char(3) DEFAULT &#039;NAO&#039;,
+                  `pro_frete_free` varchar(3) DEFAULT &#039;NAO&#039;,
+                  `pro_descricao_extra` text DEFAULT NULL,
+                  PRIMARY KEY (`pro_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
+            </pma:table>
+            <pma:table name="as_user">
+                CREATE TABLE `as_user` (
+                  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+                  `user_nome` varchar(30) DEFAULT NULL,
+                  `user_email` varchar(60) DEFAULT NULL,
+                  `user_pw` varchar(40) DEFAULT NULL,
+                  PRIMARY KEY (`user_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Banco de dados: 'miniloja2017'
+    -->
+    <database name="miniloja2017">
+        <!-- Tabela administracao -->
+        <table name="administracao">
+            <column name="adm_id">0</column>
+            <column name="adm_nome">ADM</column>
+            <column name="adm_endereco">NULL</column>
+            <column name="adm_numero">NULL</column>
+            <column name="adm_bairro">NULL</column>
+            <column name="adm_cidade">NULL</column>
+            <column name="adm_uf">NULL</column>
+            <column name="adm_cep">NULL</column>
+            <column name="adm_cpf">NULL</column>
+            <column name="adm_rg">NULL</column>
+            <column name="adm_ddd">NULL</column>
+            <column name="adm_fone">NULL</column>
+            <column name="adm_celular">NULL</column>
+            <column name="adm_email">fulmivarku@gufum.com</column>
+            <column name="adm_pass">f900e7b99c4a9c1a97f0396d4d34c374574d2945437ca1f30c3ad28dcefb55679e90312b6d801798888d2fa3cb03e769b21ab0982109074ce812cd2c349676f9</column>
+            <column name="adm_data_nasc">NULL</column>
+            <column name="adm_data_cad">NULL</column>
+            <column name="adm_hora_cad">NULL</column>
+            <column name="usuario_adm"></column>
+        </table>
+        <!-- Tabela as_categorias -->
+        <table name="as_categorias">
+            <column name="cate_id">1</column>
+            <column name="cate_nome">Placa de vídeo</column>
+            <column name="cate_slug">Placa de vídeo</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">2</column>
+            <column name="cate_nome">Processador</column>
+            <column name="cate_slug">Processador</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">11</column>
+            <column name="cate_nome">SSD</column>
+            <column name="cate_slug">SSD</column>
+        </table>
+        <!-- Tabela as_clientes -->
+        <table name="as_clientes">
+            <column name="cli_id">2</column>
+            <column name="cli_nome">Ciclano Fulano</column>
+            <column name="cli_sobrenome">Manoel Costa</column>
+            <column name="cli_endereco">Rua Antonio Izaias da Costa</column>
+            <column name="cli_numero">333</column>
+            <column name="cli_bairro">Gramame</column>
+            <column name="cli_cidade">João Pessoa</column>
+            <column name="cli_uf">PB</column>
+            <column name="cli_cep">58069260</column>
+            <column name="cli_cpf">34244706607</column>
+            <column name="cli_rg">350153231</column>
+            <column name="cli_ddd">83</column>
+            <column name="cli_fone">8336929599</column>
+            <column name="cli_celular">8398525100</column>
+            <column name="cli_email">violante6000@uorak.com</column>
+            <column name="cli_pass">fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe</column>
+            <column name="cli_data_nasc">1994-02-10</column>
+            <column name="cli_data_cad">2023-06-02</column>
+            <column name="cli_hora_cad">12:51:28</column>
+            <column name="dados_extras">12345678</column>
+            <column name="status_clientes">0</column>
+        </table>
+        <!-- Tabela as_estados -->
+        <table name="as_estados">
+            <column name="estado_id">1</column>
+            <column name="estado_sigla">AC</column>
+            <column name="estado_nome">ACRE</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">2</column>
+            <column name="estado_sigla">AL</column>
+            <column name="estado_nome">ALAGOAS</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">3</column>
+            <column name="estado_sigla">AP</column>
+            <column name="estado_nome">AMAPÁ</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">4</column>
+            <column name="estado_sigla">AM</column>
+            <column name="estado_nome">AMAZONAS</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">5</column>
+            <column name="estado_sigla">BA</column>
+            <column name="estado_nome">BAHIA</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">6</column>
+            <column name="estado_sigla">CE</column>
+            <column name="estado_nome">CEARÁ</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">7</column>
+            <column name="estado_sigla">DF</column>
+            <column name="estado_nome">DISTRITO FEDERAL</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">8</column>
+            <column name="estado_sigla">ES</column>
+            <column name="estado_nome">ESPÍRITO SANTO</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">9</column>
+            <column name="estado_sigla">GO</column>
+            <column name="estado_nome">GOIÁS</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">10</column>
+            <column name="estado_sigla">MA</column>
+            <column name="estado_nome">MARANHÃO</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">11</column>
+            <column name="estado_sigla">MT</column>
+            <column name="estado_nome">MATO GROSSO</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">12</column>
+            <column name="estado_sigla">MS</column>
+            <column name="estado_nome">MATO GROSSO DO SUL</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">13</column>
+            <column name="estado_sigla">MG</column>
+            <column name="estado_nome">MINAS GERAIS</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">14</column>
+            <column name="estado_sigla">PA</column>
+            <column name="estado_nome">PARÁ</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">15</column>
+            <column name="estado_sigla">PB</column>
+            <column name="estado_nome">PARAÍBA</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">16</column>
+            <column name="estado_sigla">PR</column>
+            <column name="estado_nome">PARANÁ</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">17</column>
+            <column name="estado_sigla">PE</column>
+            <column name="estado_nome">PERNAMBUCO</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">18</column>
+            <column name="estado_sigla">PI</column>
+            <column name="estado_nome">PIAUÍ</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">19</column>
+            <column name="estado_sigla">RJ</column>
+            <column name="estado_nome">RIO DE JANEIRO</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">20</column>
+            <column name="estado_sigla">RN</column>
+            <column name="estado_nome">RIO GRANDE DO NORTE</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">21</column>
+            <column name="estado_sigla">RS</column>
+            <column name="estado_nome">RIO GRANDE DO SUL</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">22</column>
+            <column name="estado_sigla">RO</column>
+            <column name="estado_nome">RONDÔNIA</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">23</column>
+            <column name="estado_sigla">RR</column>
+            <column name="estado_nome">RORAIMA</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">24</column>
+            <column name="estado_sigla">SC</column>
+            <column name="estado_nome">SANTA CATARINA</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">25</column>
+            <column name="estado_sigla">SP</column>
+            <column name="estado_nome">SÃO PAULO</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">26</column>
+            <column name="estado_sigla">SE</column>
+            <column name="estado_nome">SERGIPE</column>
+        </table>
+        <table name="as_estados">
+            <column name="estado_id">27</column>
+            <column name="estado_sigla">TO</column>
+            <column name="estado_nome">TOCANTINS</column>
+        </table>
+        <!-- Tabela as_imagens -->
+        <table name="as_imagens">
+            <column name="img_id">1</column>
+            <column name="img_nome">skol_2.png</column>
+            <column name="img_pro_id">1</column>
+            <column name="img_pasta">NULL</column>
+        </table>
+        <table name="as_imagens">
+            <column name="img_id">2</column>
+            <column name="img_nome">skol_3.png</column>
+            <column name="img_pro_id">1</column>
+            <column name="img_pasta">NULL</column>
+        </table>
+        <!-- Tabela as_pedidos -->
+        <table name="as_pedidos">
+            <column name="ped_id">3</column>
+            <column name="ped_data">2023-06-02</column>
+            <column name="ped_hora">12:55:41</column>
+            <column name="ped_cliente">2</column>
+            <column name="ped_cod">2306021255342</column>
+            <column name="ped_ref">2306021255342</column>
+            <column name="ped_pag_status">NAO</column>
+            <column name="ped_pag_forma">NULL</column>
+            <column name="ped_pag_tipo">NULL</column>
+            <column name="ped_pag_codigo">NULL</column>
+            <column name="ped_frete_valor">0.00</column>
+            <column name="ped_frete_tipo">sedex</column>
+            <column name="ped_valor_item">1640</column>
+            <column name="concluido">0</column>
+        </table>
+        <!-- Tabela as_pedidos_itens -->
+        <table name="as_pedidos_itens">
+            <column name="item_id">3</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021255342</column>
+        </table>
+        <!-- Tabela as_produtos -->
+        <table name="as_produtos">
+            <column name="pro_id">0</column>
+            <column name="pro_categoria">NULL</column>
+            <column name="pro_nome">NULL</column>
+            <column name="pro_desc">NULL</column>
+            <column name="pro_peso">0.00</column>
+            <column name="pro_valor">0.00</column>
+            <column name="pro_altura">0</column>
+            <column name="pro_largura">0</column>
+            <column name="pro_comprimento">0</column>
+            <column name="pro_img">NULL</column>
+            <column name="pro_slug">NULL</column>
+            <column name="pro_estoque">0</column>
+            <column name="pro_modelo">NULL</column>
+            <column name="pro_ref">NULL</column>
+            <column name="pro_fabricante">NULL</column>
+            <column name="pro_ativo">NAO</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">NULL</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">5</column>
+            <column name="pro_categoria">2</column>
+            <column name="pro_nome">Intel i7 10g 2.90GHz </column>
+            <column name="pro_desc">O processador Intel Core i7 de 10ª geração é uma unidade de processamento poderosa e altamente avançada, projetada para oferecer um desempenho excepcional em computadores pessoais e estações de trabalho. Com uma arquitetura moderna e recursos inovadores, o Intel Core i7 de 10ª geração é uma escolha popular para gamers, criadores de conteúdo e profissionais que exigem alto desempenho em suas atividades diárias.
+&lt;br/&gt;
+O Intel Core i7 de 10ª geração é baseado na arquitetura de processador de 14 nanômetros (nm) da Intel e possui até 8 núcleos e 16 threads, o que permite a execução de várias tarefas simultaneamente com facilidade. Com velocidades de clock que variam de 2,0 GHz a 5,3 GHz, o Intel Core i7 de 10ª geração oferece um desempenho excepcional em tarefas exigentes, como edição de vídeo, renderização em 3D, jogos de alta qualidade e outras cargas de trabalho intensivas.
+&lt;br/&gt;
+Uma das características marcantes do Intel Core i7 de 10ª geração é a tecnologia Intel Turbo Boost Max 3.0, que identifica e impulsiona automaticamente os núcleos mais rápidos do processador para proporcionar um desempenho ainda melhor em tarefas de um único núcleo. Isso resulta em uma maior capacidade de resposta e tempos de carregamento mais rápidos para aplicativos e jogos.
+&lt;br/&gt;
+Além disso, o Intel Core i7 de 10ª geração suporta a tecnologia Intel Hyper-Threading, que permite a execução de dois threads por núcleo, resultando em um melhor desempenho multithreading e uma maior eficiência de processamento. Ele também suporta memória DDR4 de alta velocidade, proporcionando um aumento significativo no desempenho do sistema em comparação com as gerações anteriores de processadores Intel.
+&lt;br/&gt;
+O Intel Core i7 de 10ª geração também é equipado com a tecnologia de gráficos Intel Iris Plus, que oferece gráficos integrados aprimorados para uma experiência de jogo e entretenimento mais imersiva. Ele suporta até três monitores 4K UHD e oferece recursos avançados de codificação e decodificação de vídeo para transmissões e criação de conteúdo em alta qualidade.
+&lt;br/&gt;
+Além disso, o Intel Core i7 de 10ª geração suporta as mais recentes tecnologias de conectividade, como USB 3.1 Gen2, Thunderbolt 3 e Intel Optane Memory, que proporcionam uma experiência de computação rápida e eficiente.
+&lt;br/&gt;
+Em resumo, o Intel Core i7 de 10ª geração é um processador de alto desempenho que oferece velocidades de clock rápidas, suporte a multitarefa intensiva, recursos avançados de gráficos e conectividade moderna. É uma escolha ideal para aqueles que precisam de um processador poderoso para jogos, criação de conteúdo e tarefas profissionais exigentes.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">1640.00</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/processador-intel-core-i7-10700-290ghz-470ghz-turbo-10-geracao-8-cores-16-thread-lga-1200-bx8070110700_95187.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/processador-intel-core-i7-10700-290ghz-470ghz-turbo-10-ger</column>
+            <column name="pro_estoque">100000</column>
+            <column name="pro_modelo">BX8070110700</column>
+            <column name="pro_ref">0040</column>
+            <column name="pro_fabricante">Intel</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">Não</column>
+            <column name="pro_descricao_extra">Processador Intel Core i7 10700, 2.90GHz (4.70GHz Turbo), 10ª Geração, 8-Cores 16-Threads, LGA 1200, BX8070110700</column>
+        </table>
+        <!-- Tabela as_user -->
+    </database>
+</pma_xml_export>
