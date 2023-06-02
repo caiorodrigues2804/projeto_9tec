@@ -34,13 +34,13 @@
             $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
 
             $cmd;$pesquisa;
-        if (!isset($_GET["pesquisado"])) 
+         if (!isset($_GET["pesquisado"])) 
         {        
-            $cmd = $pdo->prepare("SELECT * FROM `as_clientes`;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos`;");
         } else 
         {
             $pesquisa = addslashes($_GET["pesquisado"]);
-            $cmd = $pdo->prepare("SELECT * FROM `as_clientes` WHERE `cli_nome` LIKE '%$pesquisa%';");
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%$pesquisa%';");
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -48,7 +48,7 @@
             // DEPURAÇÃO
             // print_r($result);
 
-            $exibir = 10;
+            $exibir = 8;
 
             $total = ceil((count($result)/$exibir));
 
@@ -57,8 +57,13 @@
 
             $inicioExibir = ($exibir * $pagina) - $exibir;
 
+            $inicioExibir;
+            if($inicioExibir < 0)
+            {
+            $inicioExibir = 0;
+            }
 
-            $cmd = $pdo->prepare("SELECT * FROM `as_clientes` LIMIT $inicioExibir,$exibir;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` LIMIT $inicioExibir,$exibir;");
             $cmd->execute();
             $result1 = $cmd->fetchAll();
 
@@ -295,7 +300,11 @@
                                 ?>
                             </td>
                             <td>
-                                <a href="editar_cliente.php?id_cliente=<?= $w["cli_id"]; ?>"><button class="btn btn-secondary">
+                                <a href="editar_cliente.php?id_cliente=<?= $w["cli_id"]; ?><?php 
+                                    if(isset($_GET["pagina"])):
+                                        print '&pagina=' . $_GET["pagina"];
+                                    endif;
+                                ?>"><button class="btn btn-secondary">
                                 ✏️
                                 </button></a>
                             </td>
@@ -311,7 +320,11 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="mais_detalhes_do_cliente.php?id_cliente=<?php print $w["cli_id"];?>">
+                                <a href="mais_detalhes_do_cliente.php?id_cliente=<?php print $w["cli_id"];?><?php 
+                                    if(isset($_GET["pagina"])):
+                                        print '&pagina=' . $_GET["pagina"];
+                                    endif;
+                                ?>">
                                 <button class="btn btn-secondary">Exibir</button>
                                 </a>
                             </td>

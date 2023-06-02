@@ -145,7 +145,13 @@
    <h4>Editar dados do cliente</h4>
    <hr>
    <div class="md-4">       
-   <a href="gerenciamento_clientes.php"><button class="btn btn-success">Voltar</button></a>
+   <a href="gerenciamento_clientes.php<?php 
+    if(isset($_GET["pagina"])):
+            print '?pagina=' . $_GET["pagina"];
+    endif;
+    ?>"><button class="btn btn-success">
+        Voltar
+    </button></a>
    </div>
    <br><br>
 <form name="cadcliente" id="cadcliente" method="post" action="editar_cliente.php?id_cliente=<?= $_GET["id_cliente"];?>&alteracao=1">

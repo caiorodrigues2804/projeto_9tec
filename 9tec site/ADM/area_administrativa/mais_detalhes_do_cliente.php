@@ -162,7 +162,12 @@
    <h4>Visualizar detalhes do dados</h4>
    <hr>
    <div class="md-4">       
-   <a href="gerenciamento_clientes.php"><button class="btn btn-success">Voltar</button></a>
+   <a href="gerenciamento_clientes.php<?php 
+        if(isset($_GET["pagina"])):
+            print '?pagina=' . $_GET["pagina"];
+        endif;
+
+    ?>"><button class="btn btn-success">Voltar</button></a>
    </div>
    <br><br>
         </section>

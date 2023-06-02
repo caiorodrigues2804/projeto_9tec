@@ -68,7 +68,7 @@ class Pedidos extends Conexao{
 	 * @param string $freteTipo 
 	 * */
 
-	function PedidoGravar($cliente,$cod,$ref,$freteValor=null,$freteTipo){
+	function PedidoGravar($cliente,$cod,$ref,$freteValor,$freteTipo){
  
 
 	$params = array(
@@ -85,12 +85,12 @@ class Pedidos extends Conexao{
 	$horas = $params[':hora'];
 	$clientes = $params[':cliente'];
 	$cods = $params[':cod'];
-	$refs = $params[':ref'];
-	$frete_valors = $params[':frete_valor'];
-	$frete_tipo = $freteTipo;
+	$refs = $params[':ref'];	
+	$frete_tipo = addslashes($freteTipo);
 	$valores_ = $_SESSION['VALOR_M'];
  	
-    $query = "INSERT INTO `{$this->prefix}pedidos` (`ped_data`, `ped_hora`, `ped_cliente`, `ped_cod`,`ped_ref`,`ped_pag_status`,`ped_frete_valor`,`ped_frete_tipo`,`ped_valor_item`) VALUES ('$datas', '$horas', '$clientes', '$cods','$refs','NAO','$frete_valors','$frete_tipo','$valores_')";
+
+    $query = "INSERT INTO `{$this->prefix}pedidos` (`ped_data`, `ped_hora`, `ped_cliente`, `ped_cod`,`ped_ref`,`ped_pag_status`,`ped_frete_valor`,`ped_frete_tipo`,`ped_valor_item`) VALUES ('$datas', '$horas', '$clientes', '$cods','$refs','NAO',$freteValor,'$frete_tipo','$valores_')";
  
 
 
