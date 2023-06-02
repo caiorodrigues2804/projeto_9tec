@@ -29,8 +29,8 @@ ou
 ## Versões do Site 9Tec informática
 
 <h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_01">Primeira versão </a></h4>
-<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_03">Penúltima versão </a></h4>
-<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_04">Última versão</a></h4>
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_04">Penúltima versão </a></h4>
+<h4><a href="https://github.com/caiorodrigues2804/projeto_9tec/tree/versao_05">Última versão</a></h4>
 
 
 ## Programas e frameworks utilizados no desenvolvimento do site
