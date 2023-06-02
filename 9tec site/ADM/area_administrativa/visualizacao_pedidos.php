@@ -137,7 +137,11 @@
               <center>
                 <div class="mt-2"></div>
                 <h5>Visualizar detalhes do pedido</h5>
-                <a href="pedidos_dos_clientes.php">
+                <a href="pedidos_dos_clientes.php<?php 
+                if(isset($_GET["pagina"])):
+                    print '?pagina=' . $_GET["pagina"];
+                endif;
+                ?>">
                     <button class="btn btn-secondary">Voltar</button>
                 </a>
                 <hr>
@@ -183,9 +187,9 @@
                     </ul>                   
                 </div>
                   <hr>
-                <h6>Informações do produto</h6>
+                <h6><b>Informações do produto</b></h6>
                  <div>
-                     <h6>Verifique na sua caixa de e-mail para obter produto(s) que foi solicitado pelo cliente</h6>
+                     <h6>Verifique na sua caixa de e-mail para obter informação do produto(s) que foi solicitado pelo cliente</h6>
                  </div>
 
                 </center>

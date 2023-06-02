@@ -70,7 +70,8 @@ if (isset($_SESSION['PRO'])):
       $cliente = $_SESSION['CLI']['cli_id'];
       $cod  = $_SESSION['PED']['pedido'];
       $ref  = $_SESSION['PED']['ref'];
-      $freteValor = $_SESSION['TIPO_FRETE'];
+      $freteTipo = $_SESSION['TIPO_FRETE'];
+      $freteValor = addslashes($_GET["frete"]);
       
       // envio de email --------------------------------------
       $email = new EnviarEmail();
@@ -108,7 +109,7 @@ if (isset($_SESSION['PRO'])):
            $msg           = $smarty->fetch('email_adm.tpl');
 
 
-           $email->Enviar($assunto,$msg,$destinatarios,$freteValor);
+           $email->Enviar($assunto,$msg,$destinatarios,$freteTipo);
 
       endif;
 
@@ -116,7 +117,7 @@ if (isset($_SESSION['PRO'])):
 
       // gravo o pedido no banco  ----------------------------
 
-      if($pedido->PedidoGravar($cliente, $cod, $ref,$freteValor,$freteValor)):
+      if($pedido->PedidoGravar($cliente, $cod, $ref,$freteValor,$freteTipo)):
 
          // limpar a sessão do pedido e dos itens do carrinho
          $pedido->LimparSessoes();

@@ -189,15 +189,21 @@
 
                         </div>
                     </div>
+                    <?php if(!isset($_GET["pesquisado"])){?>
                     <br> 
-<?php } ?>
+
+<?php }} ?>
 <?php if($categorias == 0){ ?>
                     <a href="categorias.php"><button class="btn btn-success">Categoria de produtos</button></a>
 <?php } else if($categorias >= 1){ ?>
+      <?php if(!isset($_GET["pesquisado"])): ?>
                     <a href="adicionar_produto.php"><button class="btn btn-success">Adicionar produto</button></a>
                     <a href="categorias.php"><button class="btn btn-success">Categoria de produtos</button></a>
+      <?php endif; ?>
 <?php } ?>
-<?php if($produtos_retornados >= 1){ ?>
+<?php if($produtos_retornados >= 1){ 
+        if(!isset($_GET["pesquisado"])):
+    ?>
     <a href="
      javascript:
               valor_y = 1;
@@ -205,8 +211,20 @@
     ">
                     <button class="btn btn-danger">Excluir todos os produtos</button>        
     </a>
+    <?php endif; ?>
 <?php } ?>
                     <hr>
+<?php 
+if(isset($_GET["pesquisado"])):
+    $valor_digitado = addslashes($_GET["pesquisado"]);
+    $query = "SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%valor_digitado%';";
+    if(mysqli_query($con,$query)->num_rows == 0){
+?>
+    <div class="alert alert-danger m-4">
+            <h5>Não tem nenhum produto com esse nome</h5>
+    </div>
+<?php exit();} endif;?>
+
 <?php if($produtos_retornados >= 1){ ?>
   <table class="table">
                         <thead>
@@ -245,7 +263,11 @@
                                         ?>
                                     </td>
                                     <td>                                       
-                                            <a href="editar_produto.php?id=<?= $x["pro_id"]; ?>">
+                                            <a href="editar_produto.php?id=<?= $x["pro_id"]; ?><?php 
+                                                if(isset($_GET["pagina"])):
+                                                    print '&pagina=' . $_GET["pagina"];
+                                                endif;
+                                            ?>">
                                                 <button class="btn btn-secondary">✏️</button>
                                             </a>                                    
                                     </td>
