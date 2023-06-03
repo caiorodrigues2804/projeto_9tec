@@ -62,16 +62,16 @@
             $cmd_yx->execute();
             $adm_count = 1;
 
-                 $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
+            $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
 
             $cmd;$pesquisa;
         if (!isset($_GET["pesquisado"])) 
         {        
-            $cmd = $pdo->prepare("SELECT * FROM `as_clientes`;");
+            $cmd = $pdo->prepare("SELECT * FROM `administracao`;");
         } else 
         {
             $pesquisa = addslashes($_GET["pesquisado"]);
-            $cmd = $pdo->prepare("SELECT * FROM `as_clientes` WHERE `cli_nome` LIKE '%$pesquisa%';");
+            $cmd = $pdo->prepare("SELECT * FROM `administracao` WHERE `adm_nome` LIKE '%$pesquisa%';");
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -180,8 +180,12 @@
                             endif;
                             ?>">                                     
 
-                            <a href="javascript:                            
+                            <a href="javascript:                 
+                            <?php if(!isset($_GET["pagina"])): ?>
                                 location.href = 'gerenciamento_administrador.php?pesquisado=' + document.querySelector('#campo_pesquisado').value;               
+                            <?php else: ?>
+                                location.href = 'gerenciamento_administrador.php?pesquisado=' + document.querySelector('#campo_pesquisado').value + '&pagina=' + <?php print $_GET["pagina"]; ?>;               
+                            <?php endif; ?>
 
                             ">
                                 <button class="btn btn-info">🔎</button>

@@ -19,9 +19,15 @@ class Pedidos extends Conexao{
 
 		if($cliente != null):
 			$cli = (int)$cliente;
-			$query .= " WHERE `ped_cliente` = '{$cli}'";
+			$query .= " WHERE `ped_cliente` = '{$cli}' ORDER BY p.ped_hora DESC;";
+
+			// DEPURAÇÃO
 			// print $query;
+			
 		endif;
+
+		// DEPURAÇÃO
+		// print $query;
 
 		$this->ExecuteSQL($query);
 		$this->GetLista();
@@ -137,14 +143,18 @@ class Pedidos extends Conexao{
 	$qtd = $params[':qtd'];
 	$cods = $params[':cod'];
 
-	
+	$valor_tt = ($valores / $qtd);
+		
+
 	// print '<br/>' . $cods . ' '. $qtd .' R$ '. $valores .' Qtd(s) ' . $qtd;
  
-    $query = "INSERT INTO `{$this->prefix}pedidos_itens` (`item_produto`, `item_valor`, `item_qtd`, `item_ped_cod`) VALUES ('$produtos', '$valores', '$qtd', '$cods')";
+    $query = "INSERT INTO `{$this->prefix}pedidos_itens` (`item_produto`, `item_valor`, `item_qtd`, `item_ped_cod`,`valor_original`) VALUES ('$produtos', '$valores', '$qtd', '$cods','$valor_tt')";
     // print '<br/>'. $query . '<br/><br/>';
 
 	$this->ExecuteSQL($query,$params);
 
+	$query = "UPDATE `{$this->prefix}pedidos` SET `ped_valor_original` = '$valor_tt' WHERE `ped_cod` = '$cods';";
+	$this->ExecuteSQL($query,$params);
 
 	endforeach;
 	}

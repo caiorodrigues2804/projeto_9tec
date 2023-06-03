@@ -77,7 +77,7 @@ class Paginacao extends Conexao{
 		$this->inicio = ($p * $this->limite) - $this->limite;
 
 		// margem de tolerância para cima ou para baixo da página atual
-		$tolerancia = 3;
+		$tolerancia = 5;
 
 		// quanto links mostrar na tela (atual + ou - tolerencia)
 		$mostrar = $p + $tolerancia;

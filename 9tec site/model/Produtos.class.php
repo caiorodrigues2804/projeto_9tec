@@ -8,7 +8,7 @@
  * */
  
 if(isset($_GET['p'])){
-print '<br/><h4 class="alert-info" style="padding: 12px;display:inline;border-radius:5px;">Página selecionada ' . $_GET['p'] . '</h4><br/>';
+print '<br/><h4 class="alert-warning" style="padding: 12px;display:inline;border-radius:5px;margin-left: 20px;border: 1px solid #000;color: black;">Página selecionada: ' . $_GET['p'] . '</h4><br/>';
 
 };
 

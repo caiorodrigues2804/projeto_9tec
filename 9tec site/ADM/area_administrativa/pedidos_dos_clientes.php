@@ -162,11 +162,11 @@ function mensagem_atencao($mesangem_nome,$cor)
 
         if (!isset($_GET["pesquisado"])) 
         {        
-            $cmd = $pdo->prepare("SELECT * FROM `as_produtos`;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_pedidos`;");
         } else 
         {
             $pesquisa = addslashes($_GET["pesquisado"]);
-            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%$pesquisa%';");
+            $cmd = $pdo->prepare("SELECT * FROM `as_pedidos` WHERE `pro_nome` LIKE '%$pesquisa%';");
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -192,6 +192,10 @@ function mensagem_atencao($mesangem_nome,$cor)
             $cmd = $pdo->prepare("SELECT * FROM `as_produtos` LIMIT $inicioExibir,$exibir;");
             $cmd->execute();
             $result1 = $cmd->fetchAll();
+
+            
+            // DEPURAÇÃO
+            // print $total;
 
 ?>
 <!DOCTYPE html>

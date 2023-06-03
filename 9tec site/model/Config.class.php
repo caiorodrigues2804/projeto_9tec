@@ -7,7 +7,7 @@
  * 
  * @author Caio Rodrigues
  * */
- // error_reporting(0);
+ error_reporting(0);
 
 
 class Config {
@@ -20,8 +20,8 @@ class Config {
 	const BD_SENHA = "";
 	const BD_BANCO = "miniloja2017";
 	const BD_PREFIX = "as_";
-	const BD_LIMITE_POR_PAG = 9;
-	// caiobauser2804@24C
+	const BD_LIMITE_POR_PAG = 6;
+ 
 
 
 	/**

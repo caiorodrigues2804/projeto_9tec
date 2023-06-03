@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-06-01 19:25:48
+/* Smarty version 3.1.46, created on 2023-06-03 18:03:33
   from 'C:\xampp\htdocs\9tec site\view\clientes_itens.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_64791aecbd5ab5_10215298',
+  'unifunc' => 'content_647baaa5d27c77_91782444',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0973cc93191ed8f281e656f60e73b5dada951078' => 
     array (
       0 => 'C:\\xampp\\htdocs\\9tec site\\view\\clientes_itens.tpl',
-      1 => 1685658347,
+      1 => 1685826212,
       2 => 'file',
     ),
   ),
@@ -20,8 +20,12 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_64791aecbd5ab5_10215298 (Smarty_Internal_Template $_smarty_tpl) {
-?><h4 class="text-center">Dados do pedido</h4>
+function content_647baaa5d27c77_91782444 (Smarty_Internal_Template $_smarty_tpl) {
+for($i = 0;$i <= 1;$i++):
+print '<br/>';
+endfor;
+?>
+<h4 class="text-center">Dados do pedido</h4>
 
 <!----- Informações sobre o pedido ---->
 <section class="row">
@@ -36,8 +40,8 @@ function content_64791aecbd5ab5_10215298 (Smarty_Internal_Template $_smarty_tpl)
 </td>
 				<td><b>Ref:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_ref'];?>
 </td>								
-				<td><b>Status:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_pag_status'];?>
-</td>
+				<td><b>Status:</b> <d id="status_peds"> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_pag_status'];?>
+ </d></td>
 
 			</tr>
 		</table>
@@ -53,10 +57,7 @@ function content_64791aecbd5ab5_10215298 (Smarty_Internal_Template $_smarty_tpl)
 	<table class="table table-bordered" style="width: 80%;">
 
 		<tr align="center" class="bg-success">
-			<td>Item</td>
-			<td>Valor Uni</td>
-			<td>X</td>
-			<td>Sub</td>
+			<td>Item</td>			
 		</tr>
 
 		<?php
@@ -66,14 +67,10 @@ if ($_from !== null) foreach ($_from as $_smarty_tpl->tpl_vars['P']->value) {
 $_smarty_tpl->tpl_vars['P']->do_else = false;
 ?>
 		<tr>
-			<td><?php echo $_smarty_tpl->tpl_vars['P']->value['item_nome'];?>
-</td>
-			<td class="text-right"><?php echo $_smarty_tpl->tpl_vars['P']->value['item_valor'];?>
-</td>
-			<td class="text-center"><?php echo $_smarty_tpl->tpl_vars['P']->value['item_qtd'];?>
-</td>
-			<td class="text-right"><?php echo $_smarty_tpl->tpl_vars['P']->value['item_sub'];?>
-</td>
+			<input type="hidden" id="nome_prods" value="<?php echo $_smarty_tpl->tpl_vars['P']->value['item_nome'];?>
+">
+			<td class="text-center"><?php echo $_smarty_tpl->tpl_vars['P']->value['item_nome'];?>
+</td>				
 		</tr>
 		<?php
 }
@@ -89,84 +86,68 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl, 1);?>
 				<table class="table table-bordered" style="width: 80%;">
 					<tr>
 						
-						<td id="frete_d" class="text-danger"><b>Frete:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_frete_valor'];?>
- </td>
-<!-- $ITENS.1.ped_frete_valor+$TOTAL -->
-						<td id="total_produto" class="text-danger"><b>Total:</b> <?php echo $_smarty_tpl->tpl_vars['TOTAL']->value;?>
-</td>
+						<td class="text-danger">Frete: <b>R$</b> <b id="frete_d"><?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_frete_valor'];?>
+</b> </td>
+		
+						<td class="text-danger">Total: <b>R$</b> <b id="valor_total"></b></td>
 
-						<td id="valor_final" class="text-danger"><b>Final:</b> <?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_frete_valor']+$_smarty_tpl->tpl_vars['TOTAL']->value;?>
-</td>	
+						<td class="text-danger">Final: <b>R$</b> <b  id="valor_final"><?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['item_valor'];?>
+</b> </td>	
 
 
 					</tr>
 				</table>
-			</center>
 
+				<hr>		 
+			
+				<input type="hidden" id="valor_campo" value="<?php echo $_smarty_tpl->tpl_vars['ITENS']->value[1]['ped_cod'];?>
+">
+ 				<button id="button_pag" onclick="acoes()">Efetuar o pagamento</button> 				  
+ 		 		<h4 id="valor_ds">Já foi efetuado o pagamento deste pedido</h4>
+
+			</center>
 		</section>
 
-		<?php echo '<script'; ?>
+<?php echo '<script'; ?>
 >
 
-		function decimalParaReal(numero) {
-		  let formatoReal = new Intl.NumberFormat('pt-BR', {
-		    style: 'currency',
-		    currency: 'BRL',
-		    minimumFractionDigits: 2
-		  });
-		  return formatoReal.format(numero);
+ function formatarNumero(numero) {
+  var numeroFormatado = numero.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+  return numeroFormatado;
+}
+
+	function converterFormato(valor) {
+		  // Remove o ponto existente na string e substitui a vírgula por um ponto
+		  var valorSemPonto = valor.replace(/\./g, '').replace(',', '.');
+
+		  return parseFloat(valorSemPonto);
 		}
 
+	let valor_do_produto,valor_final,frete; 
+	
+	frete = converterFormato(document.querySelector("#frete_d").innerText);
+	valor_final = converterFormato(document.querySelector("#valor_final").innerText);
+	
+	document.querySelector("#valor_total").innerText = formatarNumero(valor_final - frete);
+	
+	document.querySelector("#valor_ds").style.display = 'none';
+	let valor_ds = document.querySelector("#status_peds").innerText;
+	if(valor_ds == 'SIM')
+	{
+		document.querySelector("#button_pag").style.display = 'none';
+		document.querySelector("#valor_ds").style.display = 'block';
+	}	
+	
 
-		let valor_v,total_v,frete_v;
+ acoes = () => {
+		location.href = '?pagamento=sim&cod_produto=' + (document.querySelector("#valor_campo").value);
+  }
 
-		// -------------------- VALOR FINAL ------------------------------ //
-		valor_v = document.querySelector("#valor_final").innerHTML;
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		valor_v = valor_v.replace(/['Final:<b>/']/gi,'');
-		valor_v = parseFloat(valor_v);
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		document.querySelector("#valor_final").innerHTML = '<b>Valor final:</b> '+ (decimalParaReal(valor_v))
-	 	// -------------------------------------------------------------- //
-
-	 	// -------------------- TOTAL  ------------------------------ //
-		total_v = document.querySelector("#total_produto").innerHTML;
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		total_v = total_v.replace(/['Total:<b>/']/gi,'');
-		total_v = parseFloat(total_v);
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		document.querySelector("#total_produto").innerHTML = '<b>Total:</b> '+ (decimalParaReal(total_v))
-	 	// -------------------------------------------------------------- //
-
-	 	// -------------------- FRETE  ------------------------------ //
-		frete_v = document.querySelector("#frete_d").innerHTML;
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		frete_v = frete_v.replace(/['Frete:<b>/']/gi,'');
-		frete_v = parseFloat(frete_v);
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		document.querySelector("#frete_d").innerHTML = '<b>Frete:</b> '+ (decimalParaReal(frete_v))
-	 	// -------------------------------------------------------------- //
-		 
-		 
-
-		<?php echo '</script'; ?>
-><?php }
+<?php echo '</script'; ?>
+>
+<?php 
+for($i = 0;$i <= 2;$i++):
+print '<br/>';
+endfor;
+}
 }

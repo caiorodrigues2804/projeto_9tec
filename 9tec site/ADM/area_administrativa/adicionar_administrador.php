@@ -147,7 +147,7 @@
 
                         <label for="exampleInputEmail1">Email:</label>
                         <div class="col-md-5">
-                        <input type="email" minlength="25" maxlength="254" class="form-control" name="email" required>
+                        <input type="email" minlength="19" maxlength="254" class="form-control" name="email" required>
                         </div>    
                         <small>Limite de caracteres é 254</small>
                         <br/><br/>

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-06-01 16:53:50
+/* Smarty version 3.1.46, created on 2023-06-03 17:59:48
   from 'C:\xampp\htdocs\9tec site\view\email_cliente_cadastro.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_6478f74eb8d063_09337434',
+  'unifunc' => 'content_647ba9c4e94392_57289036',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'b421f3c03f2f2211f1a8d1c71c393896ec65cda9' => 
     array (
       0 => 'C:\\xampp\\htdocs\\9tec site\\view\\email_cliente_cadastro.tpl',
-      1 => 1685323693,
+      1 => 1685721169,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_6478f74eb8d063_09337434 (Smarty_Internal_Template $_smarty_tpl) {
+function content_647ba9c4e94392_57289036 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 		
 	h3{ 
@@ -48,7 +48,7 @@ function content_6478f74eb8d063_09337434 (Smarty_Internal_Template $_smarty_tpl)
 
 <hr/>
 
-<img src="https://scontent.fcgh22-1.fna.fbcdn.net/v/t39.30808-6/337659705_1577860109368424_2192567867889571563_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=LUGpe1DIso8AX_hbU8d&_nc_ht=scontent.fcgh22-1.fna&oh=00_AfA3OM7A3wJljQBa-Qj21G69-pTBOVF1RgCD7FgxHFbXng&oe=645400ED" width="500px">
+<img src="https://github.com/caiorodrigues2804/projeto_9tec/blob/main/img/img1.png?raw=true" width="300px">
 
 </center><?php }
 }

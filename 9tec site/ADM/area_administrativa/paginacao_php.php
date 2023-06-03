@@ -38,7 +38,17 @@ if(isset($_GET["pagina"])):
       }
 endif; 
 
-       echo '<a href="?pagina=1"><button class="btn btn-secondary m-1">Primeira página</button>';
+    if(isset($_GET["pesquisado"]))
+    {
+        if (!empty($_GET["pesquisado"])) {
+            echo '<a href="?pagina=1&pesquisado=' . $_GET["pesquisado"] . '"><button class="btn btn-secondary m-1">Primeira página</button>';            
+        } else {
+            echo '<a href="?pagina=1"><button class="btn btn-secondary m-1">Última página</button></a>';
+        }
+    }else 
+    {
+        echo '<a href="?pagina=1"><button class="btn btn-secondary m-1">Última página</button></a>';
+    }
             for($i = 1;$i <= $total;$i++){
            
                 // DEPURAÇÃO
@@ -53,10 +63,11 @@ endif;
                
 
                 if($i == $pagina){
+
                     echo '<button class="btn btn-secondary m-1"> ( ' . $i . ' ) </button>';
                 } else {
                     if(!isset($_GET["pesquisado"])):
-                    echo "<a class='btn btn-secondary m-1' href='?pagina=$i'>$i</a>"; 
+                     echo "<a class='btn btn-secondary m-1' href='?pagina=$i'>$i</a>"; 
                     elseif (isset($_GET["pesquisado"])):
                     echo "<a class='btn btn-secondary m-1' href='?pagina=$i&pesquisado=$_GET[pesquisado]'>$i</a>"; 
                     endif;
@@ -64,10 +75,23 @@ endif;
                }
 
 
+
+
             } 
      if ($total >= 2) 
-     {             
-     echo '<a href="?pagina=' . $total . '"><button class="btn btn-secondary m-1">Última página</button></a>';
+     {            
+        if (isset($_GET["pesquisado"])) 
+        {        
+            if(!empty($_GET["pesquisado"])){
+
+            echo '<a href="?pagina=' . $total . '&pesquisado=' . $_GET["pesquisado"] . '"><button class="btn btn-secondary m-1">Última página</button></a>';
+            } else {
+                echo '<a href="?pagina=' . $total . '"><button class="btn btn-secondary m-1">Última página</button></a>';
+            }
+        } else {
+            echo '<a href="?pagina=' . $total . '"><button class="btn btn-secondary m-1">Última página</button></a>';
+        }
+
       } 
 
 ?>      

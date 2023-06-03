@@ -5,7 +5,7 @@
 - https://www.phpmyadmin.net
 -
 - Host: 127.0.0.1:3306
-- Tempo de geração: 03-Jun-2023 às 05:08
+- Tempo de geração: 03-Jun-2023 às 23:18
 - Versão do servidor: 10.4.24-MariaDB
 - versão do PHP: 8.1.6
 -->
@@ -25,7 +25,7 @@
                   `adm_data_cad` date DEFAULT NULL,
                   `adm_hora_cad` time DEFAULT NULL,
                   PRIMARY KEY (`adm_id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
             </pma:table>
             <pma:table name="as_categorias">
                 CREATE TABLE `as_categorias` (
@@ -33,7 +33,7 @@
                   `cate_nome` varchar(80) DEFAULT NULL,
                   `cate_slug` varchar(80) DEFAULT NULL,
                   PRIMARY KEY (`cate_id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
+                ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
             </pma:table>
             <pma:table name="as_clientes">
                 CREATE TABLE `as_clientes` (
@@ -59,7 +59,7 @@
                   `dados_extras` varchar(40) NOT NULL,
                   `status_clientes` int(11) NOT NULL DEFAULT 0,
                   PRIMARY KEY (`cli_id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
             </pma:table>
             <pma:table name="as_estados">
                 CREATE TABLE `as_estados` (
@@ -94,6 +94,7 @@
                   `ped_frete_tipo` varchar(20) DEFAULT NULL,
                   `ped_valor_item` varchar(100) NOT NULL,
                   `concluido` tinyint(4) NOT NULL DEFAULT 0,
+                  `ped_valor_original` double(9,2) DEFAULT 0.00,
                   PRIMARY KEY (`ped_id`)
                 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=16384;
             </pma:table>
@@ -104,8 +105,9 @@
                   `item_valor` double(9,2) DEFAULT NULL,
                   `item_qtd` int(6) DEFAULT NULL,
                   `item_ped_cod` varchar(50) DEFAULT NULL,
+                  `valor_original` double(9,2) DEFAULT NULL,
                   PRIMARY KEY (`item_id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=1092;
+                ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=1092;
             </pma:table>
             <pma:table name="as_produtos">
                 CREATE TABLE `as_produtos` (
@@ -128,7 +130,7 @@
                   `pro_frete_free` varchar(3) DEFAULT &#039;NAO&#039;,
                   `pro_descricao_extra` text DEFAULT NULL,
                   PRIMARY KEY (`pro_id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
+                ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=5461;
             </pma:table>
             <pma:table name="as_user">
                 CREATE TABLE `as_user` (
@@ -150,65 +152,97 @@
         <table name="administracao">
             <column name="adm_id">1</column>
             <column name="adm_nome">ADM</column>
-            <column name="adm_email">suporte@9tec.com</column>
+            <column name="adm_email">suporte@9tec.com.br</column>
             <column name="adm_pass">f900e7b99c4a9c1a97f0396d4d34c374574d2945437ca1f30c3ad28dcefb55679e90312b6d801798888d2fa3cb03e769b21ab0982109074ce812cd2c349676f9</column>
             <column name="adm_data_cad">NULL</column>
             <column name="adm_hora_cad">NULL</column>
         </table>
         <table name="administracao">
-            <column name="adm_id">8</column>
-            <column name="adm_nome">ADM0285</column>
-            <column name="adm_email">tester.testador1288@gmail.com</column>
-            <column name="adm_pass">fde13401e2b00908416fa32dbaf8f49511be3c5670c1160441d76e5dd0c99701fcaa7cb9acce2806bcd95a89ce9554fcacded4dda4881866aa12aa49753fe787</column>
-            <column name="adm_data_cad">2023-06-02</column>
-            <column name="adm_hora_cad">21:49:18</column>
-        </table>
-        <table name="administracao">
-            <column name="adm_id">9</column>
-            <column name="adm_nome">ADM025</column>
-            <column name="adm_email">tester.testador125@gmail.com</column>
-            <column name="adm_pass">679422</column>
-            <column name="adm_data_cad">2023-06-02</column>
-            <column name="adm_hora_cad">21:59:33</column>
+            <column name="adm_id">2</column>
+            <column name="adm_nome">adm_02</column>
+            <column name="adm_email">jafyitofya@gufum.com</column>
+            <column name="adm_pass">da4d30515a0e12fcd25192b5bd7cb49a0b21627ce2f7e99f38edc0ae50458d40576f797686514a23f66789bc975a2000b29c88e83f4a58d1c66d2c052a6db287</column>
+            <column name="adm_data_cad">2023-06-03</column>
+            <column name="adm_hora_cad">16:39:08</column>
         </table>
         <!-- Tabela as_categorias -->
-        <table name="as_categorias">
-            <column name="cate_id">1</column>
-            <column name="cate_nome">Placa de vídeo</column>
-            <column name="cate_slug">Placa de vídeo</column>
-        </table>
         <table name="as_categorias">
             <column name="cate_id">2</column>
             <column name="cate_nome">Processador</column>
             <column name="cate_slug">Processador</column>
         </table>
         <table name="as_categorias">
-            <column name="cate_id">11</column>
+            <column name="cate_id">3</column>
+            <column name="cate_nome">Placa de vídeo</column>
+            <column name="cate_slug">Placa de vídeo</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">4</column>
+            <column name="cate_nome">Placa mãe</column>
+            <column name="cate_slug">Placa mãe</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">5</column>
+            <column name="cate_nome">HD</column>
+            <column name="cate_slug">HD</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">6</column>
             <column name="cate_nome">SSD</column>
             <column name="cate_slug">SSD</column>
         </table>
+        <table name="as_categorias">
+            <column name="cate_id">7</column>
+            <column name="cate_nome">Memoria RAM</column>
+            <column name="cate_slug">Memoria RAM</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">8</column>
+            <column name="cate_nome">PC Gamer</column>
+            <column name="cate_slug">PC Gamer</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">9</column>
+            <column name="cate_nome">Notebook </column>
+            <column name="cate_slug">Notebook </column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">10</column>
+            <column name="cate_nome">Gabinetes</column>
+            <column name="cate_slug">Gabinetes</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">11</column>
+            <column name="cate_nome">Periféricos</column>
+            <column name="cate_slug">Periféricos</column>
+        </table>
+        <table name="as_categorias">
+            <column name="cate_id">12</column>
+            <column name="cate_nome">Nvme</column>
+            <column name="cate_slug">Nvme</column>
+        </table>
         <!-- Tabela as_clientes -->
         <table name="as_clientes">
-            <column name="cli_id">2</column>
-            <column name="cli_nome">Ciclano Fulano</column>
-            <column name="cli_sobrenome">Manoel Costa</column>
-            <column name="cli_endereco">Rua Antonio Izaias da Costa</column>
-            <column name="cli_numero">333</column>
-            <column name="cli_bairro">Gramame</column>
-            <column name="cli_cidade">João Pessoa</column>
-            <column name="cli_uf">PB</column>
-            <column name="cli_cep">58069260</column>
-            <column name="cli_cpf">34244706607</column>
-            <column name="cli_rg">350153231</column>
-            <column name="cli_ddd">83</column>
-            <column name="cli_fone">8336929599</column>
-            <column name="cli_celular">8398525100</column>
-            <column name="cli_email">violante6000@uorak.com</column>
-            <column name="cli_pass">fa585d89c851dd338a70dcf535aa2a92fee7836dd6aff1226583e88e0996293f16bc009c652826e0fc5c706695a03cddce372f139eff4d13959da6f1f5d3eabe</column>
-            <column name="cli_data_nasc">1994-02-10</column>
-            <column name="cli_data_cad">2023-06-02</column>
-            <column name="cli_hora_cad">12:51:28</column>
-            <column name="dados_extras">12345678</column>
+            <column name="cli_id">1</column>
+            <column name="cli_nome">Fulano</column>
+            <column name="cli_sobrenome">Benedito Moreira</column>
+            <column name="cli_endereco">Rua da Ligação</column>
+            <column name="cli_numero">515</column>
+            <column name="cli_bairro">Aurá</column>
+            <column name="cli_cidade">Ananindeua</column>
+            <column name="cli_uf">PA</column>
+            <column name="cli_cep">67032125</column>
+            <column name="cli_cpf">23052656899</column>
+            <column name="cli_rg">134246901</column>
+            <column name="cli_ddd">91</column>
+            <column name="cli_fone">9129511120</column>
+            <column name="cli_celular">9198876003</column>
+            <column name="cli_email">gesef86538@soremap.com</column>
+            <column name="cli_pass">9625547a539542280311f3eac2a329dad5fbaf84138da1cc847cf33a45ecea9dfcaf1a3d5bb3989fef1b1b82966cac3d4133be78df2a7c75798cc814afae832c</column>
+            <column name="cli_data_nasc">1986-01-08</column>
+            <column name="cli_data_cad">2023-06-03</column>
+            <column name="cli_hora_cad">17:59:48</column>
+            <column name="dados_extras">p85s69yy</column>
             <column name="status_clientes">0</column>
         </table>
         <!-- Tabela as_estados -->
@@ -363,132 +397,37 @@
         <!-- Tabela as_pedidos -->
         <table name="as_pedidos">
             <column name="ped_id">1</column>
-            <column name="ped_data">2023-06-02</column>
-            <column name="ped_hora">16:39:06</column>
-            <column name="ped_cliente">2</column>
-            <column name="ped_cod">2306021638592</column>
-            <column name="ped_ref">2306021638592</column>
+            <column name="ped_data">2023-06-03</column>
+            <column name="ped_hora">18:00:53</column>
+            <column name="ped_cliente">1</column>
+            <column name="ped_cod">2306031800441</column>
+            <column name="ped_ref">2306031800441</column>
             <column name="ped_pag_status">SIM</column>
             <column name="ped_pag_forma">NULL</column>
             <column name="ped_pag_tipo">NULL</column>
             <column name="ped_pag_codigo">NULL</column>
-            <column name="ped_frete_valor">94.81</column>
-            <column name="ped_frete_tipo">sedex</column>
-            <column name="ped_valor_item">1640</column>
+            <column name="ped_frete_valor">47.65</column>
+            <column name="ped_frete_tipo">pac</column>
+            <column name="ped_valor_item">172.25</column>
             <column name="concluido">0</column>
+            <column name="ped_valor_original">172.25</column>
         </table>
         <!-- Tabela as_pedidos_itens -->
         <table name="as_pedidos_itens">
-            <column name="item_id">3</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021255342</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">6</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">3280.00</column>
+            <column name="item_id">1</column>
+            <column name="item_produto">3</column>
+            <column name="item_valor">172.25</column>
             <column name="item_qtd">2</column>
-            <column name="item_ped_cod">2306021546022</column>
+            <column name="item_ped_cod">2306031800441</column>
+            <column name="valor_original">86.12</column>
         </table>
         <table name="as_pedidos_itens">
-            <column name="item_id">7</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
+            <column name="item_id">2</column>
+            <column name="item_produto">4</column>
+            <column name="item_valor">172.25</column>
             <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021547172</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">8</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021548432</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">9</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021549322</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">10</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">3280.00</column>
-            <column name="item_qtd">2</column>
-            <column name="item_ped_cod">2306021551072</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">11</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021552002</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">12</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">3280.00</column>
-            <column name="item_qtd">2</column>
-            <column name="item_ped_cod">2306021552552</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">13</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021556162</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">14</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021600062</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">15</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021600432</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">16</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021601102</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">17</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021602162</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">18</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">3280.00</column>
-            <column name="item_qtd">2</column>
-            <column name="item_ped_cod">2306021610192</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">19</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021613452</column>
-        </table>
-        <table name="as_pedidos_itens">
-            <column name="item_id">20</column>
-            <column name="item_produto">5</column>
-            <column name="item_valor">1640.00</column>
-            <column name="item_qtd">1</column>
-            <column name="item_ped_cod">2306021638592</column>
+            <column name="item_ped_cod">2306031800441</column>
+            <column name="valor_original">172.25</column>
         </table>
         <!-- Tabela as_produtos -->
         <table name="as_produtos">
@@ -512,36 +451,591 @@
             <column name="pro_descricao_extra">NULL</column>
         </table>
         <table name="as_produtos">
-            <column name="pro_id">5</column>
+            <column name="pro_id">2</column>
             <column name="pro_categoria">2</column>
-            <column name="pro_nome">Intel i7 10g 2.90GHz </column>
-            <column name="pro_desc">O processador Intel Core i7 de 10ª geração é uma unidade de processamento poderosa e altamente avançada, projetada para oferecer um desempenho excepcional em computadores pessoais e estações de trabalho. Com uma arquitetura moderna e recursos inovadores, o Intel Core i7 de 10ª geração é uma escolha popular para gamers, criadores de conteúdo e profissionais que exigem alto desempenho em suas atividades diárias.
-&lt;br/&gt;
-O Intel Core i7 de 10ª geração é baseado na arquitetura de processador de 14 nanômetros (nm) da Intel e possui até 8 núcleos e 16 threads, o que permite a execução de várias tarefas simultaneamente com facilidade. Com velocidades de clock que variam de 2,0 GHz a 5,3 GHz, o Intel Core i7 de 10ª geração oferece um desempenho excepcional em tarefas exigentes, como edição de vídeo, renderização em 3D, jogos de alta qualidade e outras cargas de trabalho intensivas.
-&lt;br/&gt;
-Uma das características marcantes do Intel Core i7 de 10ª geração é a tecnologia Intel Turbo Boost Max 3.0, que identifica e impulsiona automaticamente os núcleos mais rápidos do processador para proporcionar um desempenho ainda melhor em tarefas de um único núcleo. Isso resulta em uma maior capacidade de resposta e tempos de carregamento mais rápidos para aplicativos e jogos.
-&lt;br/&gt;
-Além disso, o Intel Core i7 de 10ª geração suporta a tecnologia Intel Hyper-Threading, que permite a execução de dois threads por núcleo, resultando em um melhor desempenho multithreading e uma maior eficiência de processamento. Ele também suporta memória DDR4 de alta velocidade, proporcionando um aumento significativo no desempenho do sistema em comparação com as gerações anteriores de processadores Intel.
-&lt;br/&gt;
-O Intel Core i7 de 10ª geração também é equipado com a tecnologia de gráficos Intel Iris Plus, que oferece gráficos integrados aprimorados para uma experiência de jogo e entretenimento mais imersiva. Ele suporta até três monitores 4K UHD e oferece recursos avançados de codificação e decodificação de vídeo para transmissões e criação de conteúdo em alta qualidade.
-&lt;br/&gt;
-Além disso, o Intel Core i7 de 10ª geração suporta as mais recentes tecnologias de conectividade, como USB 3.1 Gen2, Thunderbolt 3 e Intel Optane Memory, que proporcionam uma experiência de computação rápida e eficiente.
-&lt;br/&gt;
-Em resumo, o Intel Core i7 de 10ª geração é um processador de alto desempenho que oferece velocidades de clock rápidas, suporte a multitarefa intensiva, recursos avançados de gráficos e conectividade moderna. É uma escolha ideal para aqueles que precisam de um processador poderoso para jogos, criação de conteúdo e tarefas profissionais exigentes.</column>
+            <column name="pro_nome">AMD Ryzen 5 4500</column>
+            <column name="pro_desc">PROCESSADOR AMD RYZEN 5 4500 3.6GHZ (4.1GHZ TURBO), 6-CORES 12-THREADS, COOLER WRAITH STEALTH, SEM GRÁFICO INTEGRADO &lt;br/&gt;
+O Ryzen 5 4500 conta com 6 núcleos incríveis para quem quer apenas jogar. Os processadores AMD Ryzen capacitam a próxima geração de jogos exigentes, proporcionando experiências imersivas únicas e dominando qualquer tarefa multithread como 3D e renderização de vídeo e compilação de software.</column>
             <column name="pro_peso">99.99</column>
-            <column name="pro_valor">1640.00</column>
+            <column name="pro_valor">599.00</column>
             <column name="pro_altura">100</column>
             <column name="pro_largura">100</column>
             <column name="pro_comprimento">100</column>
-            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/processador-intel-core-i7-10700-290ghz-470ghz-turbo-10-geracao-8-cores-16-thread-lga-1200-bx8070110700_95187.jpg</column>
-            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/processador-intel-core-i7-10700-290ghz-470ghz-turbo-10-ger</column>
-            <column name="pro_estoque">100000</column>
-            <column name="pro_modelo">BX8070110700</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/processador-amd-ryzen-5-4500-36ghz-41ghz-turbo-6-cores-12-threads-cooler-wraith-stealth-am4-100-100000644box_141344.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/processador-amd-ryzen-5-4500-36ghz-41ghz-turbo-6-cores-12-</column>
+            <column name="pro_estoque">1000000</column>
+            <column name="pro_modelo">100000644BOX</column>
+            <column name="pro_ref">00010</column>
+            <column name="pro_fabricante">Ryzen</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Processador AMD Ryzen 5 4500 3.6GHz (4.1GHz Turbo), 6-Cores 12-Threads, Cooler Wraith Stealth, AM4, 100-100000644BOX</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">3</column>
+            <column name="pro_categoria">11</column>
+            <column name="pro_nome">Mouse Gamer Ninja Tron</column>
+            <column name="pro_desc">MOUSE GAMER NINJA TRON, RGB, 8 BOTÕES, 7200 DPI, BLACK
+O Mouse Gamer Ninja Tron é indicado para os jogadores que necessitam de uma performance inigualável em suas partidas.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">41.00</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/mouse-gamer-ninja-tron-rgb-8-botoes-7200-dpi-black-ms-gn-tron_147181.png</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/mouse-gamer-ninja-tron-rgb-8-botoes-7200-dpi-black-ms-gn-t</column>
+            <column name="pro_estoque">10000000</column>
+            <column name="pro_modelo">MS-GN-TRON</column>
+            <column name="pro_ref">0020</column>
+            <column name="pro_fabricante">Ninja Tron</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Mouse Gamer Ninja Tron, RGB, 8 Botões, 7200 DPI, Black, MS-GN-TRON</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">4</column>
+            <column name="pro_categoria">11</column>
+            <column name="pro_nome"> Ninja Leap Pudim Switch</column>
+            <column name="pro_desc">TECLADO MECÂNICO GAMER NINJA LEAP PUDIM, SWITCH BLUE, RAINBOW, ABNT2, WHITE &lt;br/&gt;
+O Teclado Mecânico Gamer Ninja Leap Pudim é o companheiro perfeito para qualquer jogador sério. Com Switch Blue, você terá uma resposta rápida e precisa a cada ação, garantindo uma vantagem competitiva em seus jogos</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">90.25</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/teclado-mecanico-gamer-ninja-leap-pudim-switch-blue-rgb-rainbow-abnt2-white_161062.png</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/teclado-mecanico-gamer-ninja-leap-pudim-switch-blue-rgb-ra</column>
+            <column name="pro_estoque">10000</column>
+            <column name="pro_modelo">Gamer Ninja Leap - White Pudim</column>
+            <column name="pro_ref">0030</column>
+            <column name="pro_fabricante">Ninja Leap </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Teclado Mecânico Gamer Ninja Leap Pudim, Switch Blue, Rainbow, ABNT2, White</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">5</column>
+            <column name="pro_categoria">11</column>
+            <column name="pro_nome">Headset Gamer Fifine H6</column>
+            <column name="pro_desc">HEADSET GAMER FIFINE H6, 7.1 SURROUND, DRIVERS DE 50MM, RGB, USB, BLACK &lt;br/&gt;
+Graças ao som surround virtual 7.1, você terá  vantagem sobre os outros jogadores. Você será capaz de ouvir passos ou tiros para reagir cedo, e até mesmo saber que seus adversários estão andando em terra ou água. Colocando o headset, você teráum som de alta qualidade, o que te fará mergulhar no mundo dos jogos. Caracterizado com cores RGB, o headset complementará seu setup. Ele tem uma luz vívida e brilhante. A iluminação moderada, elegante e atraente, é uma adição legal quando em jogos de vídeo e cenas de streaming ao vivo.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">190.00</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/headset-gamer-fifine-h6-71-surround-drivers-de-50mm-rgb-usb-black_151053.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/headset-gamer-fifine-h6-71-surround-drivers-de-50mm-rgb-us</column>
+            <column name="pro_estoque">1000000</column>
+            <column name="pro_modelo">FIFINE H6</column>
             <column name="pro_ref">0040</column>
+            <column name="pro_fabricante">Fifine </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Headset Gamer Fifine H6, 7.1 Surround, Drivers de 50mm, RGB, USB, Black</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">6</column>
+            <column name="pro_categoria">11</column>
+            <column name="pro_nome">Teclado Lakshm</column>
+            <column name="pro_desc">TECLADO GAMER MECÂNICO REDRAGON LAKSHMI, LED WHITE, SWITCH BROWN, ABNT2, 60%, ORANGE/BLACK/GREY &lt;br/&gt;
+O Redragon LAKSHMI reúne o que há de melhor em um teclado para seu setup, entrega performance profissional, evita Double Clicks e possui o dobro de vida útil comparado a um teclado mecânico convencional, é o teclado perfeito para quem procura um excelente upgrade para seu setup.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">200.00</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/teclado-gamer-mecanico-redragon-lakshmi-led-white-switch-brown-abnt2-60-orangeblackgrey-k606-ogbkgy-pt-brown_167856.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/teclado-gamer-mecanico-redragon-lakshmi-led-white-switch-b</column>
+            <column name="pro_estoque">1000</column>
+            <column name="pro_modelo">K606-OG&amp;BK&amp;GY PT-BROWN</column>
+            <column name="pro_ref">00040</column>
+            <column name="pro_fabricante">Redragon</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Teclado Gamer Mecânico Redragon Lakshmi, LED White, Switch Brown, ABNT2, 60%, Orange/Black/Grey, K606-OG&amp;BK&amp;GY PT-BROWN</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">7</column>
+            <column name="pro_categoria">3</column>
+            <column name="pro_nome">AMD Radeon RX 6600 </column>
+            <column name="pro_desc">Radeon RX 6600 EAGLE 8G
+GV-R66EAGLE-8GD</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">1599.00</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/placa-de-video-gigabyte-amd-radeon-rx-6600-eagle-8g-8gb-gddr6-fsr-ray-tracing_142715.png</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/placa-de-video-gigabyte-amd-radeon-rx-6600-eagle-8g-8gb-gd</column>
+            <column name="pro_estoque">100</column>
+            <column name="pro_modelo">GV-R66EAGLE-8GD</column>
+            <column name="pro_ref">00050</column>
+            <column name="pro_fabricante">Gigabyte </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Placa de Vídeo Gigabyte AMD Radeon RX 6600 EAGLE 8G, 8GB, GDDR6, FSR, Ray Tracing</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">8</column>
+            <column name="pro_categoria">3</column>
+            <column name="pro_nome">GTX 1650 D6 OC</column>
+            <column name="pro_desc">PLACA DE VÍDEO GIGABYTE GEFORCE GTX 1650 D6 OC, 4GB GDDR6, 128BIT, GV-N1656OC-4GD &lt;br/&gt;
+Desenvolvidos pela arquitetura GeForce® GTX 1650 NVIDIA Turing ™ e GeForce Experience ™ Integrados à interface de memória GDDR6 de 4 GB de 128 bits, fan de lâmina exclusivo de 80 mm, tamanho compacto de 170 mm</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">900.00</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/placa-de-video-gigabyte-geforce-gtx-1650-d6-oc-4gb-gddr6-128bit-gv-n1656oc-4gd_96626.png</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/placa-de-video-gigabyte-geforce-gtx-1650-d6-oc-4gb-gddr6-1</column>
+            <column name="pro_estoque">10000</column>
+            <column name="pro_modelo">GV-N1656OC-4GD</column>
+            <column name="pro_ref">00060</column>
+            <column name="pro_fabricante">Gigabyte </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Placa de Vídeo Gigabyte GeForce GTX 1650 D6 OC, 4GB GDDR6, 128Bit, GV-N1656OC-4GD</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">9</column>
+            <column name="pro_categoria">3</column>
+            <column name="pro_nome">RTX 3060 Twin Edge</column>
+            <column name="pro_desc">PLACA DE VÍDEO ZOTAC GAMING GEFORCE RTX 3060 TWIN EDGE OC, 12GB, GDDR6, DLSS, RAY TRACING &lt;br/&gt;
+Vivencie o jogo com a nova GeForce RTX 3060 Series da ZOTAC GAMING, baseada na arquitectura NVIDIA Ampere. Construída com núcleos RT e tensores aprimorados, novos multiprocessadores de transmissão e memória súper rápida, as novas placas gráficas ZOTAC GAMING oferecem a potência de jogos amplificados com ultra fidelidade gráfica.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">2235.32</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/placa-de-video-zotac-gaming-geforce-rtx-3060-twin-edge-oc-white-12gb-gddr6-dlss-ray-tracing-zt-a30600h-10m_169184.png</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/placa-de-video-zotac-gaming-geforce-rtx-3060-twin-edge-oc-</column>
+            <column name="pro_estoque">100</column>
+            <column name="pro_modelo">ZT-A30600H-10M</column>
+            <column name="pro_ref">00070</column>
+            <column name="pro_fabricante">Zotac Gaming</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Placa de Vídeo Zotac Gaming GeForce RTX 3060 Twin Edge OC, 12GB, GDDR6, DLSS, Ray Tracing, ZT-A30600H-10M</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">10</column>
+            <column name="pro_categoria">3</column>
+            <column name="pro_nome">Radeon RX 6750 XT</column>
+            <column name="pro_desc">DOBRE SUA TAXA DE FRAMES COM FSR 2.0 E RSR
+O FSR 2.0 é uma tecnologia de upscaling, foi projetada para fornecer qualidade de imagem semelhante ou melhor do que a qualidade da imagem nativa e aumentar as taxas de frames e jogos compatíveis com uma ampla gama de produtos e plataformas.
+
+Radeon™ Super Resolution (RSR) é um recurso de upscaling no driver que usa o mesmo algoritmo encontrado na tecnologia AMD FidelityFX™ Super Resolution (FSR). Você pode obter mais desempenho e fluidez de seu jogo habilitando o RS</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">2654.55</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/placa-de-video-msi-amd-radeon-rx-6750-xt-mech-2x-oc-12gb-gddr6-fsr-ray-tracing-rx-6750-xt-mech-2x-12g-oc_162461.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/placa-de-video-msi-amd-radeon-rx-6750-xt-mech-2x-oc-12gb-g</column>
+            <column name="pro_estoque">10000</column>
+            <column name="pro_modelo">912-V399-002 / RX 6750 XT MECH 2X 12G OC</column>
+            <column name="pro_ref">00080</column>
+            <column name="pro_fabricante">Mech </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Placa de Vídeo MSI AMD Radeon RX 6750 XT Mech 2X OC, 12GB, GDDR6, FSR, Ray Tracing, 912-V399-002</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">11</column>
+            <column name="pro_categoria">12</column>
+            <column name="pro_nome">SSD WD Green SN350</column>
+            <column name="pro_desc">&lt;b&gt;SSD WD GREEN, 480GB, M.2 NVMe, LEITURA 2400MB/s E GRAVAÇÃO 1650MB/s&lt;b/&gt;&lt;br&gt;
+O SSD WD Green ™ SN350 NVMe ™ pode revitalizar seu computador antigo para uso diário. Esteja você na aula, fazendo compras, conversando ou navegando, esta unidade pode funcionar até quatro vezes mais rápido do que as unidades SATA. Porque não têm peças móveis , SSDs oferecem um design resistente a choques para ajudar a proteger seus dados importantes contra quedas e impactos acidentais.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">200.25</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/ssd-wd-green-480gb-m2-nvme-leitura-2400mbs-e-gravacao-1650mbs-wds480g2g0c_113536.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/ssd-wd-green-480gb-m2-nvme-leitura-2400mbs-e-gravacao-1650</column>
+            <column name="pro_estoque">100000</column>
+            <column name="pro_modelo">WD Green</column>
+            <column name="pro_ref">00090</column>
+            <column name="pro_fabricante">WD Green</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">SSD WD Green SN350, 480GB, M.2 NVMe, Leitura 2400MB/s e Gravação 1650MB/s, WDS480G2G0C</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">12</column>
+            <column name="pro_categoria">12</column>
+            <column name="pro_nome">Kingston NV2 500GB</column>
+            <column name="pro_desc">&lt;b&gt;SSD KINGSTON NV2, 500GB, M.2 NVME, 2280, LEITURA 3500MBS E GRAVAÇÃO 2100MBS
+O NV2 PCIe 4.0&lt;/b&gt; &lt;br/&gt; NVMe SSD da Kingston é uma solução fundamental para armazenamento de última geração alimentada por um controlador NVMe Gen 4x4. O NV2 proporciona velocidades de leitura/gravação de até 3.500/2.100MB/s com requisitos de energia reduzidos e menor aquecimento para ajudar a otimizar o desempenho do seu sistema e entregar valor sem sacrifício. </column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">230.00</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/ssd-kingston-nv2-500gb-m2-nvme-2280-leitura-3500mbs-e-gravacao-2100mbs-snv2s500g_154165.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/ssd-kingston-nv2-500gb-m2-nvme-2280-leitura-3500mbs-e-grav</column>
+            <column name="pro_estoque">100000</column>
+            <column name="pro_modelo">SNV2S/500G</column>
+            <column name="pro_ref">00100</column>
+            <column name="pro_fabricante">Kingston </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">SSD Kingston NV2, 500GB, M.2 NVMe, 2280, Leitura 3500MBs e Gravação 2100MBs, SNV2S/500G</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">13</column>
+            <column name="pro_categoria">6</column>
+            <column name="pro_nome">Kingston A400 480GB</column>
+            <column name="pro_desc">SSD KINGSTON A400 2,5 SATA III 480GB
+Rápida inicialização, carregamento e transferência de arquivos; Mais confiável e mais durável do que um disco rígido.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">189.00</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/ssd-kingston-a400-480gb-sata-iii-leitura-500mbs-gravacao-450mbs-sa400s37480g-imp_129879.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/ssd-kingston-a400-480gb-sata-iii-leitura-500mbs-gravacao-4</column>
+            <column name="pro_estoque">1000000</column>
+            <column name="pro_modelo">SA400S37/480G</column>
+            <column name="pro_ref">00110</column>
+            <column name="pro_fabricante">Kingston </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">SSD Kingston A400, 480GB, Sata III, Leitura 500MBs Gravação 450MBs, SA400S37/480G</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">14</column>
+            <column name="pro_categoria">6</column>
+            <column name="pro_nome">SSD Hikvision E-100</column>
+            <column name="pro_desc">&lt;b&gt;SSD HIKVISION E-100&lt;/b&gt;&lt;br&gt;
+512GB 2,5&quot; SATA III&lt;br&gt;
+O SSD HIKVISION da série E100 foi desenvolvido a partir de anos de experiência e conhecimento em tecnologia de armazenamento e memória flash. Este produto é especializado para otimização de sistemas operacionais de computador e fornece serviço de dados estável e rápido, acelerando a inicialização e o desempenho.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">170.90</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/ssd-hikvision-hs-e100-512gb_100481.png</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/ssd-hikvision-hs-e100-512gb_100481.png</column>
+            <column name="pro_estoque">10000</column>
+            <column name="pro_modelo">HS-SSD-E100-512GB</column>
+            <column name="pro_ref">00120</column>
+            <column name="pro_fabricante">Hikvision </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">SSD Hikvision E-100 512GB , SATA III Leitura 560MBs e Gravação 510MBs, HS-SSD-E100-512GB</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">15</column>
+            <column name="pro_categoria">4</column>
+            <column name="pro_nome">TUF Gaming B550M-Plu</column>
+            <column name="pro_desc">&lt;b&gt;PLACA MÃE ASUS TUF GAMING B550M-PLUS, CHIPSET B550, AMD AM4, MATX, DDR4
+A TUF Gaming B550M-PLUS&lt;/b&gt;&lt;br/&gt; reúne os elementos essenciais da mais recente plataforma AMD e os combina com funcionalidades prontas para jogos e durabilidade comprovada. Projetadas com componentes de nível militar, soluções de energia aprimoradas e um conjunto abrangente de opções de refrigeração, essas placas-mãe oferecem desempenho sólido com estabilidade inabalável em jogos.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">1089.20</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/placa-mae-asus-tuf-gaming-b550m-plus-chipset-b550-amd-am4-matx-ddr4_98581.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/placa-mae-asus-tuf-gaming-b550m-plus-chipset-b550-amd-am4-</column>
+            <column name="pro_estoque">100</column>
+            <column name="pro_modelo">90MB14A0-C1BAY0</column>
+            <column name="pro_ref">000130</column>
+            <column name="pro_fabricante">Asus</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Placa Mãe Asus TUF Gaming B550M-Plus, Chipset B550, AMD AM4, mATX, DDR4, 90MB14A0-C1BAY0</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">16</column>
+            <column name="pro_categoria">5</column>
+            <column name="pro_nome">Seagate 1TB</column>
+            <column name="pro_desc">&lt;b&gt;HD Seagate BarraCuda, 1TB, 3.5, SATA  &lt;/b&gt;&lt;br/&gt;
+
+&lt;b&gt;HD Seagate BarraCuda&lt;/b&gt;&lt;br/&gt;
+A Seagate traz mais de 20 anos de desempenho robusto e confiabilidade aos HDDs Seagate BarraCuda de 3,5 polegadas, agora disponíveis com até 8 TB de capacidade.
+
+&lt;b&gt;Confiança acima de tudo&lt;/b&gt;&lt;br/&gt;
+Proteja todo tipo de informação sensível por meio de seu sistema de segurança integrado. Sua defesa é impenetrável. O Barracuda ST1000DM010 é caracterizado pela sua eficiência e bom funcionamento, que juntamente com o seu baixo consumo de energia o tornam um disco indispensável para funções padrão.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">240.99</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://images.kabum.com.br/produtos/fotos/84108/84108_index_gg.jpg</column>
+            <column name="pro_slug">https://images.kabum.com.br/produtos/fotos/84108/84108_index_gg.jpg</column>
+            <column name="pro_estoque">100</column>
+            <column name="pro_modelo">ST1000DM010</column>
+            <column name="pro_ref">000140</column>
+            <column name="pro_fabricante">Seagate </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">HD Seagate 1TB BarraCuda, 3.5, SATA - ST1000DM010</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">17</column>
+            <column name="pro_categoria">5</column>
+            <column name="pro_nome">HD WD Purple 1TB</column>
+            <column name="pro_desc">&lt;b&gt;SSD WD PURPLE 1TB
+3.5 SATA III&lt;/b&gt;&lt;br/&gt;
+Os discos rígidos de vigilância WD purple são projetados para sistemas de segurança com vigilância continuos e de altas temperaturas, assegurando confiabilidade e qualidade de reprodução de video nos momentos em que você mais precisa.</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">300.90</column>
+            <column name="pro_altura">10000</column>
+            <column name="pro_largura">10000</column>
+            <column name="pro_comprimento">10000</column>
+            <column name="pro_img">https://img.terabyteshop.com.br/produto/g/hd-western-digital-purple-surveillance-1tb-sata-iii-5400rpm-64mb-wd10purz_75231.jpg</column>
+            <column name="pro_slug">https://img.terabyteshop.com.br/produto/g/hd-western-digital-purple-surveillance-1tb-sata-iii-5400rp</column>
+            <column name="pro_estoque">1000</column>
+            <column name="pro_modelo">WD10PURZ</column>
+            <column name="pro_ref">000150</column>
+            <column name="pro_fabricante">Western Digital</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">HD WD Purple 1TB, Sata III, 5400RPM, 64MB, WD10PURZ</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">18</column>
+            <column name="pro_categoria">9</column>
+            <column name="pro_nome">Lenovo Gaming 3i </column>
+            <column name="pro_desc">enovo ideapad Gaming 3i&lt;br/&gt;&lt;br/&gt;
+Novo design com 11ª Geração de Processadores Intel Core i5-11300H e placa de vídeo NVIDIA GeForce GTX 1650 4GB. Ideal para gamers e usuários que também precisam de alta performance. Com tela de 15.6&#039;&#039; Full HD WVA Antirreflexo para melhor definição de imagem e cores. O armanezamento SSD PCIe NVMe é 10x mais rápido* que um HDD 2.5” SATA, você terá mais segurança ao armazenar seus dados. O teclado retroiluminado em LED branco, deixa o computador mais atraente e também favorece a performance para jogos em lugares com pouca iluminação.
+
+ &lt;br/&gt;&lt;br/&gt;
+
+Silencioso e não esquenta&lt;br/&gt;
+Projetado com um sistema de resfriamento otimizado composto por 2 coolers e 4 saídas de ar para suportar o alto desempenho do notebook.
+&lt;br/&gt;&lt;br/&gt;
+ 
+
+Sua privacidade pessoal é muito importante&lt;br/&gt;
+É por isso que o Ideapad Gaming 3i está equipado com prática porta de privacidade da webcam. Quando não estiver em uma chamada de vídeo ou gravando algo, basta deslizá-la. Nitidez e alta qualidade de som com Nahimic Audio.
+
+ &lt;br/&gt;&lt;br/&gt;
+
+Possui tecnologia de carregamento rápido: quinze minutos de carregamento garante até duas horas de uso**&lt;br/&gt;
+A Lenovo coloca o Ideapad Gaming 3i à prova em testes de resistência altamente estressantes como: altas e baixas temperaturas, choque de temperatura, quebra e vibração, certificando a preocupação com a segurança e qualidade. Por meio de testes militares, mantém a convicção da melhor escolha sempre.  A distância entre a tecla e o botão ficou menor: apenas 1.5mm. Tenha mais agilidade, rapidez e tempo de resposta. A função Smart Control permite que o usuário da Lenovo mude a engrenagem simplesmente pressionando as teclas Fn + Q. Mude do Modo Performance para maior FPS, altere do Modo Silencioso para melhor duração da bateria, ou use o Modo Balanceado para uso diário. Armazenamento híbrido: Possui 2 slots SSD M.2 e 1 slot HDD SATA.
+
+ &lt;br/&gt;&lt;br/&gt;
+
+*Com base na velocidade de leitura dos dados obtidos através de spec de dados de leitura mb/s.&lt;br/&gt;
+
+** Carregamento com o notebook desligado. A duração de bateria e o tempo de carregamento podem variar de acordo com o uso, a configuração e outros fatores. Os resultados reais podem variar.&quot;</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">4099.99</column>
+            <column name="pro_altura">10000</column>
+            <column name="pro_largura">10000</column>
+            <column name="pro_comprimento">10000</column>
+            <column name="pro_img">https://images.kabum.com.br/produtos/fotos/373931/notebook-gamer-lenovo-gaming-3-intel-core-i5-11300h-geforce-gtx1650-8gb-ram-ssd-512gb-15-6-full-hd-windows-11-preto-82mg0009br-_1662137578_gg.jpg</column>
+            <column name="pro_slug">https://images.kabum.com.br/produtos/fotos/373931/notebook-gamer-lenovo-gaming-3-intel-core-i5-11300</column>
+            <column name="pro_estoque">10000</column>
+            <column name="pro_modelo">82MG0009BR</column>
+            <column name="pro_ref">000150</column>
+            <column name="pro_fabricante">Lenovo </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Notebook Gamer Lenovo Gaming 3i Intel Core i5-11300H, GeForce GTX 1650, 8GB RAM, SSD 512GB, 15.6 Full HD, Windows 11, Preto - 82MG0009BR</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">19</column>
+            <column name="pro_categoria">9</column>
+            <column name="pro_nome">Notebook Core I5 Dell</column>
+            <column name="pro_desc">Notebook Dell Latitude - Intel Core i5 8 Geração&lt;br/&gt;
+
+Especificações Técnicas:&lt;br/&gt;
+
+Bateria:&lt;br/&gt;
+- Polímero de lítio&lt;br/&gt;
+- Duração mínima: 1 hora&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Marca: DELL&lt;br/&gt;
+
+Modelo: Latitude 5490&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Tela:&lt;br/&gt;
+- 14 Polegadas&lt;br/&gt;
+- 1920 x 1080 pixels&lt;br/&gt;
+- Full HD&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Processador:&lt;br/&gt;
+- Intel Core i5 8º geração&lt;br/&gt;
+- Modelo: i5 - 8265U&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Memória RAM:&lt;br/&gt;
+- DDR4 16Gb&lt;br/&gt;
+- Memória Máx: 32Gb&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Armazenamento interno:&lt;br/&gt;
+- Tecnologia SSD M2 256Gb&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Sistema operacional:&lt;br/&gt;
+- Windows 11 64bit&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Leitor de DVD-R:&lt;br/&gt;
+- Não acompanha&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Portas e interface:&lt;br/&gt;
+- USB 3.1: 3&lt;br/&gt;
+- USB 3.1 Tipo C: 1&lt;br/&gt;
+- HDMI: 1&lt;br/&gt;
+- RJ45(LAN): 1&lt;br/&gt;
+- PORTA P2: 1&lt;br/&gt;
+- SLOT SD CARD: 1&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Dimensões:&lt;br/&gt;
+- Largura: 32 cm&lt;br/&gt;
+- Profundidade: 21 cm&lt;br/&gt;
+- Altura: 2,1 cm&lt;br/&gt;
+- Peso 1,5 Kg&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Energia:&lt;br/&gt;
+- Fonte de alimentação: 19,5V&lt;br/&gt;
+- Voltagem: 110 - 240V&lt;br/&gt;
+&lt;br/&gt;&lt;br/&gt;
+Adicionais:&lt;br/&gt;
+- Bluetooth&lt;br/&gt;
+- WiFi 5.0&lt;br/&gt;
+- Webcam 1MP&lt;br/&gt;
+- Teclado retro-iluminado</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">2450.99</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://http2.mlstatic.com/D_NQ_NP_919073-MLB69371256349_052023-O.webp</column>
+            <column name="pro_slug">https://http2.mlstatic.com/D_NQ_NP_919073-MLB69371256349_052023-O.webp</column>
+            <column name="pro_estoque">100000</column>
+            <column name="pro_modelo">2280 </column>
+            <column name="pro_ref">000160</column>
+            <column name="pro_fabricante">Dell</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Notebook Core I5 Dell 16gb Ram 256gb Ssd M2  </column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">20</column>
+            <column name="pro_categoria">10</column>
+            <column name="pro_nome">Rise Mode Glass</column>
+            <column name="pro_desc"> &lt;b&gt;Para deixar seu Setup mais potente e cheio de estilo&lt;/b&gt;&lt;br/&gt;
+Os Gabinetes são a estrutura que une toda sua build, onde você vai querer algo que tenha flexibilidade para montagem da suas peças, garanta boa refrigeração dos componentes e que deixe tudo bonito. O Gabinete Rise Mode Glass 06X é a melhor escolha para tudo isso. Com acabamento externo em Vidro, dand um toque de estilo ao seu setup. Além de possuir espaço para 6 Fans (que não acompanham o gabinete).
+&lt;br/&gt;&lt;br/&gt;
+ 
+&lt;b&gt;Acabamento em vidro temperado&lt;/b&gt;&lt;br/&gt;
+Com toda a sua parte interna na cor preta, o Gabinete Rise Mode Glass 06X Preto é a sua escolha perfeita para um setup organizado e muito cheio de estilo. O Gabinete Rise Mode é compatível com placas mãe padrão ATX / M-ATX / ITX, dando a você a possibilidade um PC Monstro. Comporta até 06 fans (não inclusas) para deixar o fluxo de ar perfeito dentro do gabinete e, com uma lateral de vidro cristalina, ainda permite que você admire o interior da sua obra. Simplesmente demais!</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">200.00</column>
+            <column name="pro_altura">1000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://images.kabum.com.br/produtos/fotos/324516/gabinete-gamer-rise-mode-glass-06x-lateral-em-vidro-fume-e-frontal-em-vidro-temperado-preto-rm-ca-06x-fb_1660589149_gg.jpg</column>
+            <column name="pro_slug">https://images.kabum.com.br/produtos/fotos/324516/gabinete-gamer-rise-mode-glass-06x-lateral-em-vidr</column>
+            <column name="pro_estoque">10000</column>
+            <column name="pro_modelo">RM-CA-06X-FB</column>
+            <column name="pro_ref">000170</column>
+            <column name="pro_fabricante">Rise Mode </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Gabinete Gamer Rise Mode Glass 06X, Mid Tower, Lateral em Vidro Fumê e Frontal em Vidro Temperado, Preto - RM-CA-06X-FB</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">21</column>
+            <column name="pro_categoria">10</column>
+            <column name="pro_nome">TGT Jeste BKGF01</column>
+            <column name="pro_desc">&lt;b&gt;Possui suporte para placas mães micro ATX e mini ITX &lt;/b&gt;&lt;br&gt;
+Com seu formato mATX, possui um excelente espaço interno&lt;br&gt;
+Conta com 2 x USB 2.0 e Áudio HD&lt;br&gt;
+Water cooler suportado Frontal: 120 ou 240mm&lt;br&gt;
+Iluminação Este modelo possui 2 ventoinhas RGB Rainbow inclusas&lt;br&gt;</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">110.99</column>
+            <column name="pro_altura">10000</column>
+            <column name="pro_largura">10000</column>
+            <column name="pro_comprimento">10000</column>
+            <column name="pro_img">https://m.media-amazon.com/images/I/61ZCVsyyngL.__AC_SX300_SY300_QL70_ML2_.jpg</column>
+            <column name="pro_slug">https://m.media-amazon.com/images/I/61ZCVsyyngL.__AC_SX300_SY300_QL70_ML2_.jpg</column>
+            <column name="pro_estoque">100000</column>
+            <column name="pro_modelo">BKGF01</column>
+            <column name="pro_ref">000180</column>
+            <column name="pro_fabricante">TGT Jester</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Gabinete Gamer TGT Jester, Mid-Tower, Lateral de Vidro, Com 2 Fans, Preto, TGT-JSR-BKGF01</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">22</column>
+            <column name="pro_categoria">7</column>
+            <column name="pro_nome">Husky Gaming 16GB</column>
+            <column name="pro_desc">&lt;b&gt;Memória Gamer Husky Gaming Avalanche - 16GB &lt;/b&gt;&lt;br/&gt;
+Chegue ao próximo nível em desempenho com o seu computador gamer com a Memória Gamer Husky Gaming Avalanche. Em busca do minimalismo e da simplicidade, a memória Gamer Husky é extremamente fina e leve ideal para os gabinetes menores ou qualquer sistema com pouco espaço interno. Seu design em preto combina com todo o seu setup, independente do seu estilo. &lt;br/&gt;&lt;br/&gt;
+
+ 
+
+Velocidade de 3200Mhz para Suas Jogadas&lt;br/&gt;
+A Memória Gamer Husky Avalanche é projetada para o mais alto desempenho, possui dissipador de calor embutido que entrega ótima condutividade térmica para que o sistema seja capaz de manter uma operação estável por muito tempo. Com 3200Mhz, garante mais velocidade para computadores de alta performance e desempenho robusto, entregando 16GB de capacidade. &lt;br/&gt;&lt;br/&gt;
+ 
+
+Com Tecnologia DDR4&lt;br/&gt;
+Melhora a qualidade da transferência de sinal com Memória Husky e se mantenha na partida inspirando medo no seu inimigo. Instale essa memória de maneira rápida e fácil com a conexão Plug and Play e comece a partida. Possui tecnologia DDR4, UDIMM como formato e latência CL 19. A Memória Gamer Husky Gaming Avalanche é o que faltava para o seu computador ter melhor desempenho. 
+
+</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">230.98</column>
+            <column name="pro_altura">10000</column>
+            <column name="pro_largura">1000</column>
+            <column name="pro_comprimento">1000</column>
+            <column name="pro_img">https://images.kabum.com.br/produtos/fotos/162665/memoria-gamer-husky-gaming-avalanche-16gb-3200mhz-ddr4-cl19-hgmf008_1630604969_gg.jpg</column>
+            <column name="pro_slug">https://images.kabum.com.br/produtos/fotos/162665/memoria-gamer-husky-gaming-avalanche-16gb-3200mhz-</column>
+            <column name="pro_estoque">100000</column>
+            <column name="pro_modelo">HGMF008</column>
+            <column name="pro_ref">000190</column>
+            <column name="pro_fabricante">Husky Gaming </column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">Memória Gamer Husky Gaming Avalanche, 16GB, 3200MHz, DDR4, CL19, Preto - HGMF008</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">23</column>
+            <column name="pro_categoria">8</column>
+            <column name="pro_nome">PC Gamer Completo</column>
+            <column name="pro_desc">Processador: Intel Core i5 6ª Geração &lt;br/&gt;&lt;br/&gt;
+Memória RAM: 16GB 1600MHz&lt;br/&gt;
+Armazenamento: HD 1 TB + SSD 120GB&lt;br/&gt;
+Monitor 18,5&quot;, Adaptador WiFi, Teclado e Mouse Gamer e Headset</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">2399.99</column>
+            <column name="pro_altura">100000000</column>
+            <column name="pro_largura">10000000</column>
+            <column name="pro_comprimento">10000000</column>
+            <column name="pro_img">https://m.media-amazon.com/images/I/61L+P9zhIIL._AC_SX569_.jpg</column>
+            <column name="pro_slug">https://m.media-amazon.com/images/I/61L+P9zhIIL._AC_SX569_.jpg</column>
+            <column name="pro_estoque">10</column>
+            <column name="pro_modelo">00000000</column>
+            <column name="pro_ref">000200</column>
+            <column name="pro_fabricante">‎Chip7 Informática</column>
+            <column name="pro_ativo">sim</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">PC Gamer Completo Intel Core i5 6 Geração, 16GB RAM, SSD 120GB + HD 1TB, Monitor 18,5&quot; WiFi, Headset, Teclado e Mouse</column>
+        </table>
+        <table name="as_produtos">
+            <column name="pro_id">24</column>
+            <column name="pro_categoria">2</column>
+            <column name="pro_nome">INTEL CORE I5-10400</column>
+            <column name="pro_desc">PROCESSADOR INTEL CORE I5-10400, 6-CORE, 12-THREADS, 2.9GHZ (4.3GHZ TURBO), CACHE 12MB, LGA1200, BX8070110400</column>
+            <column name="pro_peso">99.99</column>
+            <column name="pro_valor">920.00</column>
+            <column name="pro_altura">100</column>
+            <column name="pro_largura">100</column>
+            <column name="pro_comprimento">100</column>
+            <column name="pro_img">https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx8070110400231.jpg</column>
+            <column name="pro_slug">https://media.pichau.com.br/media/catalog/product/cache/2f958555330323e505eba7ce930bdf27/b/x/bx80701</column>
+            <column name="pro_estoque">1000</column>
+            <column name="pro_modelo">BX8070110400</column>
+            <column name="pro_ref">000210</column>
             <column name="pro_fabricante">Intel</column>
             <column name="pro_ativo">sim</column>
-            <column name="pro_frete_free">Não</column>
-            <column name="pro_descricao_extra">Processador Intel Core i7 10700, 2.90GHz (4.70GHz Turbo), 10ª Geração, 8-Cores 16-Threads, LGA 1200, BX8070110700</column>
+            <column name="pro_frete_free">NAO</column>
+            <column name="pro_descricao_extra">PROCESSADOR INTEL CORE I5-10400, 6-CORE, 12-THREADS, 2.9GHZ (4.3GHZ TURBO), CACHE 12MB, LGA1200, BX8070110400</column>
         </table>
         <!-- Tabela as_user -->
     </database>

@@ -149,13 +149,22 @@
             {
                 if (isset($_POST)) {
                    
-                       $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `administracao` WHERE `adm_nome` = :adm_nome_d OR `adm_email` = :adm_email_d AND `adm_id` <> :adm_id_s_03;");
+                                        
+                        $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `administracao` WHERE `adm_nome` = :adm_nome_d AND `adm_id` <> :adm_id_s_03;");
                         $cmd->bindValue(":adm_nome_d",addslashes($_POST["nome"]), PDO::PARAM_STR);
-                        $cmd->bindValue(":adm_email_d",addslashes($_POST["email"]), PDO::PARAM_STR);
-                        $cmd->bindValue(":adm_id_s_03",$_SESSION["id"], PDO::PARAM_STR);
+                        $cmd->bindValue(":adm_id_s_03",addslashes($_SESSION["id"]), PDO::PARAM_STR);
                         $cmd->execute();
-                        $existe_ou_nao = $cmd->fetch(PDO::FETCH_ASSOC)["count"];
-                        
+                        $existe_ou_nao=0;
+                        $existe_ou_nao = $existe_ou_nao += intval($cmd->fetch(PDO::FETCH_ASSOC)["count"]);
+
+                        $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `administracao` WHERE `adm_email` = :adm_email_d AND `adm_id` <> :adm_id_s_03;");
+                        $cmd->bindValue(":adm_email_d",addslashes($_POST["email"]), PDO::PARAM_STR);
+                        $cmd->bindValue(":adm_id_s_03",addslashes($_SESSION["id"]), PDO::PARAM_STR);
+                        $cmd->execute();
+
+                        $existe_ou_nao = $existe_ou_nao += intval($cmd->fetch(PDO::FETCH_ASSOC)["count"]);
+
+
                         if ($existe_ou_nao >= 1) 
                         {
 
@@ -362,7 +371,7 @@
 
                         <label for="exampleInputEmail1">Email:</label>
                         <div class="col-md-5">
-                        <input type="email" value="<?= $resultado["adm_email"] ?>" minlength="25" maxlength="254" class="form-control" name="email" required>
+                        <input type="email" value="<?= $resultado["adm_email"] ?>" minlength="19" maxlength="254" class="form-control" name="email" required>
                         </div>    
                         <small>Limite de caracteres é 254</small>
                         <br/><br/>

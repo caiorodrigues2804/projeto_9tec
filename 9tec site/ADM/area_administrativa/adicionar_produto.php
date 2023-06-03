@@ -16,6 +16,8 @@
             {
                 $cmd = $pdo->prepare("INSERT INTO `as_produtos` (`pro_id`, `pro_categoria`, `pro_nome`, `pro_desc`, `pro_peso`, `pro_valor`, `pro_altura`, `pro_largura`, `pro_comprimento`, `pro_img`, `pro_slug`, `pro_estoque`, `pro_modelo`, `pro_ref`, `pro_fabricante`, `pro_ativo`, `pro_frete_free`, `pro_descricao_extra`) VALUES (0, NULL, NULL, NULL, '0.00', '0.00', '0', '0', '0', NULL, NULL, '0', NULL, NULL, NULL, 'NAO', 'NAO', NULL);");
                 $cmd->execute();
+                $cmd = $pdo->prepare("UPDATE `as_produtos` SET `pro_id` = '0' WHERE `pro_id` = '1';");
+                $cmd->execute();
             }
 
             $cmd_d = $pdo->prepare("SELECT * FROM `as_categorias`;");
