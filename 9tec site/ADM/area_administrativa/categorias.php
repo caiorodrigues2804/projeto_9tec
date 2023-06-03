@@ -16,17 +16,13 @@
             $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
 
         $cmd;$pesquisa;
-        if (!isset($_GET["pesquisado"])) 
+         if (!isset($_GET["pesquisado"])) 
         {        
-            $cmd = $pdo->prepare("SELECT * FROM `as_categorias`;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos`;");
         } else 
-        {  
-
-
+        {
             $pesquisa = addslashes($_GET["pesquisado"]);
-            $cmd = $pdo->prepare("SELECT * FROM `as_categorias` WHERE `cate_nome` LIKE '%$pesquisa%';");
-
-         
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%$pesquisa%';");
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -34,7 +30,7 @@
             // DEPURAÇÃO
             // print_r($result);
 
-            $exibir = 10;
+            $exibir = 8;
 
             $total = ceil((count($result)/$exibir));
 
@@ -42,9 +38,14 @@
             // echo $total;
 
             $inicioExibir = ($exibir * $pagina) - $exibir;
-     
 
-            $cmd = $pdo->prepare("SELECT * FROM `as_categorias` LIMIT $inicioExibir,$exibir;");
+            $inicioExibir;
+            if($inicioExibir < 0)
+            {
+            $inicioExibir = 0;
+            }
+
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` LIMIT $inicioExibir,$exibir;");
             $cmd->execute();
             $result1 = $cmd->fetchAll();
 
@@ -95,6 +96,8 @@
                  header("Location: categorias.php");
              }    
          }
+
+         
         
 ?>
 <!DOCTYPE html>
@@ -167,17 +170,20 @@
               <center>
 
                     <div class="mt-4"></div>
-                    <h4>Categorias de produtos</h4>
+                    <h4>Categorias de produtos</h4>                    
                     <div class="mt-4"></div>
+
                     <a href="produtos.php"><button class="btn btn-secondary">Voltar</button></a>
                     <div class="mt-2"></div>
-
+                    <?php if(!isset($_GET["pesquisado"])){ ?>
                         <a href="adicionar_categoria_produtos.php">
                             <button class="btn btn-success">Adicionar categoria de produtos</button>
                         </a>
+                    <?php } ?>
                         <?php 
                             if(mysqli_query($con,"SELECT * FROM `as_categorias`;")->num_rows >= 1):
                         ?>
+                            <?php if(!isset($_GET["pesquisado"])){ ?>
                         <a href="
                         javascript:
                           valor_y = 1;
@@ -185,14 +191,20 @@
                         ">
                             <button class="btn btn-danger">Excluir todas as categorias</button>
                         </a>
-
+                            <?php } ?>
                     <?php endif; ?>
                     <br/>
                       <?php 
                             if(mysqli_query($con,"SELECT * FROM `as_categorias`;")->num_rows >= 1):
                         ?>
                     <!-- PESQUISA -->
-                    <div class="col-lg-6 mt-4">                        
+                    <div class="col-lg-6 mt-<?php 
+                    if(isset($_GET["pesquisado"])){
+                        print '0';
+                    } else if(!isset($_GET["pesquisado"])){
+                        print '4';
+                    }
+                        ?>">                        
                         <div class="input-group">
                            
                             <input type="text" id="campo_pesquisado" class="form-control" placeholder="Digite o nome da categoria para pesquisar" value="<?php 
@@ -215,6 +227,17 @@
                     </div>
                 <?php endif; ?>
                     <hr>
+ <?php 
+if(isset($_GET["pesquisado"])):
+    $valor_digitado = addslashes($_GET["pesquisado"]);
+    $query = "SELECT * FROM `as_categorias` WHERE `cate_nome` LIKE '%valor_digitado%';";
+    if(mysqli_query($con,$query)->num_rows == 0){
+?>
+    <div class="alert alert-danger m-4">
+            <h5>Não tem nenhuma categoria com esse nome</h5>
+    </div>
+<?php exit();} endif;?>
+
                     <?php if($categorias >= 1): ?>
                     <table class="table">
                         <thead>

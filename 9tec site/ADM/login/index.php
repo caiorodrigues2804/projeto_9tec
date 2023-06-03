@@ -11,16 +11,16 @@ include("../conexao.php");
       $login=addslashes($_POST["login"]);      
       $senhas = hash('SHA512', md5(md5(addslashes($_POST["senha"]))));
 
-      $cmd = $pdo->prepare("SELECT COUNT(*) FROM `administracao` WHERE (`adm_email` = :adm_e OR `usuario_adm` = :adm_e) AND `adm_pass` = :adm_s;");
-        $cmd->bindValue(":adm_e","$login");        
-        $cmd->bindValue(":adm_s","$senhas");                
+      $cmd = $pdo->prepare("SELECT COUNT(*) FROM `administracao` WHERE (`adm_email` = :adm_e OR `adm_nome` = :adm_e) AND `adm_pass` = :adm_s;");
+        $cmd->bindValue(":adm_e","$login", PDO::PARAM_STR);        
+        $cmd->bindValue(":adm_s","$senhas", PDO::PARAM_STR);                
      $cmd->execute(); 
      $resultado = $cmd->fetch(PDO::FETCH_ASSOC); 
     
 
-      $cmd_s = $pdo->prepare("SELECT * FROM `administracao` WHERE (`adm_email` = :adm_e OR `usuario_adm` = :adm_e) AND `adm_pass` = :adm_s;");
-        $cmd_s->bindValue(":adm_e","$login");        
-        $cmd_s->bindValue(":adm_s","$senhas");                
+      $cmd_s = $pdo->prepare("SELECT * FROM `administracao` WHERE (`adm_email` = :adm_e OR `adm_nome` = :adm_e) AND `adm_pass` = :adm_s;");
+        $cmd_s->bindValue(":adm_e","$login", PDO::PARAM_STR);        
+        $cmd_s->bindValue(":adm_s","$senhas", PDO::PARAM_STR);                
      $cmd_s->execute(); 
      $resultado_id = $cmd_s->fetch(PDO::FETCH_ASSOC);
 

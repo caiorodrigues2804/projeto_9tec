@@ -3,6 +3,15 @@
             require "../conexao_2.php";
             require "validador_de_acessos.php";
 
+function mensagem_atencao($mesangem_nome,$cor)
+{
+?>
+        <div class="alert alert-<?= $cor; ?>">
+                <p><?= $mesangem_nome; ?></p>
+        </div>
+<?php 
+    }
+
             if (isset($_GET["concluido_g"])) 
             {
                 if ($_GET["concluido_g"] >= 1)
@@ -30,6 +39,19 @@
                     }
                 }
             }
+
+            if(isset($_GET["exclusao"]) && !empty($_GET["exclusao"])):
+
+                $x_s = $pdo->prepare("TRUNCATE TABLE as_pedidos;");
+                $x_s->execute();
+
+                $x_s = $pdo->prepare("TRUNCATE TABLE as_pedidos;");
+                $x_s->execute();         
+
+                mensagem_atencao("Todos os pedidos foram excluidos com sucesso!","success");
+                $url =  '<meta http-equiv="refresh" content="4; url=pedidos_dos_clientes.php">';
+                echo $url;
+            endif;
 
             if (isset($_GET["pedido_concluido"])) 
             {
@@ -124,7 +146,7 @@
             }
         }
 
-
+        $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
         $cmd_s = $pdo->prepare("SELECT COUNT(*) qtd_pedidos_feitos FROM `as_pedidos`;");
         $resultado_x = $cmd_s->execute();
  
@@ -138,18 +160,13 @@
             $stmt->execute();
             $qtd_pedidos = ($stmt->fetch(PDO::FETCH_OBJ)->count);
 
-        if($cmd_s->fetch(PDO::FETCH_ASSOC)["qtd_pedidos_feitos"] >= 1):
-
-            $pagina = (!isset($_GET["pagina"])) ? 1 : $_GET["pagina"];
-
-            $cmd;$pesquisa;
         if (!isset($_GET["pesquisado"])) 
         {        
-            $cmd = $pdo->prepare("SELECT * FROM `as_pedidos`;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos`;");
         } else 
         {
             $pesquisa = addslashes($_GET["pesquisado"]);
-            $cmd = $pdo->prepare("SELECT * FROM `as_pedidos` WHERE `pro_nome` LIKE '%$pesquisa%';");
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%$pesquisa%';");
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -157,7 +174,7 @@
             // DEPURAÇÃO
             // print_r($result);
 
-            $exibir = 10;
+            $exibir = 8;
 
             $total = ceil((count($result)/$exibir));
 
@@ -166,14 +183,16 @@
 
             $inicioExibir = ($exibir * $pagina) - $exibir;
 
+            $inicioExibir;
+            if($inicioExibir < 0)
+            {
+            $inicioExibir = 0;
+            }
 
-            $cmd = $pdo->prepare("SELECT * FROM `as_pedidos` LIMIT $inicioExibir,$exibir;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` LIMIT $inicioExibir,$exibir;");
             $cmd->execute();
             $result1 = $cmd->fetchAll();
 
-            // DEPURAÇÃO
-            // print '<pre>';print_r($result1);print '</pre>';
-        endif;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -195,7 +214,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
          <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
         <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-
+        <script>let valor_y,valor_x;</script>
 
     </head>
     <body>
@@ -248,10 +267,12 @@
               <center>
                     <div class="mt-4"></div>
                     <h4>Pedidos dos clientes</h4>
+                    <?php if(!isset($_POST["status_produtos_f"])): ?>
                     <h5>Pedidos realizados: <?= $qtd_pedidos ?></h5>
                     <?php if($qtd_pedidos >= 1): ?>
                       <a class="btn btn-secondary mt-2" href="
                                     javascript:
+                                        valor_y=1;valor_x=0;
                                            ConfirmDialog('Você tem certeza que deseja excluir todos os pedidos registrados? Esta ação não poderá ser desfeita.');
                                         ">
                     Excluir todos os pedidos ❌
@@ -269,6 +290,7 @@
                         <button class="btn btn-secondary btn-sm mt-2">Marcar todos os pedidos como concluído</button>
                     </a>
 
+
                     <a href="
                     <?php 
                     if(!isset($_GET["pagina"])){ ?>
@@ -280,9 +302,64 @@
                     <button class="btn btn-secondary btn-sm mt-2">
                     Marcar todos os pedidos como não concluído          
                     </button>   
-                    </a>                 
+                    </a>   
+                    <br><br>              
+                   <?php endif;endif; ?>
+                   
+                   <!-- DEPURAÇÃO -->
+                    <!--     
+                    <?php if(isset($_POST)): 
+                        print_r($_POST);
+                    endif;?> -->
+
+                    <?php if(!isset($_GET["pesquisado"])): ?>
+                    <form method="post" action="pedidos_dos_clientes.php?f_pedidos=1">
+                       
+                        <select name="status_produtos_f" required>
+
+                        <?php if(isset($_POST["status_produtos_f"])): ?>
+                            <?php if($_POST["status_produtos_f"] == 'pagos_n'): ?>
+                           <option value="pagos_s">Pedidos pagos</option> 
+                           <option selected value="pagos_n">Pedidos não pagos</option> 
+                       <?php elseif ($_POST["status_produtos_f"] == 'pagos_s'): ?>
+                           <option selected value="pagos_s">Pedidos pagos</option> 
+                           <option value="pagos_n">Pedidos não pagos</option> 
+                       <?php endif; ?>
+                   <?php elseif (!isset($_POST["status_produtos_f"])): ?>
+                           <option value="pagos_s">Pedidos pagos</option> 
+                           <option value="pagos_n">Pedidos não pagos</option> 
+                   <?php endif; ?>
+                        </select>
+                        <button  type="submit">procurar</button>
+                      <?php if(isset($_GET["f_pedidos"])): ?>
+                        <a href="pedidos_dos_clientes.php"><button type="button">Desfazer filtro</button></a>
+                      <?php endif; ?>
+                      </form>
                     <?php endif; ?>
+
+
                     <hr>
+ <?php
+
+  if (isset($_POST["status_produtos_f"])):
+        if ($_POST["status_produtos_f"] == 'pagos_s') 
+                                    {
+         if(mysqli_query($con,"SELECT * FROM `as_pedidos` WHERE `ped_pag_status` = 'SIM';")->num_rows == 0): ?>
+            <div class="alert alert-danger m-4">
+                    <h5>Nenhum pedido foi pago</h5>
+            </div>
+         <?php
+         exit();
+        endif;
+        } else if ($_POST["status_produtos_f"] == 'pagos_n') 
+            {
+         if(mysqli_query($con,"SELECT * FROM `as_pedidos` WHERE `ped_pag_status` = 'NAO';")->num_rows == 0): ?>
+              <div class="alert alert-danger m-4">
+                    <h5>Nenhum pedido foi encontrado</h5>
+            </div>              
+         <?php exit(); endif; }
+  endif;
+?>
 <?php if($qtd_pedidos >= 1): ?>
                     <div class="col-md-12">
                         <table class="table">
@@ -293,14 +370,28 @@
                                     <th scope="col">Data e hora</th>
                                     <th scope="col">Valor do frete</th>
                                     <th scope="col">Pagamento já foi realizado?</th>
+                                    <?php if(!isset($_POST["status_produtos_f"])): ?>
                                     <th scope="col">Pedido concluído?</th>
                                     <th  style="word-break: break-all;width: 180px;" scope="col">Detalhes do pedido</th>
                                     <th scope="col">Excluir pedido</th>
+                                    <?php endif; ?>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
+
+                                $dados_s;
+                                if(!isset($_POST["status_produtos_f"])):
                                 $dados_s = mysqli_query($con,"SELECT * FROM `as_pedidos`  LIMIT $inicioExibir,$exibir;");                
+                                elseif (isset($_POST["status_produtos_f"])):
+                                    if ($_POST["status_produtos_f"] == 'pagos_s') 
+                                    {
+                                        $dados_s = mysqli_query($con,"SELECT * FROM `as_pedidos` WHERE `ped_pag_status` = 'SIM';");                
+                                    } else if ($_POST["status_produtos_f"] == 'pagos_n') 
+                                    {
+                                        $dados_s = mysqli_query($con,"SELECT * FROM `as_pedidos` WHERE `ped_pag_status` = 'NAO';");                
+                                    }
+                                endif;
                                 
                                 while($x = mysqli_fetch_assoc($dados_s)){
 
@@ -357,17 +448,21 @@
                                 <?php endif; ?>
                                         
                                 </td>
+                                <?php if(!isset($_POST["status_produtos_f"])): ?>
                                 <td>
                                     <?php
                                         if($x["concluido"] <= 0):                                            
                                      ?>
                                         <a href="
                                         <?php 
+                                       
                                             if(isset($_GET["pagina"])):
                                                 print 'pedidos_dos_clientes.php?pagina=' . $_GET["pagina"] . "&pedido_concluido=" . $x["ped_id"];
                                             elseif (!isset($_GET["pagina"])):
                                                 print 'pedidos_dos_clientes.php?pedido_concluido=' . $x["ped_id"];
                                             endif;
+                                        
+
                                         ?>
                                         ">                                            
                                         <button class="btn btn-secondary">Marcar sim</button>
@@ -387,7 +482,11 @@
                                     <?php endif; ?>
                                 </td>
                                 <td>
-                                     <a href="visualizacao_pedidos.php?id_pedido=<?= $x["ped_id"]; ?>&cli_id=<?= $x["ped_cliente"]; ?>&ref_produto=<?= $x["ped_ref"]; ?>">                                        
+                                     <a href="visualizacao_pedidos.php?id_pedido=<?= $x["ped_id"]; ?>&cli_id=<?= $x["ped_cliente"]; ?>&ref_produto=<?= $x["ped_ref"]; ?><?php 
+                                        if(isset($_GET["pagina"])):
+                                            print '&pagina=' . $_GET["pagina"];
+                                        endif;
+                                    ?>">                                        
                                         <button class="btn btn-secondary">Visualizar 👁</button>
                                     </a>
                                 </td>
@@ -398,7 +497,7 @@
                                            ConfirmDialog('Você tem certeza de que deseja excluir este produto?');
                                         ">   X </a>
                                 </td>
-
+                            <?php endif; ?>
                                 </tr>
                             <?php } ?>
                             </tbody>
@@ -411,9 +510,11 @@
         </div>
     </div>
 <?php endif; ?>
-<?php if($qtd_pedidos >= 1): ?>
+<?php 
+    if(!isset($_POST["status_produtos_f"])):
+if($qtd_pedidos >= 1): ?>
 <?php include("paginacao_php.php") ?>
-<?php endif; ?>
+<?php endif;endif; ?>
               </center>
             </div>            
         </div>
@@ -469,6 +570,7 @@ function ConfirmDialog(message) {
               $(this).dialog("close");        
             } else if(valor_y >= 1)
             {
+              console.log('Entrou');
               location.href = 'pedidos_dos_clientes.php?exclusao=1';
               $(this).dialog("close"); 
             }

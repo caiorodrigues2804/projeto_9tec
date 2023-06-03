@@ -62,7 +62,28 @@
             // DEPURAÇÃO
             // print '<pre>';print_r($result1);print '</pre>';
 
-            
+            $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `as_pedidos` WHERE `ped_ref` = :pedido_ref;");
+            $cmd->bindValue(":pedido_ref",addslashes($_GET["ref_produto"]),PDO::PARAM_INT);
+            $cmd->execute();
+
+            $verificador_d = ($cmd->fetch(PDO::FETCH_OBJ)->count);
+            if ($verificador_d <= 0) 
+            {
+                header("Location: pedidos_dos_clientes.php");
+            }   $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `as_clientes` WHERE `cli_id` = :cli_id_d;");
+            $cmd->bindValue(":cli_id_d",addslashes($_GET["cli_id"]),PDO::PARAM_INT);
+            $cmd->execute();
+
+            $verificador_d = ($cmd->fetch(PDO::FETCH_OBJ)->count);
+            if ($verificador_d <= 0) 
+            {
+                header("Location: pedidos_dos_clientes.php");
+            }
+ 
+
+
+          
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -137,7 +158,11 @@
               <center>
                 <div class="mt-2"></div>
                 <h5>Visualizar detalhes do pedido</h5>
-                <a href="pedidos_dos_clientes.php">
+                <a href="pedidos_dos_clientes.php<?php 
+                if(isset($_GET["pagina"])):
+                    print '?pagina=' . $_GET["pagina"];
+                endif;
+                ?>">
                     <button class="btn btn-secondary">Voltar</button>
                 </a>
                 <hr>
@@ -183,9 +208,9 @@
                     </ul>                   
                 </div>
                   <hr>
-                <h6>Informações do produto</h6>
+                <h6><b>Informações do produto</b></h6>
                  <div>
-                     <h6>Verifique na sua caixa de e-mail para obter produto(s) que foi solicitado pelo cliente</h6>
+                     <h6>Verifique na sua caixa de e-mail para obter informação do produto(s) que foi solicitado pelo cliente</h6>
                  </div>
 
                 </center>
