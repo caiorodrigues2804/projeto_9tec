@@ -5,7 +5,7 @@
 </div>
 <br/>
 
-## Endereços URLs ou Links do Site 9Tec Informática
+## Endereços URL ou Links do Site 9Tec Informática
 
 <h3> Endereço principal do site </h3>
 <h4><a href="https://projeto9tec.caiorodriguesportfolios.com.br/">Clique aqui para acessar</a></h4>
