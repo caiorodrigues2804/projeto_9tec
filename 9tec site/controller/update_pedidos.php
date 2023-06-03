@@ -9,9 +9,9 @@ if(isset($_GET["cod_ped"])){
 	$query = "UPDATE `as_pedidos` SET `ped_pag_status` = 'SIM' WHERE `ped_cod` = '$_GET[cod_ped]'";
 	print $query;
 	mysqli_query($conexoes,$query);
-	header("Location: https://projeto9tec.caiorodriguesportfolios.com.br/minhaconta");
+	header("Location: http://localhost/9tec");
 } else {
-	header("Location: https://projeto9tec.caiorodriguesportfolios.com.br/minhaconta");
+	header("Location: http://localhost/9tec");
 }
 
 ?>

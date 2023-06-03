@@ -36,17 +36,17 @@
             $cmd;$pesquisa;
          if (!isset($_GET["pesquisado"])) 
         {        
-            $cmd = $pdo->prepare("SELECT * FROM `as_produtos`;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_clientes`;");
         } else 
         {
             $pesquisa = addslashes($_GET["pesquisado"]);
-            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%$pesquisa%';");
+            $cmd = $pdo->prepare("SELECT * FROM `as_clientes` WHERE `cli_nome` LIKE '%$pesquisa%';");
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
 
             // DEPURAÇÃO
-            // print_r($result);
+            // print_r($result);            
 
             $exibir = 8;
 
@@ -177,7 +177,8 @@
                     <h4>Gerenciamento de clientes</h4>
                     <?php if($d_x == 0): ?>
                         <hr>
-                        <div class="alert alert-danger"><h5>Nenhum cliente foi encontrado!</h5></div>
+
+                        <div class="alert alert-danger m-4"><h5>Nenhum cliente foi encontrado!</h5></div>
                     <?php exit();
                      endif; ?>
                     <!-- PESQUISA -->
@@ -240,12 +241,12 @@
                     <?php 
                     if (isset($_GET["pesquisado"]) && !empty($_GET["pesquisado"]))
                     {                    
-                          $query = "SELECT * FROM `as_clientes` WHERE `cli_nome` LIKE '%$_GET[pesquisado]%';";
+                          $query = "SELECT * FROM `as_clientes` WHERE `cli_nome` LIKE '%$_GET[pesquisado]%' LIMIT $inicioExibir,$exibir;;";
 
                     }             
                     else 
                     {                        
-                        $query = "SELECT * FROM `as_clientes`;";
+                        $query = "SELECT * FROM `as_clientes` LIMIT $inicioExibir,$exibir;;";
                   
                     }
                    

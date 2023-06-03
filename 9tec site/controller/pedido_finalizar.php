@@ -93,17 +93,22 @@ if (isset($_SESSION['PRO'])):
 
       if(mysqli_query($conn,"SELECT COUNT(*) FROM `administracao`;")->fetch_assoc()["COUNT(*)"] >= 1):
 
-           $email = new EnviarEmail();      
+         $email = new EnviarEmail();      
 
 
-           $destinatarios = array();
-
-           foreach(mysqli_query($conn,"SELECT * FROM `administracao`;")->fetch_assoc() as $key => $value):
-                  if ($key == 'adm_email') {
-                        $destinatarios[] = $value;
-                  }
-           endforeach;
+         $destinatarios = array();
            
+          $query = "SELECT * FROM `administracao`;";
+          if($resultado = mysqli_query($conn,$query)){
+             while($w = $resultado->fetch_assoc()){ 
+
+               $destinatarios[] = $w["adm_email"];
+
+               // DEPURAÇÃO
+               // print '<pre>';print_r($w["adm_email"]);print '</pre>';
+
+             }
+          }  
 
            $assunto       = 'Pedido confirmado - 9Tec informática ' . Sistema::DataAtualBR() . ' - ID user: ' . $cliente;      
            $msg           = $smarty->fetch('email_adm.tpl');

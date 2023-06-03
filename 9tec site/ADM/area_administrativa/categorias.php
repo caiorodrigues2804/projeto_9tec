@@ -18,11 +18,11 @@
         $cmd;$pesquisa;
          if (!isset($_GET["pesquisado"])) 
         {        
-            $cmd = $pdo->prepare("SELECT * FROM `as_produtos`;");
+            $cmd = $pdo->prepare("SELECT * FROM `as_categorias`;");
         } else 
         {
             $pesquisa = addslashes($_GET["pesquisado"]);
-            $cmd = $pdo->prepare("SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%$pesquisa%';");
+            $cmd = $pdo->prepare("SELECT * FROM `as_categorias` WHERE `cate_nome` LIKE '%$pesquisa%';");
         }
             $cmd->execute();
             $result = $cmd->fetchAll();
@@ -230,7 +230,11 @@
  <?php 
 if(isset($_GET["pesquisado"])):
     $valor_digitado = addslashes($_GET["pesquisado"]);
-    $query = "SELECT * FROM `as_categorias` WHERE `cate_nome` LIKE '%valor_digitado%';";
+    $query = "SELECT * FROM `as_categorias` WHERE `cate_nome` LIKE '%$valor_digitado%';";
+    
+    // DEPURAÇÃO
+    // print_r(mysqli_query($con,$query)->num_rows);
+
     if(mysqli_query($con,$query)->num_rows == 0){
 ?>
     <div class="alert alert-danger m-4">
@@ -301,7 +305,17 @@ if(isset($_GET["pesquisado"])):
                     <div class="alert alert-danger"><p style="font-size: 20px;">Ops!! Nenhuma categoria de produto foi encontrada. Adicione uma nova categoria de produtos</p></div>
                     </div>                    
                 <?php endif; ?>
-                <?php include("paginacao_php.php"); ?>
+                <?php 
+                    $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `as_categorias`;");
+                    $cmd->execute();
+                    $valor_qtd = ($cmd->fetch(PDO::FETCH_ASSOC)["count"]);
+
+                    if($valor_qtd >= 1)
+                    {                        
+                        include("paginacao_php.php"); 
+                    }
+                    
+                ?>
 
               </center>         
             </div>            

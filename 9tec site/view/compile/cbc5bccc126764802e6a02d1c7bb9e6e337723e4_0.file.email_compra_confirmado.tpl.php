@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.46, created on 2023-06-03 13:38:12
-  from 'C:\xampp\htdocs\9tec site\view\email_compra.tpl' */
+/* Smarty version 3.1.46, created on 2023-06-03 13:40:04
+  from 'C:\xampp\htdocs\9tec site\view\email_compra_confirmado.tpl' */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.46',
-  'unifunc' => 'content_647b6c74af7de3_84984276',
+  'unifunc' => 'content_647b6ce464e496_09291935',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    'd11da192d947c471a6fd6b2a74f661f3ca4ce35e' => 
+    'cbc5bccc126764802e6a02d1c7bb9e6e337723e4' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\9tec site\\view\\email_compra.tpl',
-      1 => 1685810122,
+      0 => 'C:\\xampp\\htdocs\\9tec site\\view\\email_compra_confirmado.tpl',
+      1 => 1685810176,
       2 => 'file',
     ),
   ),
@@ -20,14 +20,14 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_647b6c74af7de3_84984276 (Smarty_Internal_Template $_smarty_tpl) {
+function content_647b6ce464e496_09291935 (Smarty_Internal_Template $_smarty_tpl) {
 ?><style>
 	* {
 	font-family: arial;
 	}
 </style>
 <h4>Olá <?php echo $_smarty_tpl->tpl_vars['NOME_CLIENTE']->value;?>
-, obrigado pelo sua pedido no Site <?php echo $_smarty_tpl->tpl_vars['SITE_NOME']->value;?>
+, foi feita a confirmação do seu pedido no <?php echo $_smarty_tpl->tpl_vars['SITE_NOME']->value;?>
 <br/>
 <a href="<?php echo $_smarty_tpl->tpl_vars['SITE_HOME']->value;?>
 "> <?php echo $_smarty_tpl->tpl_vars['SITE_HOME']->value;?>
@@ -50,7 +50,7 @@ function content_647b6c74af7de3_84984276 (Smarty_Internal_Template $_smarty_tpl)
 	 
 	<center>
 
-	<div class="alert alert-sucess"><h4>Itens do seu pedido</h4></div>
+	<div class="alert alert-sucess"><h4>Itens do seu pedido confirmados</h4></div>
 	<br/>
 
 	<table border="1px" style="width: 95%;">

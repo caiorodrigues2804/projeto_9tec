@@ -161,15 +161,27 @@
 
                                     // DEPURAÇÃO
                                     // print $query;
+                                    print $query;
+                                    print '<br/>';
                                     
                                     $cmd_d_02 = $pdo->prepare($query);
                                     $cmd_d_02->execute();
                                     
                                     // DEPURAÇÃO
                                     // exit();
-
-                                    $url =  '<meta http-equiv="refresh" content="0; url=editar_produto.php?edit_sucesso=1&id=' . $id . '">';
-                                    echo $url;
+                                    if(!isset($_GET["pagina"]))
+                                    {
+                                        $url =  '<meta http-equiv="refresh" content="0; url=editar_produto.php?edit_sucesso=1&id=' . $id . '">';
+                                        echo $url;    
+                                    } else if(empty($_GET["pagina"]))
+                                    {
+                                        $url =  '<meta http-equiv="refresh" content="0; url=editar_produto.php?edit_sucesso=1&id=' . $id . '">';
+                                        echo $url;    
+                                    } else 
+                                    {
+                                        $url =  '<meta http-equiv="refresh" content="0; url=editar_produto.php?edit_sucesso=1&id=' . $id . '&pagina=' . $_GET["pagina"] . '">';
+                                        echo $url;    
+                                    }
 
 
                                 }  else 
@@ -283,11 +295,21 @@
 
                     <hr>
 
-                    <form action="editar_produto.php?editar=1&id=<?= $_GET["id"]; ?>" method="post">
+                    <form action="editar_produto.php?editar=1&id=<?= $_GET["id"]; ?><?php 
+                        if(isset($_GET["pagina"]) && !empty($_GET["pagina"])):
+                            print '&pagina=' . $_GET["pagina"];
+                    endif;
+                    ?>" method="post">
                   
                     <label><h5>Selecione a categoria do produto</h5></label>
                     <div class="col-lg-6">
 
+                    <?php 
+                        $cmd = $pdo->prepare("SELECT as_categorias.cate_nome FROM `as_produtos` INNER JOIN `as_categorias` ON as_produtos.pro_categoria = as_categorias.cate_id WHERE `pro_id` = :id_do_produto_s");
+                        $cmd->bindValue(":id_do_produto_s",addslashes($_GET["id"]),PDO::PARAM_INT);
+                        $cmd->execute();
+                        print '<input type="hidden" id="categoria_selected" value="' . ($cmd->fetch(PDO::FETCH_OBJ)->cate_nome) . '">';
+                    ?>
 
                     <!-- CATEGORIA DO PRODUTO -->
                     <select name="categoria_do_produto" id="produto_selecionado" class="form-control" required>
@@ -295,6 +317,15 @@
                                 <option value="<?php print_r($value["cate_nome"]); ?>"><?php print_r($value["cate_nome"]); ?></option>
                         <?php endforeach;    ?>
                     </select>    
+
+                    <script>
+                    let valor_produto_s = document.querySelector("#categoria_selected").value;
+                    valor_produto_s = parseInt(valor_produto_s);
+                  
+
+                    document.querySelector("#produto_selecionado").value = document.querySelector("#produto_selecionado").options[valor_produto_s];
+                 
+                    </script>
 
                     <input type="hidden" id="valor_produto_selecionado" value="<?php print_r($dados->fetch_assoc()["cate_nome"]);?>">
                     </div>
@@ -516,7 +547,7 @@
 
                 })
 
-                document.querySelector("#fretes_gratis").value = document.querySelector("#fretes").value;
+             
                 document.querySelector("#produto_selecionado").value = document.querySelector("#valor_produto_selecionado").value;
 
 function ConfirmDialog(message) {
@@ -531,9 +562,12 @@ function ConfirmDialog(message) {
       resizable: false,
       buttons: {
         Sim: function() {
-           
+           <?php if(!isset($_GET["pagina"]) && empty($_GET["pagina"])): ?>
               $(this).dialog("close");        
               location.href = 'editar_produto.php?id=' + <?php print $_GET["id"]; ?>
+            <?php else: ?>
+                location.href = 'editar_produto.php?id=' + <?php print $_GET["id"]; ?> + '&pagina=' + <?php print $_GET["pagina"]; ?>
+            <?php endif; ?>
 
         }        
       },

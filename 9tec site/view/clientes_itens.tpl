@@ -1,3 +1,8 @@
+{php}
+for($i = 0;$i <= 1;$i++):
+print '<br/>';
+endfor;
+{/php}
 <h4 class="text-center">Dados do pedido</h4>
 
 <!----- Informações sobre o pedido ---->
@@ -10,7 +15,7 @@
 				<td><b>Data:</b> {$ITENS.1.ped_data}</td>
 				<td><b>Hora:</b> {$ITENS.1.ped_hora}</td>
 				<td><b>Ref:</b> {$ITENS.1.ped_ref}</td>								
-				<td><b>Status:</b> {$ITENS.1.ped_pag_status}</td>
+				<td><b>Status:</b> <d id="status_peds"> {$ITENS.1.ped_pag_status} </d></td>
 
 			</tr>
 		</table>
@@ -26,18 +31,13 @@
 	<table class="table table-bordered" style="width: 80%;">
 
 		<tr align="center" class="bg-success">
-			<td>Item</td>
-			<td>Valor Uni</td>
-			<td>X</td>
-			<td>Sub</td>
+			<td>Item</td>			
 		</tr>
 
 		{foreach from=$ITENS item=P}
 		<tr>
-			<td>{$P.item_nome}</td>
-			<td class="text-right">{$P.item_valor}</td>
-			<td class="text-center">{$P.item_qtd}</td>
-			<td class="text-right">{$P.item_sub}</td>
+			<input type="hidden" id="nome_prods" value="{$P.item_nome}">
+			<td class="text-center">{$P.item_nome}</td>				
 		</tr>
 		{/foreach}
 
@@ -51,78 +51,62 @@
 				<table class="table table-bordered" style="width: 80%;">
 					<tr>
 						
-						<td id="frete_d" class="text-danger"><b>Frete:</b> {$ITENS.1.ped_frete_valor} </td>
-<!-- $ITENS.1.ped_frete_valor+$TOTAL -->
-						<td id="total_produto" class="text-danger"><b>Total:</b> {$TOTAL}</td>
+						<td class="text-danger">Frete: <b>R$</b> <b id="frete_d">{$ITENS.1.ped_frete_valor}</b> </td>
+		
+						<td class="text-danger">Total: <b>R$</b> <b id="valor_total"></b></td>
 
-						<td id="valor_final" class="text-danger"><b>Final:</b> {$ITENS.1.ped_frete_valor + $TOTAL}</td>	
+						<td class="text-danger">Final: <b>R$</b> <b  id="valor_final">{$ITENS.1.item_valor}</b> </td>	
 
 
 					</tr>
 				</table>
-			</center>
 
+				<hr>		 
+			
+				<input type="hidden" id="valor_campo" value="{$ITENS.1.ped_cod}">
+ 				<button id="button_pag" onclick="acoes()">Efetuar o pagamento</button> 				  
+ 		 		<h4 id="valor_ds">Já foi efetuado o pagamento deste pedido</h4>
+
+			</center>
 		</section>
 
-		<script>
+<script>
 
-		function decimalParaReal(numero) {
-		  let formatoReal = new Intl.NumberFormat('pt-BR', {
-		    style: 'currency',
-		    currency: 'BRL',
-		    minimumFractionDigits: 2
-		  });
-		  return formatoReal.format(numero);
+ function formatarNumero(numero) {
+  var numeroFormatado = numero.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+  return numeroFormatado;
+}
+
+	function converterFormato(valor) {
+		  // Remove o ponto existente na string e substitui a vírgula por um ponto
+		  var valorSemPonto = valor.replace(/\./g, '').replace(',', '.');
+
+		  return parseFloat(valorSemPonto);
 		}
 
+	let valor_do_produto,valor_final,frete; 
+	
+	frete = converterFormato(document.querySelector("#frete_d").innerText);
+	valor_final = converterFormato(document.querySelector("#valor_final").innerText);
+	
+	document.querySelector("#valor_total").innerText = formatarNumero(valor_final - frete);
+	
+	document.querySelector("#valor_ds").style.display = 'none';
+	let valor_ds = document.querySelector("#status_peds").innerText;
+	if(valor_ds == 'SIM')
+	{
+		document.querySelector("#button_pag").style.display = 'none';
+		document.querySelector("#valor_ds").style.display = 'block';
+	}	
+	
 
-		let valor_v,total_v,frete_v;
+ acoes = () => {
+		location.href = '?pagamento=sim&cod_produto=' + (document.querySelector("#valor_campo").value);
+  }
 
-		// -------------------- VALOR FINAL ------------------------------ //
-		valor_v = document.querySelector("#valor_final").innerHTML;
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		valor_v = valor_v.replace(/['Final:<b>/']/gi,'');
-		valor_v = parseFloat(valor_v);
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		document.querySelector("#valor_final").innerHTML = '<b>Valor final:</b> '+ (decimalParaReal(valor_v))
-	 	// -------------------------------------------------------------- //
-
-	 	// -------------------- TOTAL  ------------------------------ //
-		total_v = document.querySelector("#total_produto").innerHTML;
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		total_v = total_v.replace(/['Total:<b>/']/gi,'');
-		total_v = parseFloat(total_v);
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		document.querySelector("#total_produto").innerHTML = '<b>Total:</b> '+ (decimalParaReal(total_v))
-	 	// -------------------------------------------------------------- //
-
-	 	// -------------------- FRETE  ------------------------------ //
-		frete_v = document.querySelector("#frete_d").innerHTML;
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		frete_v = frete_v.replace(/['Frete:<b>/']/gi,'');
-		frete_v = parseFloat(frete_v);
-
-		// DEPURAÇÃO
-		// console.log(frete_v);
-
-		document.querySelector("#frete_d").innerHTML = '<b>Frete:</b> '+ (decimalParaReal(frete_v))
-	 	// -------------------------------------------------------------- //
-		 
-		 
-
-		</script>
+</script>
+{php}
+for($i = 0;$i <= 2;$i++):
+print '<br/>';
+endfor;
+{/php}

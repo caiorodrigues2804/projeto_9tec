@@ -77,7 +77,7 @@
             // DEPURAÇÃO
             // print_r($result);
 
-            $exibir = 8;
+            $exibir = 6;
 
             $total = ceil((count($result)/$exibir));
 
@@ -166,7 +166,7 @@
                     <div class="mt-4"></div>
                     <h4>Produtos</h4>
                     <div class="mt-3"></div>
-<?php if($produtos_retornados >= 1){ ?>
+<?php if($produtos_retornados >= 2){ ?>
                     <!-- PESQUISA -->
                     <div class="col-lg-6 mt-4">                        
                         <div class="input-group">
@@ -201,7 +201,7 @@
                     <a href="categorias.php"><button class="btn btn-success">Categoria de produtos</button></a>
       <?php endif; ?>
 <?php } ?>
-<?php if($produtos_retornados >= 1){ 
+<?php if($produtos_retornados >= 2){ 
         if(!isset($_GET["pesquisado"])):
     ?>
     <a href="
@@ -215,9 +215,23 @@
 <?php } ?>
                     <hr>
 <?php 
+        $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `as_produtos`;");
+        $cmd->execute();
+        $qtd_prod = $cmd->fetch(PDO::FETCH_ASSOC)["count"];
+        if($qtd_prod <= 1)
+        { ?>
+             <div class="col-lg-12 p-4">
+                <div class="alert alert-danger m-4">          
+                <h5>Nenhum produto foi encontrado!</h5>
+                </div>
+            </div>
+        <?php  exit();
+        }
+?>
+<?php 
 if(isset($_GET["pesquisado"])):
-    $valor_digitado = addslashes($_GET["pesquisado"]);
-    $query = "SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%valor_digitado%';";
+    $valor_digitado = addslashes($_GET["pesquisado"]);   
+    $query = "SELECT * FROM `as_produtos` WHERE `pro_nome` LIKE '%$valor_digitado%';";
     if(mysqli_query($con,$query)->num_rows == 0){
 ?>
     <div class="alert alert-danger m-4">
@@ -290,6 +304,7 @@ if(isset($_GET["pesquisado"])):
               </center>
             </div>            
         </div>
+        <br>    
 <script>
 // ConfirmDialog('Tem certeza que quer excluir essa categoria de produtos');
 

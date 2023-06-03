@@ -3,7 +3,7 @@
 	font-family: arial;
 	}
 </style>
-<h4>Olá {$NOME_CLIENTE}, obrigado pelo sua pedido no Site {$SITE_NOME}<br/>
+<h4>Olá {$NOME_CLIENTE}, foi feita a confirmação do seu pedido no {$SITE_NOME}<br/>
 <a href="{$SITE_HOME}"> {$SITE_HOME} </a>
 </h4>
  
@@ -21,7 +21,7 @@
 	 
 	<center>
 
-	<div class="alert alert-sucess"><h4>Itens do seu pedido</h4></div>
+	<div class="alert alert-sucess"><h4>Itens do seu pedido confirmados</h4></div>
 	<br/>
 
 	<table border="1px" style="width: 95%;">
