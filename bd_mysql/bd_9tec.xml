@@ -5,7 +5,7 @@
 - https://www.phpmyadmin.net
 -
 - Host: 127.0.0.1:3306
-- Tempo de geração: 02-Jun-2023 às 18:53
+- Tempo de geração: 03-Jun-2023 às 05:08
 - Versão do servidor: 10.4.24-MariaDB
 - versão do PHP: 8.1.6
 -->
@@ -18,26 +18,14 @@
         <pma:database name="miniloja2017" collation="utf8mb4_general_ci" charset="utf8mb4">
             <pma:table name="administracao">
                 CREATE TABLE `administracao` (
-                  `adm_id` int(10) unsigned NOT NULL,
+                  `adm_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
                   `adm_nome` varchar(80) DEFAULT NULL,
-                  `adm_endereco` varchar(100) DEFAULT NULL,
-                  `adm_numero` varchar(20) DEFAULT NULL,
-                  `adm_bairro` varchar(80) DEFAULT NULL,
-                  `adm_cidade` varchar(150) DEFAULT NULL,
-                  `adm_uf` varchar(2) DEFAULT NULL,
-                  `adm_cep` varchar(10) DEFAULT NULL,
-                  `adm_cpf` varchar(12) DEFAULT NULL,
-                  `adm_rg` varchar(20) DEFAULT NULL,
-                  `adm_ddd` int(2) DEFAULT NULL,
-                  `adm_fone` varchar(10) DEFAULT NULL,
-                  `adm_celular` varchar(10) DEFAULT NULL,
                   `adm_email` varchar(60) DEFAULT NULL,
                   `adm_pass` varchar(128) DEFAULT NULL,
-                  `adm_data_nasc` date DEFAULT NULL,
                   `adm_data_cad` date DEFAULT NULL,
                   `adm_hora_cad` time DEFAULT NULL,
-                  `usuario_adm` varchar(40) NOT NULL
-                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+                  PRIMARY KEY (`adm_id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
             </pma:table>
             <pma:table name="as_categorias">
                 CREATE TABLE `as_categorias` (
@@ -107,7 +95,7 @@
                   `ped_valor_item` varchar(100) NOT NULL,
                   `concluido` tinyint(4) NOT NULL DEFAULT 0,
                   PRIMARY KEY (`ped_id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=16384;
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=16384;
             </pma:table>
             <pma:table name="as_pedidos_itens">
                 CREATE TABLE `as_pedidos_itens` (
@@ -117,7 +105,7 @@
                   `item_qtd` int(6) DEFAULT NULL,
                   `item_ped_cod` varchar(50) DEFAULT NULL,
                   PRIMARY KEY (`item_id`)
-                ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=1092;
+                ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 AVG_ROW_LENGTH=1092;
             </pma:table>
             <pma:table name="as_produtos">
                 CREATE TABLE `as_produtos` (
@@ -160,25 +148,28 @@
     <database name="miniloja2017">
         <!-- Tabela administracao -->
         <table name="administracao">
-            <column name="adm_id">0</column>
+            <column name="adm_id">1</column>
             <column name="adm_nome">ADM</column>
-            <column name="adm_endereco">NULL</column>
-            <column name="adm_numero">NULL</column>
-            <column name="adm_bairro">NULL</column>
-            <column name="adm_cidade">NULL</column>
-            <column name="adm_uf">NULL</column>
-            <column name="adm_cep">NULL</column>
-            <column name="adm_cpf">NULL</column>
-            <column name="adm_rg">NULL</column>
-            <column name="adm_ddd">NULL</column>
-            <column name="adm_fone">NULL</column>
-            <column name="adm_celular">NULL</column>
-            <column name="adm_email">fulmivarku@gufum.com</column>
+            <column name="adm_email">suporte@9tec.com</column>
             <column name="adm_pass">f900e7b99c4a9c1a97f0396d4d34c374574d2945437ca1f30c3ad28dcefb55679e90312b6d801798888d2fa3cb03e769b21ab0982109074ce812cd2c349676f9</column>
-            <column name="adm_data_nasc">NULL</column>
             <column name="adm_data_cad">NULL</column>
             <column name="adm_hora_cad">NULL</column>
-            <column name="usuario_adm"></column>
+        </table>
+        <table name="administracao">
+            <column name="adm_id">8</column>
+            <column name="adm_nome">ADM0285</column>
+            <column name="adm_email">tester.testador1288@gmail.com</column>
+            <column name="adm_pass">fde13401e2b00908416fa32dbaf8f49511be3c5670c1160441d76e5dd0c99701fcaa7cb9acce2806bcd95a89ce9554fcacded4dda4881866aa12aa49753fe787</column>
+            <column name="adm_data_cad">2023-06-02</column>
+            <column name="adm_hora_cad">21:49:18</column>
+        </table>
+        <table name="administracao">
+            <column name="adm_id">9</column>
+            <column name="adm_nome">ADM025</column>
+            <column name="adm_email">tester.testador125@gmail.com</column>
+            <column name="adm_pass">679422</column>
+            <column name="adm_data_cad">2023-06-02</column>
+            <column name="adm_hora_cad">21:59:33</column>
         </table>
         <!-- Tabela as_categorias -->
         <table name="as_categorias">
@@ -371,17 +362,17 @@
         </table>
         <!-- Tabela as_pedidos -->
         <table name="as_pedidos">
-            <column name="ped_id">3</column>
+            <column name="ped_id">1</column>
             <column name="ped_data">2023-06-02</column>
-            <column name="ped_hora">12:55:41</column>
+            <column name="ped_hora">16:39:06</column>
             <column name="ped_cliente">2</column>
-            <column name="ped_cod">2306021255342</column>
-            <column name="ped_ref">2306021255342</column>
-            <column name="ped_pag_status">NAO</column>
+            <column name="ped_cod">2306021638592</column>
+            <column name="ped_ref">2306021638592</column>
+            <column name="ped_pag_status">SIM</column>
             <column name="ped_pag_forma">NULL</column>
             <column name="ped_pag_tipo">NULL</column>
             <column name="ped_pag_codigo">NULL</column>
-            <column name="ped_frete_valor">0.00</column>
+            <column name="ped_frete_valor">94.81</column>
             <column name="ped_frete_tipo">sedex</column>
             <column name="ped_valor_item">1640</column>
             <column name="concluido">0</column>
@@ -393,6 +384,111 @@
             <column name="item_valor">1640.00</column>
             <column name="item_qtd">1</column>
             <column name="item_ped_cod">2306021255342</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">6</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">3280.00</column>
+            <column name="item_qtd">2</column>
+            <column name="item_ped_cod">2306021546022</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">7</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021547172</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">8</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021548432</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">9</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021549322</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">10</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">3280.00</column>
+            <column name="item_qtd">2</column>
+            <column name="item_ped_cod">2306021551072</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">11</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021552002</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">12</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">3280.00</column>
+            <column name="item_qtd">2</column>
+            <column name="item_ped_cod">2306021552552</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">13</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021556162</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">14</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021600062</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">15</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021600432</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">16</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021601102</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">17</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021602162</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">18</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">3280.00</column>
+            <column name="item_qtd">2</column>
+            <column name="item_ped_cod">2306021610192</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">19</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021613452</column>
+        </table>
+        <table name="as_pedidos_itens">
+            <column name="item_id">20</column>
+            <column name="item_produto">5</column>
+            <column name="item_valor">1640.00</column>
+            <column name="item_qtd">1</column>
+            <column name="item_ped_cod">2306021638592</column>
         </table>
         <!-- Tabela as_produtos -->
         <table name="as_produtos">
