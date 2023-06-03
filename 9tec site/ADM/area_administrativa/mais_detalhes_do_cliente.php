@@ -87,7 +87,23 @@
 
             // DEPURAÇÃO
             // print_r($resultado);
-                
+            
+            $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `as_clientes` WHERE `cli_id` = :cli_id_d;");
+            $cmd->bindValue(":cli_id_d",addslashes($_GET["id_cliente"]),PDO::PARAM_INT);
+            $cmd->execute();
+
+            $verificador_d = ($cmd->fetch(PDO::FETCH_OBJ)->count);
+            if ($verificador_d <= 0) 
+            {
+                header("Location: gerenciamento_clientes.php");
+            }
+
+            if (!isset($_GET["id_cliente"])) {
+                header("Location: gerenciamento_clientes.php");
+            } else if (empty($_GET["id_cliente"])) {
+                header("Location: gerenciamento_clientes.php");
+            }
+
            
 ?>
 <!DOCTYPE html>

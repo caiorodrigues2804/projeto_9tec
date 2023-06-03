@@ -96,6 +96,8 @@
                  header("Location: categorias.php");
              }    
          }
+
+         
         
 ?>
 <!DOCTYPE html>

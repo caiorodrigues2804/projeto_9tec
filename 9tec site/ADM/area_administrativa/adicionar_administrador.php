@@ -18,17 +18,32 @@
                 if(isset($_POST)):
                     if($_POST["senha"] == $_POST["confirm_senha"])
                     {
-                        $senha_adm = hash('SHA512',md5(md5($_POST["senha"])));
-                        $cmd = $pdo->prepare("INSERT INTO `administracao` (`adm_nome`,`adm_email`,`adm_pass`,`adm_data_cad`,`adm_hora_cad`) VALUES (:adm_nome_s,:adm_email_s,:adm_pass_s,:adm_data_s,:adm_hora_s);");
-                        $cmd->bindValue(":adm_nome_s",addslashes($_POST["nome"]));
-                        $cmd->bindValue(":adm_email_s",addslashes($_POST["email"]));
-                        $cmd->bindValue(":adm_pass_s",addslashes($senha_adm));
-                        $cmd->bindValue(":adm_data_s",addslashes(date('Y-m-d')));
-                        $cmd->bindValue(":adm_hora_s",addslashes(date('H:i:s')));
+
+                        $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `administracao` WHERE `adm_nome` = :adm_nome_d OR `adm_email` = :adm_email_d;");
+                        $cmd->bindValue(":adm_nome_d",addslashes($_POST["nome"]), PDO::PARAM_STR);
+                        $cmd->bindValue(":adm_email_d",addslashes($_POST["email"]), PDO::PARAM_STR);
                         $cmd->execute();
-                        mensagem_atencao("Administrador adicionado com sucesso","success");
-                        $url =  '<meta http-equiv="refresh" content="3; url=adicionar_administrador.php">';
-                        echo $url;
+                        $existe_ou_nao = $cmd->fetch(PDO::FETCH_ASSOC)["count"];
+
+                        if ($existe_ou_nao <= 0) 
+                        {
+                            $senha_adm = hash('SHA512',md5(md5($_POST["senha"])));
+                            $cmd = $pdo->prepare("INSERT INTO `administracao` (`adm_nome`,`adm_email`,`adm_pass`,`adm_data_cad`,`adm_hora_cad`) VALUES (:adm_nome_s,:adm_email_s,:adm_pass_s,:adm_data_s,:adm_hora_s);");
+                            $cmd->bindValue(":adm_nome_s",addslashes($_POST["nome"]), PDO::PARAM_STR);
+                            $cmd->bindValue(":adm_email_s",addslashes($_POST["email"]), PDO::PARAM_STR);
+                            $cmd->bindValue(":adm_pass_s",addslashes($senha_adm), PDO::PARAM_STR);
+                            $cmd->bindValue(":adm_data_s",addslashes(date('Y-m-d')), PDO::PARAM_STR);
+                            $cmd->bindValue(":adm_hora_s",addslashes(date('H:i:s')), PDO::PARAM_STR);
+                            $cmd->execute();
+                            mensagem_atencao("Administrador adicionado com sucesso","success");
+                            $url =  '<meta http-equiv="refresh" content="3; url=adicionar_administrador.php">';
+                            echo $url;                        
+                        } else
+                        {
+                             mensagem_atencao("Ops! já existe esse administrador com esses dados","danger");
+                            $url =  '<meta http-equiv="refresh" content="3; url=adicionar_administrador.php">';
+                            echo $url;
+                        }
 
                     } else 
                     {

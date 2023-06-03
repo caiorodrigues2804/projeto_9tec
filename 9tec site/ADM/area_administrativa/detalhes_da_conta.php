@@ -9,6 +9,40 @@
             $cmd->execute(); 
             $resultado = $cmd->fetch(PDO::FETCH_ASSOC); 
 
+            if (isset($_GET["exclusao"])) 
+            {
+                if (isset($_GET["id"]) && !empty($_GET["id"])) 
+                {
+                    $admId = $_GET["id"]; // Obtém o valor do parâmetro
+
+                    // Verifica se o parâmetro é um número válido
+                    if (!is_numeric($admId)) {
+                        // Trate o erro adequadamente, exiba uma mensagem de erro ou redirecione o usuário
+                        die("ID inválido.");
+                    }
+
+                    $sql = "DELETE FROM `administracao` WHERE `adm_id` = :admId";
+
+                    try {
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindParam(":admId", $admId, PDO::PARAM_INT);
+                        $stmt->execute();?>
+                        <script>window.alert("Você foi desconectado");</script>
+                        <?php 
+                        $url =  '<meta http-equiv="refresh" content="0; url=logoff.php">';
+                        echo $url;
+                        
+
+                        $rowCount = $stmt->rowCount(); // Obtém o número de linhas afetadas
+                        // Faça algo com $rowCount, se necessário
+                    } catch (PDOException $e) {
+                        // Trate o erro adequadamente, exiba uma mensagem de erro ou registre o erro em um log
+                        die("Erro ao executar a consulta: " . $e->getMessage());
+                    }
+
+                }             
+            }
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -22,6 +56,13 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <link href="css/styles.css" rel="stylesheet" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <script>
+            let valor_x,valor_y;
+        </script>
     </head>
     <body>
         <div class="d-flex" id="wrapper">
@@ -73,6 +114,41 @@
               <center>
                     <div class="mt-4"></div>
                     <h4>Detalhes da conta</h4>
+                    <br>
+                    <?php if($_SESSION["id"] != 1): ?>
+                    <a href="editar_administrador.php?id_adm=<?php print $_SESSION['id'];?>&edit=2"><button class="btn btn-secondary">Alterar meus dados</button></a>
+                    <a href="
+                    javascript:
+                    valor_x = '<?php print $_SESSION["id"]; ?>';
+                    ConfirmDialog('Deseja confirmar a exclusão da sua conta?','Excluir conta');
+                    "> 
+                    <button class="btn btn-secondary">Excluir conta ❌</button>                       
+                    </a>
+                    <?php endif; ?>
+                    <hr>
+
+                  
+                    <table class="table">
+                        <thead class="table">
+                            <tr align="center">
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Hora de cadastro</th>
+                            <th>Data de cadastro</th>                            
+                            </tr>
+                                <tbody>
+                            <tr align="center">
+                                    <td><?=  $resultado["adm_id"]; ?></td>
+                                    <td><?=  $resultado["adm_nome"]; ?></td>
+                                    <td><?=  $resultado["adm_email"]; ?></td>
+                                    <td><?=  $resultado["adm_hora_cad"]; ?></td>
+                                    <td><?=  str_replace('-','/',$resultado["adm_data_cad"]); ?></td>
+                            </tr>
+                                </tbody>    
+                        </thead>
+                    </table>
+                
               </center>
 
 
@@ -83,5 +159,53 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+        <script>
+// ConfirmDialog('Tem certeza que quer excluir essa categoria de produtos');
+
+function ConfirmDialog(message,msg2) {
+  $('<div></div>').appendTo('body')
+    .html('<div><h6>' + message + '</h6></div>')
+    .dialog({
+      modal: true,
+      title: msg2,
+      zIndex: 10000,
+      autoOpen: true,
+      width: 'auto',
+      resizable: false,
+      buttons: {
+        Sim: function() {
+          // $(obj).removeAttr('onclick');                                
+          // $(obj).parents('.Parent').remove();
+          
+          location.href = 'detalhes_da_conta.php?exclusao=1&id=' + valor_x;
+
+          $(this).dialog("close");
+        },
+        Nao: function() {
+ 
+
+          $(this).dialog("close");
+        }
+      },
+      close: function(event, ui) {
+        $(this).remove();
+      }
+    });
+};
+
+// let bolota = 0;
+// for (var i = 0;i <= document.querySelectorAll("#valor_indice").length; i++) 
+// {
+//     bolota+=1;
+//     document.querySelectorAll("#valor_indice")[i].innerText = bolota;
+// }
+// console.log(screen.width)
+if (screen.width < 1280) {
+        document.querySelectorAll("#imagem_produtos")[0].style.display = 'none';
+        document.querySelectorAll("#imagem_produtos")[1].style.display = 'none';
+}
+</script>
+
     </body>
 </html>

@@ -2,7 +2,25 @@
             require "../conexao.php";
             require "../conexao_2.php";
             require "validador_de_acessos.php";
-          
+          function mensagem_atencao($mesangem_nome,$cor)
+            {
+?>
+        <div class="alert alert-<?= $cor; ?>">
+                <p><?= $mesangem_nome; ?></p>
+        </div>
+<?php 
+            }   
+            if (isset($_GET["drop_g"]))
+            {
+                $cmd_d = $pdo->prepare("DELETE FROM `administracao` WHERE `adm_id` >= 2;");
+                $cmd_d->execute();
+                mensagem_atencao("Administradores excluidos com sucesso","success");
+                
+                $url =  '<meta http-equiv="refresh" content="3; url=gerenciamento_administrador.php">';
+                echo $url;                
+
+            }
+
            if (isset($_GET["drop"])) 
             {
                 if (!empty($_GET["drop"]))
@@ -191,7 +209,13 @@
                     <?php if($adm_count >= 1){ 
                             if($_SESSION["id"] == 1):
                     ?>
-                    <button class="btn btn-secondary">Excluir todos os administradores ❌</button>
+                    <a href="
+                        javascript:
+                        valor_y=2;
+                        ConfirmDialog('Tem certeza de que deseja excluir todos os administradores?','Excluir administradores');
+                    ">
+                        <button class="btn btn-secondary">Excluir todos os administradores exceto ADM Master ❌</button>
+                    </a>
                         <?php endif; ?>
                     <?php }?>               
 
@@ -227,7 +251,7 @@
                             <th>ADM e-mail</th>
                             <th>Hora de cadastro</th>
                             <th>Data de cadastro</th>
-                            <th>Nível</th>
+                            <th>Nível de ADM</th>
                             <th>Editar</th>
                             <th>Excluir</th>
                         </tr>
@@ -271,12 +295,22 @@
                                 ?></td>
                                  
                                 <?php if($w["adm_id"] != 1 && $w["adm_id"]  == $_SESSION["id"]): ?>
-                                <td><button class="btn btn-secondary">✏️</button></td>
+                                <td>
+                                    <a href="
+                                
+                                    editar_administrador.php?id_adm=<?php print $_SESSION['id'];?>&edit=1<?php 
+                                    if(isset($_GET["pagina"]) && !empty($_GET["pagina"])):
+                                        print '&pagina=' . $_GET["pagina"];
+                                    endif;                                    
+                                    ?>
+                                     ">
+                                <button class="btn btn-secondary">✏️</button></a>
+                                </td>
                                <td>    
                                 <a href="
                                     javascript:
                                     valor_y=0;valor_x='<?php print $w["adm_id"]; ?>';
-                                    ConfirmDialog('Tem certeza de que deseja excluir sua conta?');
+                                    ConfirmDialog('Tem certeza de que deseja excluir sua conta?','Excluir conta');
                                 ">                                    
                                 <button class="btn btn-danger">
                                 X
@@ -285,12 +319,17 @@
                                 <?php else:
                                 if($w["adm_id"] != 1 && $_SESSION["id"] == 1):
                                     ?>
-                                <td><button class="btn btn-secondary">✏️</button></td>
+                                <td><a href="editar_administrador_x.php?id_adm=<?php print $w["adm_id"];?>&edit=1<?php 
+                                    if(isset($_GET["pagina"]) && !empty($_GET["pagina"])):
+                                        print '&pagina=' . $_GET["pagina"];
+                                    endif;
+                                ?>">
+                                    <button class="btn btn-secondary">✏️</button></a></td>   
                                <td>    
                                 <a href="
                                     javascript:
                                     valor_y=0;valor_x='<?php print $w["adm_id"]; ?>';
-                                    ConfirmDialog('Você tem certeza de que deseja excluir este administrador?');
+                                    ConfirmDialog('Você tem certeza de que deseja excluir este administrador?','Excluir administrador');
                                 ">                                    
                                 <button class="btn btn-danger">
                                 X
@@ -324,12 +363,12 @@
 <script>
 // ConfirmDialog('Tem certeza que quer excluir essa categoria de produtos');
 
-function ConfirmDialog(message) {
+function ConfirmDialog(message,msg2) {
   $('<div></div>').appendTo('body')
     .html('<div><h6>' + message + '</h6></div>')
     .dialog({
       modal: true,
-      title: 'Excluir administrador',
+      title: msg2,
       zIndex: 10000,
       autoOpen: true,
       width: 'auto',
@@ -372,9 +411,13 @@ function ConfirmDialog(message) {
                 <?php } ?>
             <?php endif; ?>
               $(this).dialog("close");        
-            } else if(valor_y >= 1)
+            } else if(valor_y == 1)
             {
               location.href = 'gerenciamento_administrador.php?exclusao=1';
+              $(this).dialog("close"); 
+            } else if(valor_y == 2)
+            {
+              location.href = 'gerenciamento_administrador.php?drop_g=1';
               $(this).dialog("close"); 
             }
 

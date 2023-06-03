@@ -19,6 +19,17 @@
                 header("Location: produtos.php");
             }
 
+            $cmd = $pdo->prepare("SELECT COUNT(*) count FROM `as_produtos` WHERE `pro_id` = :id_d_produto;");
+            $cmd->bindValue(":id_d_produto",addslashes($_GET["id"]),PDO::PARAM_INT);
+            $cmd->execute();
+
+            $verificador_d = ($cmd->fetch(PDO::FETCH_OBJ)->count);
+            if ($verificador_d <= 0) 
+            {
+                header("Location: produtos.php");
+            }
+
+
             
             $cmd_d = $pdo->prepare("SELECT * FROM `as_categorias`;");
             $cmd_d->execute();

@@ -30,7 +30,7 @@ if (!isset($_GET['id']))
             $cate_iden = addslashes($_GET["id"]);
             if(mysqli_query($con,"SELECT * FROM `as_categorias` WHERE `cate_id` = '$cate_iden';")->num_rows <= 0)
             {
-                header("Location: produtos.php");
+                header("Location: categorias.php");
             }
           
     // DEBUGGER
